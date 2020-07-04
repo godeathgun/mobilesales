@@ -4,6 +4,8 @@
 <div class="content">
     <div class="card-body card-block">
         <div class="card-body">
+            <h2> Product index </h2>
+            &nbsp;
             <?php $message = Session::get('message');?>
             @if($message)
                 <p class="alert alert-success">
@@ -11,7 +13,10 @@
                 Session::put('message',null); ?>
                 </p>
             @endif
-            <a href="view_product_create" type="button" class="btn btn-primary">Create</a>
+            <div>
+                <a href="product_create" type="button" class="btn btn-primary">Create</a>
+            </div>
+            &nbsp;
             <table class="table">
                 <thead class="thead-dark">
                     <tr>
@@ -45,36 +50,14 @@
                             @endif
 
                             <td>
-                                <button class="btn btn-outline-primary"><a>Update</a></button>
+                                <button class="btn btn-outline-primary"><a
+                                    href="{{ URL::to('/product_edit/'.$product->ProductID) }}">Update</a></button>
 
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-outline-danger" data-toggle="modal"
-                                    data-target="#exampleModal"> Delete
+                                    data-target="#exampleModal"> 
+                                    <a href="{{ URL::to('/delete_product/'.$product->ProductID) }}">Delete</a>
                                 </button>
-                                <!-- Modal -->
-                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Delete Product</h5>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                Do you want to delete this product?
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-dismiss="modal">Close</button>
-                                                <a href="{{ URL::to('/delete_product/'.$product->ProductID) }}"
-                                                    type="button" class="btn btn-primary">Confirm</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
 
                                 @if($product->Status == 1)
                                     <button class="btn btn-outline-warning"><a

@@ -5,7 +5,10 @@
 
 
     <form action="create_product" method="post" enctype="multipart/form-data" class="form-horizontal">
-        
+
+        <h2> Product create </h2>
+            &nbsp;
+
         <?php $error = Session::get('error');?>
             @if($error)
                 <p class="alert alert-danger">

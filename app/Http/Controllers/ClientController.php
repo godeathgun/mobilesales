@@ -11,6 +11,11 @@ class ClientController extends Controller
         return view('client.index');
     }
 
+    public function register()
+    {
+        return view('client.register');
+    }
+
     public function cart()
     {
         return view('client.cart');

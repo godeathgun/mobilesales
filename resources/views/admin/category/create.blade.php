@@ -2,8 +2,10 @@
 
 @section('content')
 <div class="content">
+    <h2> Category create </h2>
+    &nbsp;
     <div class="card-body card-block">
-        <form action="create_category" method="POST" enctype="multipart/form-data" class="form-horizontal">
+        <form action="/create_category" method="POST" enctype="multipart/form-data" class="form-horizontal">
             @csrf
             <div class="row form-group">
                 <div class="col col-md-3">
@@ -30,8 +32,7 @@
                     <input class="btn btn-primary" type="submit" value="Submit">
                 </div>
             </div>
+        </form>
     </div>
-    </form>
-</div>
 </div>
 @endsection
