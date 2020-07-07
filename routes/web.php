@@ -26,8 +26,9 @@ Route::get('/checkout', 'ClientController@checkout');
 
 Route::get('/contact', 'ClientController@contact');
 
-Route::get('/register', 'ClientController@register');
-
+//register
+Route::get('/register', 'ClientController@getRegister');
+Route::post('/register', 'ClientController@postRegister');
 
 //Admin
 Route::get('/admin', 'AdminController@index');
