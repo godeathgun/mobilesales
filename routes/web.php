@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+use App\Product;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,12 +33,13 @@ Route::get('/register', 'ClientController@register');
 Route::get('/admin', 'AdminController@index');
 Route::get('/products', 'ProductController@view_index');
 Route::get('/productdetails', 'ProductController@view_index');
-Route::get('/users', 'UserController@view_index');
+Route::get('/customers', 'CustomerController@view_index');
 Route::get('/banners', 'BannerController@view_index');
 Route::get('/employees', 'EmployeeController@view_index');
 Route::get('/orders', 'OrderController@view_index');
-Route::get('/manufaturers', 'ManufacturerController@view_index');
+Route::get('/manufacturers', 'ManufacturerController@view_index');
 Route::get('/categories', 'CategoryController@view_index');
+Route::get('/roles', 'RoleController@view_index');
 
 
 
@@ -55,6 +58,21 @@ Route::get('/category_edit/{id}', 'CategoryController@view_edit');
 
 Route::post('category_edit/category_edit', 'CategoryController@edit_category'); 
 
+//Manufacturer
+Route::get('manufacturer_create', 'ManufacturerController@view_create');
+
+Route::post('create_manufacturer', 'ManufacturerController@create');
+
+Route::get('/unactivate_manufacturer/{id}', 'ManufacturerController@unactivate_manufacturer');
+
+Route::get('/activate_manufacturer/{id}', 'ManufacturerController@activate_manufacturer');
+
+Route::get('/delete_manufacturer/{id}', 'ManufacturerController@delete_manufacturer');
+
+Route::get('/manufacturer_edit/{id}', 'ManufacturerController@view_edit');
+
+Route::post('manufacturer_edit/manufacturer_edit', 'ManufacturerController@edit_manufacturer'); 
+
 //Product
 Route::get('product_create', 'ProductController@view_create');
 
@@ -69,6 +87,8 @@ Route::get('/delete_product/{id}', 'ProductController@delete_product');
 Route::get('/product_edit/{id}', 'ProductController@view_edit');
 
 Route::post('product_edit/edit_product', 'ProductController@edit_product'); 
+
+Route::get('/search_product', 'ProductController@search_product');
 
 
 //Banner    
@@ -85,3 +105,48 @@ Route::get('/delete_banner/{id}', 'BannerController@delete_banner');
 Route::get('/banner_edit/{id}', 'BannerController@view_edit');
 
 Route::post('banner_edit/edit_banner', 'BannerController@edit_banner'); 
+
+//Role    
+Route::get('role_create', 'RoleController@view_create');
+
+Route::post('create_role', 'RoleController@create');
+
+Route::get('/unactivate_role/{id}', 'RoleController@unactivate_role');
+
+Route::get('/activate_role/{id}', 'RoleController@activate_role');
+
+Route::get('/delete_role/{id}', 'RoleController@delete_role');
+
+Route::get('/role_edit/{id}', 'RoleController@view_edit');
+
+Route::post('role_edit/edit_role', 'RoleController@edit_role'); 
+
+//Employee    
+Route::get('employee_create', 'EmployeeController@view_create');
+
+Route::post('create_employee', 'EmployeeController@create');
+
+Route::get('/unactivate_employee/{id}', 'EmployeeController@unactivate_employee');
+
+Route::get('/activate_employee/{id}', 'EmployeeController@activate_employee');
+
+Route::get('/delete_employee/{id}', 'EmployeeController@delete_employee');
+
+Route::get('/employee_edit/{id}', 'EmployeeController@view_edit');
+
+Route::post('employee_edit/edit_employee', 'EmployeeController@edit_employee'); 
+
+//Customer    
+Route::get('customer_create', 'CustomerController@view_create');
+
+Route::post('create_customer', 'CustomerController@create');
+
+Route::get('/unactivate_customer/{id}', 'CustomerController@unactivate_customer');
+
+Route::get('/activate_customer/{id}', 'CustomerController@activate_customer');
+
+Route::get('/delete_customer/{id}', 'CustomerController@delete_customer');
+
+Route::get('/customer_edit/{id}', 'CustomerController@view_edit');
+
+Route::post('customer_edit/edit_customer', 'CustomerController@edit_customer'); 

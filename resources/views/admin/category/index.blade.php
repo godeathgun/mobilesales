@@ -26,7 +26,7 @@
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
-                <?php $categories=DB::table('category')->get(); ?>
+                
                 <tbody>
                     @foreach($categories as $category)
                         <tr>
@@ -67,6 +67,7 @@
                     @endforeach
                 </tbody>
             </table>
+            {{$categories->links()}}
         </div>
     </div>
 </div>

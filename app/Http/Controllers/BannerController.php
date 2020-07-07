@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use DB;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\DB;
 use Session;
 use File;
 use App\Banner;
@@ -12,8 +12,8 @@ class BannerController extends Controller
 {
     public function view_index()
     {
-        
-        return view ('admin.banner.index');
+        $banners = DB::table('banner')->paginate(10);
+        return view ('admin.banner.index',['banners'=>$banners]);
     }
 
     public function view_create()

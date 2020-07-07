@@ -17,6 +17,15 @@
                 <a href="product_create" type="button" class="btn btn-primary">Create</a>
             </div>
             &nbsp;
+            <form action="search_product" method="get" enctype="multipart/form-data" class="form-horizontal" >
+                    <input  type="text" id="input1-group2" name="input_data" placeholder="Search" class="form-control">
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <input class="btn btn-primary" type="submit" value="Submit">
+                        </div>
+                    </div>
+            </form>
+            &nbsp;
             <table class="table">
                 <thead class="thead-dark">
                     <tr>
@@ -29,7 +38,7 @@
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
-                <?php $products=DB::table('product')->get(); ?>
+                
                 <tbody>
                     @foreach($products as $product)
                         <tr>
@@ -56,7 +65,7 @@
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-outline-danger" data-toggle="modal"
                                     data-target="#exampleModal"> 
-                                    <a href="{{ URL::to('/delete_product/'.$product->ProductID) }}">Delete</a>
+                                    <a onclick="return confirm('Are you sure?')" href="{{ URL::to('/delete_product/'.$product->ProductID) }}">Delete</a>
                                 </button>
 
                                 @if($product->Status == 1)
@@ -72,6 +81,7 @@
                     @endforeach
                 </tbody>
             </table>
+            {{$products->links()}}
         </div>
     </div>
 </div>

@@ -4,7 +4,7 @@
 <div class="content">
     <div class="card-body card-block">
         <div class="card-body">
-            <h2> Employee index </h2>
+            <h2> Manufacturer index </h2>
             &nbsp;
             <?php $message = Session::get('message');?>
             @if($message)
@@ -14,36 +14,26 @@
                 </p>
             @endif
             <div>
-                <a href="employee_create" type="button" class="btn btn-primary">Create</a>
+                <a href="manufacturer_create" type="button" class="btn btn-primary">Create</a>
             </div>
             &nbsp;
             <table class="table">
                 <thead class="thead-dark">
                     <tr>
-                        <th scope="col">ID</th>
+                        <th scope="col">#</th>
                         <th scope="col">Name</th>
-                        <th scope="col">Role</th>
-                        <th scope="col">Phone</th>
-                        <th scope="col">Email</th>
                         <th scope="col">Status</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
-                
-                <?php $roles=array();
-                        $roles=DB::table('role')->get(); ?>
+               
                 <tbody>
-                    @foreach($employees as $employee)
+                    @foreach($manufacturers as $manufacturer)
                         <tr>
-                            <th scope="row">{{ $employee->EmployeeID }}</th>
-                            <td>{{ $employee->Name }}</td> 
-                            <td>{{ DB::table('role')
-                                ->where('RoleID', $employee->RoleID)
-                                ->first()->RoleName }} </td>
-                            <td>{{ $employee->Phone }}</td>
-                            <td>{{ $employee->Email }}</td>
+                            <th scope="row">{{ $manufacturer->ManufacturerID }}</th>
+                            <td>{{ $manufacturer->ManufacturerName }}</td>
 
-                            @if($employee->Status == 1)
+                            @if($manufacturer->Status == 1)
                                 <td>
                                     <label class="badge badge-success">Activated</label>
                                 </td>
@@ -53,33 +43,32 @@
                                 </td>
                             @endif
 
+
                             <td>
                                 <button class="btn btn-outline-primary"><a
-                                    href="{{ URL::to('/employee_edit/'.$employee->EmployeeID) }}">Update</a></button>
+                                        href="{{ URL::to('/manufacturer_edit/'.$manufacturer->ManufacturerID) }}">Update</a></button>
 
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-outline-danger" data-toggle="modal"
-                                    data-target="#exampleModal"> 
-                                    <a onclick="return confirm('Are you sure?')" href="{{ URL::to('/delete_employee/'.$employee->EmployeeID) }}">Delete</a>
+                                    data-target="#exampleModal">
+                                    <a
+                                        href="{{ URL::to('/delete_manufacturer/'.$manufacturer->ManufacturerID) }}">Delete</a>
                                 </button>
 
-                                @if($employee->Status == 1)
+                                @if($manufacturer->Status == 1)
                                     <button class="btn btn-outline-warning"><a
-                                            href="{{ URL::to('/unactivate_employee/'.$employee->EmployeeID) }}">Unactivate</a></button>
+                                            href="{{ URL::to('/unactivate_manufacturer/'.$manufacturer->ManufacturerID) }}">Unactivate</a></button>
                                 @else
                                     <button class="btn btn-outline-success"><a
-                                            href="{{ URL::to('/activate_employee/'.$employee->EmployeeID) }}">activate</a></button>
+                                            href="{{ URL::to('/activate_manufacturer/'.$manufacturer->ManufacturerID) }}">activate</a></button>
                                 @endif
                             </td>
                         </tr>
-
                     @endforeach
                 </tbody>
             </table>
-            {{$employees->links()}}
+            {{$manufacturers->links()}}
         </div>
     </div>
 </div>
-
-
 @endsection

@@ -27,7 +27,6 @@
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
-                <?php $banners=DB::table('banner')->get(); ?>
                 <tbody>
                     @foreach($banners as $banner)
                         <tr>
@@ -69,6 +68,7 @@
                     @endforeach
                 </tbody>
             </table>
+            {{$banners->links()}}
         </div>
     </div>
 </div>
