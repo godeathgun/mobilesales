@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\DB;
 use Session;
 use File;
 use App\Category;
@@ -13,13 +13,20 @@ class CategoryController extends Controller
 {
     public function view_index()
     {
-        
-        return view ('admin.category.index');
+        $categories = DB::table("category")->paginate(10);
+        return view ('admin.category.index',['categories'=>$categories]);
     }
 
     public function view_create()
     {
         return view('admin.category.create');
+    }
+
+    public function search_category(Request $req)
+    {
+        $categories = Category::where('CategoryName','LIKE','%'.$req->input_data.'%')
+        ->orWhere('CategoryID','LIKE','%'.$req->input_data.'%')->paginate(100);
+        return view('admin.category.index', ['categories' => $categories]);
     }
 
     public function create(Request $req)

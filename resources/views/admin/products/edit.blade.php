@@ -50,12 +50,100 @@
         </div>
 
         <div class="row form-group">
+            <div class="col col-md-3"><label for="text-input" class=" form-control-label">ModifiedDate</label></div>
+            <div class="col-12 col-md-9">
+                <input value="{{ $select_product->ModifiedDate }}" type="date" id="text-input" name="product_modifieddate" placeholder="Text" class="form-control" required>
+            </div>
+        </div>
+
+        
+        <div class="row form-group">
+            <div class="col col-md-3"><label for="text-input" class=" form-control-label">FrontCamera</label></div>
+            <div class="col-12 col-md-9">
+                <input value="{{ $select_product->FrontCamera }}"  type="text" id="text-input" name="product_frontcamera" placeholder="Text" class="form-control" required>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col col-md-3"><label for="text-input" class=" form-control-label">Camera</label></div>
+            <div class="col-12 col-md-9">
+                <input value="{{ $select_product->Camera }}" type="text" id="text-input" name="product_camera" placeholder="Text" class="form-control" required>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col col-md-3"><label for="text-input" class=" form-control-label">Screen</label></div>
+            <div class="col-12 col-md-9">
+                <input value="{{ $select_product->Screen }}" type="text" id="text-input" name="product_screen" placeholder="Text" class="form-control" required>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col col-md-3"><label for="text-input" class=" form-control-label">Ram</label></div>
+            <div class="col-12 col-md-9">
+                <input value="{{ $select_product->Ram }}" type="text" id="text-input" name="product_ram" placeholder="Text" class="form-control" required>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col col-md-3"><label for="text-input" class=" form-control-label">ROM</label></div>
+            <div class="col-12 col-md-9">
+                <input value="{{ $select_product->ROM }}" type="text" id="text-input" name="product_rom" placeholder="Text" class="form-control" required>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col col-md-3"><label for="text-input" class=" form-control-label">CPU</label></div>
+            <div class="col-12 col-md-9">
+                <input value="{{ $select_product->CPU  }}" type="text" id="text-input" name="product_cpu" placeholder="Text" class="form-control" required>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col col-md-3"><label for="text-input" class=" form-control-label">GPU</label></div>
+            <div class="col-12 col-md-9">
+                <input value="{{ $select_product->GPU }}" type="text" id="text-input" name="product_gpu" placeholder="Text" class="form-control" required>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col col-md-3"><label for="text-input" class=" form-control-label">Battery</label></div>
+            <div class="col-12 col-md-9">
+                <input value="{{ $select_product->Battery }}" type="text" id="text-input" name="product_battery" placeholder="Text" class="form-control" required>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col col-md-3"><label for="text-input" class=" form-control-label">OS</label></div>
+            <div class="col-12 col-md-9">
+                <input value="{{ $select_product->OS }}" type="text" id="text-input" name="product_os" placeholder="Text" class="form-control" required>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col col-md-3"><label for="text-input" class=" form-control-label">Sim</label></div>
+            <div class="col-12 col-md-9">
+                <input value="{{ $select_product->Sim }}" type="text" id="text-input" name="product_sim" placeholder="Text" class="form-control" required>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col col-md-3"><label for="text-input" class=" form-control-label">YearReleased</label></div>
+            <div class="col-12 col-md-9">
+                <input value="{{ $select_product->YearReleased }}" type="text" id="text-input" name="product_yearreleased" placeholder="Text" class="form-control" required>
+            </div>
+        </div>
+
+        <div class="row form-group">
             <div class="col col-md-3"><label for="select" class=" form-control-label">Select Manufacturer</label></div>
             <div class="col-12 col-md-9">
-                <select name="manufactuerid" id="select" class="form-control">
-                    
-                    <option value="0">Please select</option>
-
+                <select name="product_manufacturerid" id="select" class="form-control">
+                    <?php $manufacturers=DB::table('manufacturer')->get(); ?>
+                    <?php $currmanufacturer=DB::table('manufacturer')->where('ManufacturerID', $select_product->ManufacturerID)->first(); ?>
+                    <option value="{{$select_product->ManufacturerID}}">{{ $currmanufacturer->ManufacturerName}}</option>
+                    @foreach ($manufacturers as $item)
+                        <option value="{{$item->ManufacturerID}}">{{$item->ManufacturerName}}</option>
+                    @endforeach
                 </select>
             </div>
         </div>

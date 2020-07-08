@@ -4,7 +4,7 @@
 <div class="content">
     <div class="card-body card-block">
         <div class="card-body">
-            <h2> Product index </h2>
+            <h2> Customer index </h2>
             &nbsp;
             <?php $message = Session::get('message');?>
             @if($message)
@@ -14,10 +14,10 @@
                 </p>
             @endif
             <div>
-                <a href="product_create" type="button" class="btn btn-primary">Create</a>
+                <a href="customer_create" type="button" class="btn btn-primary">Create</a>
             </div>
             &nbsp;
-            <form action="search_product" method="get" enctype="multipart/form-data" class="form-horizontal" >
+            <form action="search_customer" method="get" enctype="multipart/form-data" class="form-horizontal" >
                 <div class="input-group">
                     <input  type="text" id="input1-group2" name="input_data" placeholder="Search" class="form-control">
                     <div class="input-group-btn">
@@ -31,24 +31,22 @@
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Name</th>
-                        <th scope="col">Image</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">InStock</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Address</th>
                         <th scope="col">Status</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
                 
-                <tbody>
-                    @foreach($products as $product)
+                    @foreach($customers as $customer)
                         <tr>
-                            <th scope="row">{{ $product->ProductID }}</th>
-                            <td>{{ $product->ProductName }}</td>
-                            <td><img src="images/product/{{ $product->Image0 }}" width="50"></td>
-                            <td>{{ $product->Price }}</td>
-                            <td>{{ $product->InStock }}</td>
-
-                            @if($product->Status == 1)
+                            <th scope="row">{{ $customer->CustomerID }}</th>
+                            <td>{{ $customer->CustomerName }}</td> 
+                            <td>{{ $customer->Phone }}</td>
+                            <td>{{ $customer->Email }}</td>
+                            <td>{{ $customer->Address }}</td>
+                            @if($customer->Status == 1)
                                 <td>
                                     <label class="badge badge-success">Activated</label>
                                 </td>
@@ -60,28 +58,29 @@
 
                             <td>
                                 <button class="btn btn-outline-primary"><a
-                                    href="{{ URL::to('/product_edit/'.$product->ProductID) }}">Update</a></button>
+                                    href="{{ URL::to('/customer_edit/'.$customer->CustomerID) }}">Update</a></button>
 
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-outline-danger" data-toggle="modal"
                                     data-target="#exampleModal"> 
-                                    <a onclick="return confirm('Are you sure?')" href="{{ URL::to('/delete_product/'.$product->ProductID) }}">Delete</a>
+                                    <a href="{{ URL::to('/delete_customer/'.$customer->CustomerID) }}">Delete</a>
                                 </button>
 
-                                @if($product->Status == 1)
+                                @if($customer->Status == 1)
                                     <button class="btn btn-outline-warning"><a
-                                            href="{{ URL::to('/unactivate_product/'.$product->ProductID) }}">Unactivate</a></button>
+                                            href="{{ URL::to('/unactivate_customer/'.$customer->CustomerID) }}">Unactivate</a></button>
                                 @else
                                     <button class="btn btn-outline-success"><a
-                                            href="{{ URL::to('/activate_product/'.$product->ProductID) }}">activate</a></button>
+                                            href="{{ URL::to('/activate_customer/'.$customer->CustomerID) }}">activate</a></button>
                                 @endif
                             </td>
                         </tr>
-
+                        
                     @endforeach
                 </tbody>
             </table>
-            {{$products->links()}}
+
+            {{$customers->links()}}
         </div>
     </div>
 </div>
