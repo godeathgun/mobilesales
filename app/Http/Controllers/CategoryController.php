@@ -22,6 +22,13 @@ class CategoryController extends Controller
         return view('admin.category.create');
     }
 
+    public function search_category(Request $req)
+    {
+        $categories = Category::where('CategoryName','LIKE','%'.$req->input_data.'%')
+        ->orWhere('CategoryID','LIKE','%'.$req->input_data.'%')->paginate(100);
+        return view('admin.category.index', ['categories' => $categories]);
+    }
+
     public function create(Request $req)
     {
         $category=new Category;

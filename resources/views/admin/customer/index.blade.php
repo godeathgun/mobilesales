@@ -17,6 +17,15 @@
                 <a href="customer_create" type="button" class="btn btn-primary">Create</a>
             </div>
             &nbsp;
+            <form action="search_customer" method="get" enctype="multipart/form-data" class="form-horizontal" >
+                <div class="input-group">
+                    <input  type="text" id="input1-group2" name="input_data" placeholder="Search" class="form-control">
+                    <div class="input-group-btn">
+                        <input type="submit" value="Search" class="btn btn-primary">
+                    </div>
+                </div>
+            </form>
+            &nbsp;
             <table class="table">
                 <thead class="thead-dark">
                     <tr>

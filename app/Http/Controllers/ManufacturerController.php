@@ -19,7 +19,14 @@ class ManufacturerController extends Controller
 
     public function view_create()
     {
-        return view('admin.manufacturer.create');
+        return view('admin.manufacturers.create');
+    }
+
+    public function search_manufacturer(Request $req)
+    {
+        $manufacturers = Manufacturer::where('ManufacturerName','LIKE','%'.$req->input_data.'%')
+        ->orWhere('ManufacturerID','LIKE','%'.$req->input_data.'%')->paginate(10);
+        return view('admin.manufacturer.index', ['manufacturers' => $manufacturers]);
     }
 
     public function create(Request $req)

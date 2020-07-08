@@ -18,12 +18,12 @@
             </div>
             &nbsp;
             <form action="search_product" method="get" enctype="multipart/form-data" class="form-horizontal" >
+                <div class="input-group">
                     <input  type="text" id="input1-group2" name="input_data" placeholder="Search" class="form-control">
-                    <div class="row form-group">
-                        <div class="col col-md-3">
-                            <input class="btn btn-primary" type="submit" value="Submit">
-                        </div>
+                    <div class="input-group-btn">
+                        <input type="submit" value="Search" class="btn btn-primary">
                     </div>
+                </div>
             </form>
             &nbsp;
             <table class="table">

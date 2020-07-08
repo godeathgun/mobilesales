@@ -66,6 +66,13 @@ class BannerController extends Controller
         return redirect::to('/banners');
     }
 
+    public function search_banner(Request $req)
+    {
+        $banners = Banner::where('BannerID','LIKE','%'.$req->input_data.'%')
+        ->orWhere('BannerID','LIKE','%'.$req->input_data.'%')->paginate(100);
+        return view ('admin.banners.index', ['banners' => $banners]);
+    }
+
     public function delete_banner($id)
     {
         $select_banner=Banner::where('BannerID',$id)->first();

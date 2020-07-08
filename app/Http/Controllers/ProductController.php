@@ -25,8 +25,9 @@ class ProductController extends Controller
 
     public function search_product(Request $req)
     {
-        // $products = Product::search($req->input_data)->paginate(10);
-        return redirect::to($req->input_data);
+        $products = Product::where('ProductName','LIKE','%'.$req->input_data.'%')
+        ->orWhere('ProductID','LIKE','%'.$req->input_data.'%')->paginate(100);
+        return view('admin.products.index', ['products' => $products]);
     }
 
     public function create(Request $req)

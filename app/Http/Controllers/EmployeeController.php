@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Session;
 use File;
-use App\Employee;
+use App\employee;
 
 class EmployeeController extends Controller
 {
@@ -20,6 +20,13 @@ class EmployeeController extends Controller
     public function view_create()
     {
         return view('admin.employee.create');
+    }
+
+    public function search_employee(Request $req)
+    {
+        $employees = Employee::where('Name','LIKE','%'.$req->input_data.'%')
+        ->orWhere('EmployeeID','LIKE','%'.$req->input_data.'%')->paginate(10);
+        return view('admin.employee.index', ['employees' => $employees]);
     }
 
     public function create(Request $req)

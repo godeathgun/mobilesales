@@ -22,6 +22,14 @@ class CustomerController extends Controller
         return view('admin.customer.create');
     }
 
+
+    public function search_customer(Request $req)
+    {
+        $customers = Customer::where('CustomerName','LIKE','%'.$req->input_data.'%')
+        ->orWhere('CustomerID','LIKE','%'.$req->input_data.'%')->paginate(10);
+        return view('admin.customer.index', ['customers' => $customers]);
+    }
+    
     public function create(Request $req)
     {
             $customer=new Customer;

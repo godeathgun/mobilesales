@@ -59,6 +59,8 @@ Route::get('/category_edit/{id}', 'CategoryController@view_edit');
 
 Route::post('category_edit/category_edit', 'CategoryController@edit_category'); 
 
+Route::get('/search_category', 'CategoryController@search_category');
+
 //Manufacturer
 Route::get('manufacturer_create', 'ManufacturerController@view_create');
 
@@ -73,6 +75,8 @@ Route::get('/delete_manufacturer/{id}', 'ManufacturerController@delete_manufactu
 Route::get('/manufacturer_edit/{id}', 'ManufacturerController@view_edit');
 
 Route::post('manufacturer_edit/manufacturer_edit', 'ManufacturerController@edit_manufacturer'); 
+
+Route::get('/search_manufacturer', 'ManufacturerController@search_manufacturer');
 
 //Product
 Route::get('product_create', 'ProductController@view_create');
@@ -107,6 +111,8 @@ Route::get('/banner_edit/{id}', 'BannerController@view_edit');
 
 Route::post('banner_edit/edit_banner', 'BannerController@edit_banner'); 
 
+Route::get('/search_banner', 'BannerController@search_banner');
+
 //Role    
 Route::get('role_create', 'RoleController@view_create');
 
@@ -121,6 +127,8 @@ Route::get('/delete_role/{id}', 'RoleController@delete_role');
 Route::get('/role_edit/{id}', 'RoleController@view_edit');
 
 Route::post('role_edit/edit_role', 'RoleController@edit_role'); 
+
+Route::get('/search_role', 'RoleController@search_role');
 
 //Employee    
 Route::get('employee_create', 'EmployeeController@view_create');
@@ -137,6 +145,8 @@ Route::get('/employee_edit/{id}', 'EmployeeController@view_edit');
 
 Route::post('employee_edit/edit_employee', 'EmployeeController@edit_employee'); 
 
+Route::get('/search_employee', 'EmployeeController@search_employee');
+
 //Customer    
 Route::get('customer_create', 'CustomerController@view_create');
 
@@ -151,3 +161,5 @@ Route::get('/delete_customer/{id}', 'CustomerController@delete_customer');
 Route::get('/customer_edit/{id}', 'CustomerController@view_edit');
 
 Route::post('customer_edit/edit_customer', 'CustomerController@edit_customer'); 
+
+Route::get('/search_customer', 'CustomerController@search_customer');
