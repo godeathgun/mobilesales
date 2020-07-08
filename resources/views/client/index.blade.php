@@ -13,13 +13,15 @@
 
 <div class="home">
     <div class="home_slider_container">
-
+        <?php $banners = DB :: table('banner')->get();?>
         <!-- Home Slider -->
         <div class="owl-carousel owl-theme home_slider">
-
+            @foreach ($banners as $item)
+                
+           
             <!-- Slider Item -->
             <div class="owl-item home_slider_item">
-                <div class="home_slider_background" style="background-image:url(frontend/images/home_slider_1.jpg)">
+                <div class="home_slider_background" style="background-image:url(images/banner/{{$item->Image}})">
                 </div>
                 <div class="home_slider_content_container">
                     <div class="container">
@@ -27,10 +29,8 @@
                             <div class="col">
                                 <div class="home_slider_content" data-animation-in="fadeIn"
                                     data-animation-out="animate-out fadeOut">
-                                    <div class="home_slider_title">A new Online Shop experience.</div>
-                                    <div class="home_slider_subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit. Nullam a ultricies metus. Sed nec molestie eros. Sed viverra velit
-                                        venenatis fermentum luctus.</div>
+                                    <div class="home_slider_title"></div>
+                                    <div class="home_slider_subtitle"></div>
                                     <div class="button button_light home_button"><a href="#">Shop Now</a></div>
                                 </div>
                             </div>
@@ -38,49 +38,12 @@
                     </div>
                 </div>
             </div>
+            @endforeach
+            <!-- Slider Item -->
+            
 
             <!-- Slider Item -->
-            <div class="owl-item home_slider_item">
-                <div class="home_slider_background" style="background-image:url(fronted/frontend/images/b1.jpg)"></div>
-                <div class="home_slider_content_container">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col">
-                                <div class="home_slider_content" data-animation-in="fadeIn"
-                                    data-animation-out="animate-out fadeOut">
-                                    <div class="home_slider_title">A new Online Shop experience.</div>
-                                    <div class="home_slider_subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit. Nullam a ultricies metus. Sed nec molestie eros. Sed viverra velit
-                                        venenatis fermentum luctus.</div>
-                                    <div class="button button_light home_button"><a href="#">Shop Now</a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slider Item -->
-            <div class="owl-item home_slider_item">
-                <div class="home_slider_background" style="background-image:url(frontend/images/home_slider_1.jpg)">
-                </div>
-                <div class="home_slider_content_container">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col">
-                                <div class="home_slider_content" data-animation-in="fadeIn"
-                                    data-animation-out="animate-out fadeOut">
-                                    <div class="home_slider_title">A new Online Shop experience.</div>
-                                    <div class="home_slider_subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit. Nullam a ultricies metus. Sed nec molestie eros. Sed viverra velit
-                                        venenatis fermentum luctus.</div>
-                                    <div class="button button_light home_button"><a href="#">Shop Now</a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
 
         </div>
 
@@ -109,54 +72,64 @@
 @endsection
 
 @section('content')
+{{-- <div class="container">
+    <div class="row justify-content-center mb-3 pb-3">
+        <div class=" col-md-12 heading-section text-center ftco-animate">
+            
+            <h2 class=" mb-4">outorid</h2>
+        </div>
+    </div>
+</div> --}}
 <div class="products">
     <div class="container">
+    
         <div class="row">
+            
             <div class="col">
-
                 <div class="product_grid">
 
                     <!-- Product -->
                     <div class="product">
-                        <div class="product_image"><img src="frontend/images/product_1.jpg" alt=""></div>
+                        <div class="product_image"><img src="images/product/iphon11.png" alt=""></div>
                         <div class="product_extra product_new"><a href="categories.html">New</a></div>
                         <div class="product_content">
-                            <div class="product_title"><a href="product.html">Smart Phone</a></div>
+                            <div class="product_title"><a href="product.html">Iphone11 ProMax</a></div>
                             <div class="product_price">$670</div>
                         </div>
                     </div>
-
+                    
+                  
                     <!-- Product -->
                     <div class="product">
-                        <div class="product_image"><img src="frontend/images/product_2.jpg" alt=""></div>
+                        <div class="product_image"><img src="images/product/huawei.png" alt=""></div>
                         <div class="product_extra product_sale"><a href="categories.html">Sale</a></div>
                         <div class="product_content">
-                            <div class="product_title"><a href="product.html">Smart Phone</a></div>
+                            <div class="product_title"><a href="product.html">Huawei</a></div>
                             <div class="product_price">$670</div>
                         </div>
                     </div>
 
                     <!-- Product -->
                     <div class="product">
-                        <div class="product_image"><img src="frontend/images/product_3.jpg" alt=""></div>
+                        <div class="product_image"><img src="images/product/renovo3pro.png" alt=""></div>
                         <div class="product_content">
-                            <div class="product_title"><a href="product.html">Smart Phone</a></div>
+                            <div class="product_title"><a href="product.html">Renovo 3 Pro</a></div>
                             <div class="product_price">$670</div>
                         </div>
                     </div>
 
                     <!-- Product -->
                     <div class="product">
-                        <div class="product_image"><img src="frontend/images/product_4.jpg" alt=""></div>
+                        <div class="product_image"><img src="images/product/xiaomi.png" alt=""></div>
                         <div class="product_content">
-                            <div class="product_title"><a href="product.html">Smart Phone</a></div>
+                            <div class="product_title"><a href="product.html">Xiaomi </a></div>
                             <div class="product_price">$670</div>
                         </div>
                     </div>
 
                     <!-- Product -->
                     <div class="product">
-                        <div class="product_image"><img src="frontend/images/product_5.jpg" alt=""></div>
+                        <div class="product_image"><img src="images/product/applewatch.jpg" alt=""></div>
                         <div class="product_content">
                             <div class="product_title"><a href="product.html">Smart Phone</a></div>
                             <div class="product_price">$670</div>

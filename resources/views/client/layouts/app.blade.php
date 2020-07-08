@@ -46,6 +46,9 @@
 <script src="frontend/plugins/Isotope/isotope.pkgd.min.js"></script>
 <script src="frontend/plugins/easing/easing.js"></script>
 <script src="frontend/plugins/parallax-js-master/parallax.min.js"></script>
+{{-- search  --}}
+
+
 @yield('custom')
 </body>
 </html>
