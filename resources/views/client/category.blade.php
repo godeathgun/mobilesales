@@ -64,14 +64,16 @@
             <div class="col">
                 <div class="product_grid">
                     <!-- Product -->
-                    @foreach ($products as $item)
+                    @foreach ($products as $product)
                     <div class="product">
-                        <div class="product_image"><img src="frontend/images/{{$item->Image0}}" alt=""></div>
+                        <div class="product_image"><img src="images/product/{{$product->Image0}}" alt=""></div>
                         <div class="product_extra product_new"><a href="categories.html">New</a></div>
+                        <a class="btn btn-block btn-outline-primary" href="{{URL::to('/addToCart/'.$product->ProductID)}}">Add to cart</a>
                         <div class="product_content">
-                            <div class="product_title"><a href="product.html">{{$item->ProductName}}</a></div>
-                            <div class="product_price">{{$item->Price}}đ</div>
+                            <div class="product_title"><a href="product.html">{{$product->ProductName}}</a></div>
+                            <div class="product_price">{{$product->Price}}đ</div>
                         </div>
+                        
                     </div>
                     @endforeach
                     <!-- Product -->

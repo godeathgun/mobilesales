@@ -154,4 +154,8 @@ Route::post('login', [ 'as' => 'login', 'uses' => 'ClientController@postLogin'])
 //serch
 Route::get('search', ['as'=>'search','uses'=>'ClientController@getSearch']);
 
- 
+
+//cart
+Route::get('addToCart/{id}', 'ClientController@addToCart');
+Route::post('updateCart', 'ClientController@updateCart');
+Route::get('/removeItem/{product_id}', 'ClientController@removeItem');
