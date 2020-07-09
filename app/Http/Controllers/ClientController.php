@@ -6,13 +6,10 @@ use Illuminate\Http\Request;
 use App\Customer;
 use Mail;
 use Illuminate\Support\Facades\Auth;
-use DB;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Session;
 use App\Cart;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
 class ClientController extends Controller
