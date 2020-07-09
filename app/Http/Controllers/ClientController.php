@@ -7,6 +7,13 @@ use App\Customer;
 use Mail;
 use Illuminate\Support\Facades\Auth;
 use DB;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Session;
+use App\Cart;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class ClientController extends Controller
 {
@@ -15,9 +22,56 @@ class ClientController extends Controller
         return view('client.index');
     }
 
-    public function cart()
+
+    public function addToCart($id)
     {
-        return view('client.cart');
+        $product = DB::table('product')->where('ProductID',$id)->first();
+
+        $oldCart = Session::has('cart')? Session::get('cart'):null;
+        $cart = new Cart($oldCart);
+        $cart->add($product, $id);
+
+        Session::put('cart', $cart);
+        
+        // dd(Session::get('cart'));
+        return redirect::to('/');
+    }
+
+    public function cart(){
+        if(!Session::has('cart')){
+            return view('client.cart');
+        }
+
+        $oldCart = Session::has('cart')? Session::get('cart'):null;
+        $cart = new Cart($oldCart);
+        return view('client.cart', ['products' => $cart->items]);
+    }
+
+    public function updateCart(Request $req){
+    //    print('id: '.$req->product_id . 'qty: '.$req->product_quantity);
+        $oldCart = Session::has('cart')? Session::get('cart'):null;
+        $cart = new Cart($oldCart);
+        $cart->updateCart($req->product_id, $req->product_quantity);
+        Session::put('cart', $cart);
+
+        //dd(Session::get('cart'));
+        return redirect::to('/cart');
+    }
+
+    public function removeItem($product_id){
+        $oldCart = Session::has('cart')? Session::get('cart'):null;
+        $cart = new Cart($oldCart);
+        $cart->removeItem($product_id);
+       
+        if(count($cart->items) > 0){
+            Session::put('cart', $cart);
+        }
+        else{
+            Session::forget('cart');
+        }
+
+        //dd(Session::get('cart'));
+        return redirect::to('/cart');
     }
 
     public function category()
@@ -27,7 +81,14 @@ class ClientController extends Controller
 
     public function checkout()
     {
-        return view('client.checkout');
+        if(!Session::has('cart')){
+            return view('client.cart');
+        }
+
+        $oldCart = Session::has('cart')? Session::get('cart'):null;
+        $cart = new Cart($oldCart);
+        return view('client.checkout', ['totalPrice' => $cart->totalPrice],['products' => $cart->items]);
+
     }
 
     public function contact()
