@@ -26,7 +26,7 @@ Route::get('/contact', 'ClientController@contact');
 
 Route::get('/register', 'ClientController@register');
 
-Route::get('/productDetail', 'ClientController@productdetail');
+Route::get('/productDetail/{id}', 'ClientController@productdetail');
 
 
 //Login
@@ -165,3 +165,4 @@ Route::get('search', ['as'=>'search','uses'=>'ClientController@getSearch']);
 Route::get('addToCart/{id}', 'ClientController@addToCart');
 Route::post('updateCart', 'ClientController@updateCart');
 Route::get('/removeItem/{product_id}', 'ClientController@removeItem');
+

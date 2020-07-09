@@ -70,7 +70,7 @@
                         <div class="product_extra product_new"><a href="categories.html">New</a></div>
                         <a class="btn btn-block btn-outline-primary" href="{{URL::to('/addToCart/'.$product->ProductID)}}">Add to cart</a>
                         <div class="product_content">
-                            <div class="product_title"><a href="product.html">{{$product->ProductName}}</a></div>
+                            <div class="product_title"><a href="{{ URL::to('/productDetail/'.$product->ProductID) }}">{{$product->ProductName}}</a></div>
                             <div class="product_price">{{$product->Price}}đ</div>
                         </div>
                         

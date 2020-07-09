@@ -21,6 +21,16 @@ class ClientController extends Controller
     {
         return view('client.index');
     }
+    public function productdetail($id)
+    {
+        $select_product=DB::table('product')->where('ProductID',$id)->first();
+
+        return redirect::to('client.product',['product'=>$select_product]);
+    }
+    public function register()
+    {
+        return view('client.register');
+    }
 
 
     public function addToCart($id)

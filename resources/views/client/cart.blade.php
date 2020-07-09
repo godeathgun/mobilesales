@@ -142,5 +142,6 @@ Cart
 @endsection
 
 @section('custom')
-<script src="{{ asset('frontend/js/cart.js') }}"></script>
+{{-- <script src="{{ asset('frontend/js/cart.js') }}"></script> --}}
+<script src="frontend/js/cart.js"></script>
 @endsection
