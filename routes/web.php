@@ -29,6 +29,12 @@ Route::get('/register', 'ClientController@register');
 Route::get('/productDetail', 'ClientController@productdetail');
 
 
+//Login
+Route::get('/login','ClientController@getLogin');
+Route::post('/login','ClientController@postLogin');
+//verify
+Route::get('/send-mail', 'ClientController@verifyAccount')->name('user.verify.account');
+
 //Admin
 Route::get('/admin', 'AdminController@index');
 Route::get('/products', 'ProductController@view_index');

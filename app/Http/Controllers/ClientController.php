@@ -1,6 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Customer;
+use Mail;
+use Illuminate\Support\Facades\Auth;
+use DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -14,14 +20,6 @@ class ClientController extends Controller
     public function index()
     {
         return view('client.index');
-    }
-    public function productdetail()
-    {
-        return view('client.product');
-    }
-    public function register()
-    {
-        return view('client.register');
     }
 
 
@@ -78,8 +76,7 @@ class ClientController extends Controller
 
     public function category()
     {
-        $products = DB::table('product')->paginate(12);
-        return view('client.category',['products'=>$products]);
+        return view('client.category');
     }
 
     public function checkout()
@@ -96,52 +93,94 @@ class ClientController extends Controller
 
     public function contact()
     {
-        
         return view('client.contact');
     }
 
-    function getSearch(Request $request)
+    public function getRegister()
     {
-        
-        $products= DB::table('product')->where('ProductName','$request->key')
-                            
-                            ->get();
-        return view ('client.search',['products'=> $products]);
+        return view('client.register');
     }
 
+    public function postRegister(Request $request)
+    {
+        $this-> validate($request,[
+            'name'=>'min:2',
+            'email'=>'email|unique:Customer,email',
+            'address'=>'min:6',
+            'phone'=>'min:9|max:10',
+            'password'=>'min:3|max:32',
+            'passwordAgain'=>'same:password'
+        ],[
+            'name.min'=>'Tên phải có ít nhất 2 kí tự',
+            'email.email'=>'Bạn chưa nhập đúng định dạng email',
+            'email.unique'=>'Email đã tồn tại',
+            'address.min'=>'Địa chỉa phải có ít nhất 6 kí tự',
+            'phone.min'=>'Số điện thoại phải có ít nhất 9 số',
+            'phone.max'=>'Số điện thoại có tối đa 10 số',
+            'password.min'=>'password phải có ít nhất 3 kí tự',
+            'password.max'=>'password quá dài',
+            'passwordAgain.same'=>'Mật khẩu nhập lại chưa chính xác'
+        ]);
+        $user = new Customer();
+        $user->CustomerName = $request ->name;
+        $user->Email = $request ->email;
+        $user->Phone = $request ->phone;
+        $user->Address = $request->address;
+        $user->Password = md5(sha1($request->password));
+        $user->Status= 0;
+        $user->Code= md5(sha1($request->email));
+        $user->save();
+        if($user->id)
+        {
+            $to_name="Moblie Sale";
+        $to_mail = $request ->email;
+        $url = route('user.verify.account',['CustomerID'=> $user ->id,"code"=> $user->Code]);
+            
+        $data =['route'=>$url];
+            //$data = array("name"=>"Test", "body"=>"Mail xác nhận tài khoản!");
 
+        Mail::send('client.verify_acount',$data,function($message)use($to_name,$to_mail){
+            $message->to($to_mail,'Xac nhan tai khoan');
+            $message->from($to_mail,$to_name);
+        });
+        return redirect('.')->with('thongbao','Chúc mừng bạn đã đăng kí thành công!');
+        }  
+        
+        return redirect('/login');
+        
+    }
+    public function verifyAccount(Request $request)
+    {
+        $code = $request->code;
+        $ID = ($request ->CustomerID);
+        $checkUser = DB::table('customer')->where('CustomerID',$ID)->where('Code',$code)->update(['Status'=>1]);
 
-    public function postLogin(Request $request) {
-        // Kiểm tra dữ liệu nhập vào
-        $rules = [
-            'email' =>'required|email',
-            'password' => 'required|min:6'
-        ];
-        $messages = [
-            'email.required' => 'Email là trường bắt buộc',
-            'email.email' => 'Email không đúng định dạng',
-            'password.required' => 'Mật khẩu là trường bắt buộc',
-            'password.min' => 'Mật khẩu phải chứa ít nhất 8 ký tự',
-        ];
-        $validator = Validator::make($request->all(), $rules, $messages);
         
-        
-        if ($validator->fails()) {
-            // Điều kiện dữ liệu không hợp lệ sẽ chuyển về trang đăng nhập và thông báo lỗi
-            return redirect('login')->withErrors($validator)->withInput();
-        } else {
-            // Nếu dữ liệu hợp lệ sẽ kiểm tra trong csdl
-            $email = $request->input('email');
-            $password = $request->input('password');
-     
-            if( Auth::attempt(['email' => $email, 'password' =>$password])) {
-                // Kiểm tra đúng email và mật khẩu sẽ chuyển trang
-                return redirect('hocsinh');
-            } else {
-                // Kiểm tra không đúng sẽ hiển thị thông báo lỗi
-                Session::flash('error', 'Email hoặc mật khẩu không đúng!');
-                return redirect('login');
-            }
+        if(!$checkUser)
+        {
+            return redirect('/register')-> with('danger','Xin lỗi đường dẫn không tồn tại! Vui lòng thử lại sau!');
+        }
+
+        return redirect('/')-> with('success!','Xác nhận tài khoản thành công');
+    }
+
+    public function getLogin()
+    {
+        return view('client.login');
+    }
+    public function postLogin(Request $request)
+    {
+        $arr=[
+            'Email'=> $request->email,
+            'Password'=> $request->password
+        ];
+        if(Customer::where('Email',"=", $request->email)->where("Password","=",md5(sha1($request->password)))->where("Status","=",1)->count()>0)
+        {
+            return redirect('.')->with('thongbao','Đăng nhập thành công');
+        }
+        else 
+        {
+            return redirect('/login')->with('thongbao','Đăng nhập không thành công');
         }
     }
 }
