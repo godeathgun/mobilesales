@@ -1,5 +1,5 @@
 <!-- Header -->
-
+<?php $ManuFa = DB::table('manufacturer')->get();?>
 <header class="header">
     <div class="header_container">
         <div class="container">
@@ -22,19 +22,24 @@
                                 <li class="hassubs">
                                 <a href="{{URL::to('/category')}}">Categories</a>
                                     <ul>
+                                        @foreach ($ManuFa as $item)
+                                            <li><a href="categories.html">{{$item->ManufacturerName}}</a></li>
+                                        @endforeach
+                                        {{-- <li><a href="categories.html">Category</a></li>
                                         <li><a href="categories.html">Category</a></li>
                                         <li><a href="categories.html">Category</a></li>
                                         <li><a href="categories.html">Category</a></li>
-                                        <li><a href="categories.html">Category</a></li>
-                                        <li><a href="categories.html">Category</a></li>
+                                        <li><a href="categories.html">Category</a></li> --}}
                                     </ul>
                                 </li>
+                                <li><a href="{{URL::to('/productdetail')}}">Accessories</a></li>
+                                <li><a href="#">Offers</a></li>
                                 <li><a href="{{URL::to('/contact')}}">Contact</a></li>
                             </ul>
                         </nav>
                         <div class="header_extra ml-auto">
                                 <div class="shopping_cart">
-                                        <a href="login">
+                                        <a href="register">
                                             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                                      viewBox="0 0 489 489" style="enable-background:new 0 0 489 489;" xml:space="preserve">
                                                 <g>
@@ -42,19 +47,10 @@
                                             </svg>
                                             <div>Login<span></span></div>
                                         </a>
+
+                                        {{-- //<a href="#" data-toggle="modal" data-target="#loginModal">login</a> --}}
                                 </div>
                                 &nbsp;
-                                <div class="shopping_cart">
-                                    <a href="register">
-                                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                                 viewBox="0 0 489 489" style="enable-background:new 0 0 489 489;" xml:space="preserve">
-                                            <g>
-                                                    <path d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm128 421.6c-35.9 26.5-80.1 42.4-128 42.4s-92.1-15.9-128-42.4V416c0-35.3 28.7-64 64-64 11.1 0 27.5 11.4 64 11.4 36.6 0 52.8-11.4 64-11.4 35.3 0 64 28.7 64 64v13.6zm30.6-27.5c-6.8-46.4-46.3-82.1-94.6-82.1-20.5 0-30.4 11.4-64 11.4S204.6 320 184 320c-48.3 0-87.8 35.7-94.6 82.1C53.9 363.6 32 312.4 32 256c0-119.1 96.9-216 216-216s216 96.9 216 216c0 56.4-21.9 107.6-57.4 146.1zM248 120c-48.6 0-88 39.4-88 88s39.4 88 88 88 88-39.4 88-88-39.4-88-88-88zm0 144c-30.9 0-56-25.1-56-56s25.1-56 56-56 56 25.1 56 56-25.1 56-56 56z"></path>
-                                        </svg>
-                                        <div>Register<span></span></div>
-                                    </a>
-                            </div>
-                            &nbsp;
                             <div class="shopping_cart">
                                 <a href="{{URL::to('/cart')}}">
                                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -67,7 +63,7 @@
                                                 c0,7.5,6,13.5,13.5,13.5s13.5-6,13.5-13.5v-41h45.2l26.9,302.3C412.8,445.2,392.1,462,366.8,462z"/>
                                         </g>
                                     </svg>
-                                    <div>Cart <span>(0)</span></div>
+                                    <div>Cart <span>12</span></div>
                                 </a>
                             </div>
                             <div class="search">
@@ -89,6 +85,7 @@
                                             "/>
                                     </g>
                                 </svg>
+                                
                                 </div>
                             </div>
                             <div class="hamburger"><i class="fa fa-bars" aria-hidden="true"></i></div>
@@ -105,13 +102,89 @@
             <div class="row">
                 <div class="col">
                     <div class="search_panel_content d-flex flex-row align-items-center justify-content-end">
-                        <form action="#">
-                            <input type="text" class="search_input" placeholder="Search" required="required">
+                    <form role="search" method="GET" id="searchform" action="{{route('search')}}">
+                            <input type="text" class="search_input" placeholder="Search" required="required" name="key">
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+{{-- modal login --}}
+    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" id="loginModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" name="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="loginModalLabel">Close</h4>
+                </div>
+                <div class="modal-body">
+                    {{-- login form --}}
+                    <form method="POST" action="{{ route('login') }}">
+                        @csrf
+    
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+    
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+    
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+    
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+    
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+    
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+    
+                        <div class="form-group row">
+                            <div class="col-md-6 offset-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+    
+                                    <label class="form-check-label" for="remember">
+                                        {{ __('Remember Me') }}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="form-group row mb-0">
+                            <div class="col-md-8 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Login') }}
+                                </button>
+    
+                                @if (Route::has('password.request'))
+                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                        {{ __('Forgot Your Password?') }}
+                                    </a>
+                                @endif
+                            </div>
+                        </div>
+                    </form>
+            
+
+                </div>
+                <div class="modal-footer">
+                    <p>adasd </p>
+                </div>
     </div>
 
     <!-- Social -->

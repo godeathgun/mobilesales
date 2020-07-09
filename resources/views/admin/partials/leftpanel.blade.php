@@ -11,14 +11,13 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Manager</a>
                     <ul class="sub-menu children dropdown-menu">                            
                         <li><a href="/products">Products</a></li>
-                        <li><a href="/productdetails">ProductDetails</a></li>
-                        <li><a href="/users">Users</a></li>
+                        <li><a href="/customers">Customers</a></li>
                         <li><a href="/banners">Banners</a></li>
                         <li><a href="/employees">Employees</a></li>
                         <li><a href="/orders">Orders</a></li>
-                        <li><a href="/manufaturers">Manufaturers</a></li>
+                        <li><a href="/manufacturers">Manufacturers</a></li>
                         <li><a href="/categories">Categories</a></li>
-
+                        <li><a href="/roles">Roles</a></li>
                     </ul>
                 </li>
                 <li class="menu-item-has-children dropdown">

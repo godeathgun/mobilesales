@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use DB;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\DB;
 use Session;
 use File;
 use App\Banner;
@@ -12,8 +12,8 @@ class BannerController extends Controller
 {
     public function view_index()
     {
-        
-        return view ('admin.banner.index');
+        $banners = DB::table('banner')->paginate(10);
+        return view ('admin.banner.index',['banners'=>$banners]);
     }
 
     public function view_create()
@@ -64,6 +64,13 @@ class BannerController extends Controller
         Session::put('message','The banner is activated successfully');
 
         return redirect::to('/banners');
+    }
+
+    public function search_banner(Request $req)
+    {
+        $banners = Banner::where('BannerID','LIKE','%'.$req->input_data.'%')
+        ->orWhere('BannerID','LIKE','%'.$req->input_data.'%')->paginate(100);
+        return view ('admin.banners.index', ['banners' => $banners]);
     }
 
     public function delete_banner($id)

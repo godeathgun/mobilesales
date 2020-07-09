@@ -24,9 +24,9 @@ Route::get('/checkout', 'ClientController@checkout');
 
 Route::get('/contact', 'ClientController@contact');
 
-//register
-Route::get('/register', 'ClientController@getRegister');
-Route::post('/register', 'ClientController@postRegister');
+Route::get('/register', 'ClientController@register');
+Route::get('/productDetail', 'ClientController@productdetail');
+
 
 //Login
 Route::get('/login','ClientController@getLogin');
@@ -92,3 +92,12 @@ Route::get('/delete_banner/{id}', 'BannerController@delete_banner');
 Route::get('/banner_edit/{id}', 'BannerController@view_edit');
 
 Route::post('banner_edit/edit_banner', 'BannerController@edit_banner'); 
+
+// Đăng nhập và xử lý đăng nhập
+Route::get('login', [ 'as' => 'login', 'uses' => 'ClientController@getLogin']);
+Route::post('login', [ 'as' => 'login', 'uses' => 'ClientController@postLogin']);
+
+//serch
+Route::get('search', ['as'=>'search','uses'=>'ClientController@getSearch']);
+
+ 
