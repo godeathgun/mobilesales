@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Customer;
+use Mail;
+use Illuminate\Support\Facades\Auth;
+use DB;
 
 class ClientController extends Controller
 {
@@ -57,16 +60,66 @@ class ClientController extends Controller
             'password.max'=>'password quá dài',
             'passwordAgain.same'=>'Mật khẩu nhập lại chưa chính xác'
         ]);
-        $user = new Customer;
+        $user = new Customer();
         $user->CustomerName = $request ->name;
         $user->Email = $request ->email;
         $user->Phone = $request ->phone;
         $user->Address = $request->address;
-        $user->Password = bcrypt($request->password);
+        $user->Password = md5(sha1($request->password));
         $user->Status= 0;
-        $user->Code= 0;
+        $user->Code= md5(sha1($request->email));
         $user->save();
+        if($user->id)
+        {
+            $to_name="Moblie Sale";
+        $to_mail = $request ->email;
+        $url = route('user.verify.account',['CustomerID'=> $user ->id,"code"=> $user->Code]);
+            
+        $data =['route'=>$url];
+            //$data = array("name"=>"Test", "body"=>"Mail xác nhận tài khoản!");
+
+        Mail::send('client.verify_acount',$data,function($message)use($to_name,$to_mail){
+            $message->to($to_mail,'Xac nhan tai khoan');
+            $message->from($to_mail,$to_name);
+        });
         return redirect('.')->with('thongbao','Chúc mừng bạn đã đăng kí thành công!');
+        }  
+        
+        return redirect('/login');
+        
+    }
+    public function verifyAccount(Request $request)
+    {
+        $code = $request->code;
+        $ID = ($request ->CustomerID);
+        $checkUser = DB::table('customer')->where('CustomerID',$ID)->where('Code',$code)->update(['Status'=>1]);
+
+        
+        if(!$checkUser)
+        {
+            return redirect('/register')-> with('danger','Xin lỗi đường dẫn không tồn tại! Vui lòng thử lại sau!');
+        }
+
+        return redirect('/')-> with('success!','Xác nhận tài khoản thành công');
     }
 
+    public function getLogin()
+    {
+        return view('client.login');
+    }
+    public function postLogin(Request $request)
+    {
+        $arr=[
+            'Email'=> $request->email,
+            'Password'=> $request->password
+        ];
+        if(Customer::where('Email',"=", $request->email)->where("Password","=",md5(sha1($request->password)))->where("Status","=",1)->count()>0)
+        {
+            return redirect('.')->with('thongbao','Đăng nhập thành công');
+        }
+        else 
+        {
+            return redirect('/login')->with('thongbao','Đăng nhập không thành công');
+        }
+    }
 }
