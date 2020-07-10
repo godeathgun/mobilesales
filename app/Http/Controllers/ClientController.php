@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Customer;
+<<<<<<< Updated upstream
 use Mail;
 use Illuminate\Support\Facades\Auth;
 use DB;
+=======
+>>>>>>> Stashed changes
 
 class ClientController extends Controller
 {
@@ -15,6 +18,11 @@ class ClientController extends Controller
         return view('client.index');
     }
 
+<<<<<<< Updated upstream
+=======
+   
+
+>>>>>>> Stashed changes
     public function cart()
     {
         return view('client.cart');
@@ -34,6 +42,7 @@ class ClientController extends Controller
     {
         return view('client.contact');
     }
+<<<<<<< Updated upstream
 
     public function getRegister()
     {
@@ -140,4 +149,44 @@ class ClientController extends Controller
     }
     
     
+=======
+    
+    //register
+    public function getregister()
+    {
+        return view('client.register');
+    }
+    public function postregister(Request $request)
+    {
+        $this-> validate($request,[
+            'name'=>'required|min:3',
+            'address'=>'required',
+            'email'=>'required|email|unique:Customer,email',
+            'phone'=>'required',
+            'password'=>'required|min:3|max:32',
+            'passwordAgain'=>'required|same:password'
+        ],[
+            'name.required'=>'Bạn chưa nhập tên người dùng',
+            'name.min'=>'Tên người dùng phải có ít nhất 3 kí tự',
+            'address.required'=>'Bạn chưa nhập địa chỉ',
+            'email.required'=>'Bạn chưa nhập email',
+            'email.email'=>'Bạn chưa nhập đúng định dạng email',
+            'email.unique'=>'Email đã tồn tại',
+            'phone.address'=>'Bạn chưa nhập số điện thoại',
+            'password.min'=>'Mật khẩu phải có ít nhất 3 kí tự',
+            'password.max'=>'Mật khẩu chỉ được tối đa 32 kí tự',
+            'passwordAgain.required'=>'Bạn chưa nhập lại mật khẩu',
+            'passwordAgain.same'=>'Mật khẩu nhập lại chưa đúng'
+        ]);
+        $user = new Customer;
+        $user->CustomerName= $request->name;
+        $user->Address=$request->address;
+        $user->Email=$request->email;
+        $user->Phone= $request->phone;
+        $user->Password= bcrypt($request->password);
+        $user->Status= 0;
+        $user->save();
+        return redirect('.')->with('thongbao','Chúc mừng bạn đăng kí thành công!');
+    }
+>>>>>>> Stashed changes
 }

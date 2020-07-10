@@ -24,6 +24,7 @@ Route::get('/checkout', 'ClientController@checkout');
 
 Route::get('/contact', 'ClientController@contact');
 
+<<<<<<< Updated upstream
 Route::get('/productDetail', 'ClientController@productdetail');
 
 //Logout
@@ -36,6 +37,12 @@ Route::get('/login','ClientController@getLogin');
 Route::post('/login','ClientController@postLogin');
 //verify
 Route::get('/send-mail', 'ClientController@verifyAccount')->name('user.verify.account');
+=======
+//register
+Route::get('/register', 'ClientController@getregister');
+Route::post('/register','ClientController@postregister');
+
+>>>>>>> Stashed changes
 
 //Admin
 Route::get('/admin', 'AdminController@index');
