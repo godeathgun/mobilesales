@@ -72,7 +72,7 @@ Checkout
                             </div>
                             <div>
                                 <!-- Note -->
-                                <label for="checkout_email">Email Address*</label>
+                                <label for="checkout_email">Note</label>
                                 <input type="text" id="checkout_email" class="checkout_input" name="customer_note">
                             </div>
                             <input class="button order_button" value="Place Order" type="submit">

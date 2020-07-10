@@ -283,8 +283,11 @@ class ClientController extends Controller
 
         if(Hash::check($request->old_password,Session::get('userLogin')->password))
         {
-            dd('doi thanh cong');
+            DB::table('customer')->where('CustomerID', Session::get('userLogin')->CustomerID)
+            ->update(['Password'=>Hash::make($request->new_password)]);
+
+            Session::put('message','The change password successfully');
+            return redirect('/changePassword');
         }
-0
     }
 }

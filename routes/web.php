@@ -54,6 +54,7 @@ Route::get('/customers', 'CustomerController@view_index');
 Route::get('/orders', 'OrderController@view_index');
 Route::get('/manufacturers', 'ManufacturerController@view_index');
 Route::get('/categories', 'CategoryController@view_index');
+Route::get('/orders', 'OrderController@view_index');
 
 
 
@@ -159,6 +160,11 @@ Route::get('/manufacturer_edit/{id}', 'ManufacturerController@view_edit');
 Route::post('manufacturer_edit/edit_manufacturer', 'ManufacturerController@edit_manufacturer'); 
 
 Route::get('search_manufacturer','ManufacturerController@search_manufacturer');
+
+//Order
+Route::get('/order_edit/{id}', 'OrderController@view_edit');
+
+Route::post('order_edit/edit_order', 'OrderController@edit_order'); 
 
 
 

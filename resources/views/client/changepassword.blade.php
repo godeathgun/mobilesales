@@ -3,6 +3,13 @@
 <div class="content">
 
     <div class="card-body card-block">
+        <?php $message = Session::get('message');?>
+            @if($message)
+                <p class="alert alert-success">
+                    <?php echo $message;
+                Session::put('message',null); ?>
+                </p>
+            @endif
         <form action="{{ action('ClientController@changePassword') }}" method="POST" enctype="multipart/form-data" class="form-horizontal">
             @csrf
             <div class="row form-group">
