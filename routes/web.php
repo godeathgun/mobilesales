@@ -25,18 +25,19 @@ Route::get('/checkout', 'ClientController@checkout');
 Route::get('/contact', 'ClientController@contact');
 
 Route::get('/register', 'ClientController@register');
-Route::get('/productDetail', 'ClientController@productdetail');
+
+Route::get('/productDetail/{ProductID}', 'ClientController@productdetail');
 
 
 //Admin
 Route::get('/admin', 'AdminController@index');
 Route::get('/products', 'ProductController@view_index');
-Route::get('/productdetails', 'ProductController@view_index');
 Route::get('/users', 'UserController@view_index');
 Route::get('/banners', 'BannerController@view_index');
 Route::get('/employees', 'EmployeeController@view_index');
+Route::get('/customers', 'CustomerController@view_index');
 Route::get('/orders', 'OrderController@view_index');
-Route::get('/manufaturers', 'ManufacturerController@view_index');
+Route::get('/manufacturers', 'ManufacturerController@view_index');
 Route::get('/categories', 'CategoryController@view_index');
 
 
@@ -56,6 +57,8 @@ Route::get('/category_edit/{id}', 'CategoryController@view_edit');
 
 Route::post('category_edit/category_edit', 'CategoryController@edit_category'); 
 
+Route::get('search_category','CategoryController@search_category');
+
 //Product
 Route::get('product_create', 'ProductController@view_create');
 
@@ -69,9 +72,11 @@ Route::get('/delete_product/{id}', 'ProductController@delete_product');
 
 Route::get('/product_edit/{id}', 'ProductController@view_edit');
 
-Route::post('product_edit/edit_product', 'ProductController@edit_product'); 
+Route::post('product_edit/edit_product', 'ProductController@edit_product');
 
+Route::get('search_product','ProductController@search_product');
 
+Route::get('/product_detail/{id}', 'ProductController@product_detail');
 //Banner    
 Route::get('banner_create', 'BannerController@view_create');
 
@@ -87,11 +92,79 @@ Route::get('/banner_edit/{id}', 'BannerController@view_edit');
 
 Route::post('banner_edit/edit_banner', 'BannerController@edit_banner'); 
 
+Route::get('search_banner','BannerController@search_banner');
+
+//Customer    
+Route::get('customer_create', 'CustomerController@view_create');
+
+Route::post('create_customer', 'CustomerController@create');
+
+Route::get('/unactivate_customer/{id}', 'CustomerController@unactivate_customer');
+
+Route::get('/activate_customer/{id}', 'CustomerController@activate_customer');
+
+Route::get('/delete_customer/{id}', 'CustomerController@delete_customer');
+
+Route::get('/customer_edit/{id}', 'CustomerController@view_edit');
+
+Route::post('customer_edit/edit_customer', 'CustomerController@edit_customer'); 
+
+Route::get('search_customer','CustomerController@search_customer');
+
+//Employee    
+Route::get('employee_create', 'EmployeeController@view_create');
+
+Route::post('create_employee', 'EmployeeController@create');
+
+Route::get('/unactivate_employee/{id}', 'EmployeeController@unactivate_employee');
+
+Route::get('/activate_employee/{id}', 'EmployeeController@activate_employee');
+
+Route::get('/delete_employee/{id}', 'EmployeeController@delete_employee');
+
+Route::get('/employee_edit/{id}', 'EmployeeController@view_edit');
+
+Route::post('employee_edit/edit_employee', 'EmployeeController@edit_employee'); 
+
+Route::get('search_employee','EmployeeController@search_employee');
+
+//Manufacturer    
+Route::get('manufacturer_create', 'ManufacturerController@view_create');
+
+Route::post('create_manufacturer', 'ManufacturerController@create');
+
+Route::get('/unactivate_manufacturer/{id}', 'ManufacturerController@unactivate_manufacturer');
+
+Route::get('/activate_manufacturer/{id}', 'ManufacturerController@activate_manufacturer');
+
+Route::get('/delete_manufacturer/{id}', 'ManufacturerController@delete_manufacturer');
+
+Route::get('/manufacturer_edit/{id}', 'ManufacturerController@view_edit');
+
+Route::post('manufacturer_edit/edit_manufacturer', 'ManufacturerController@edit_manufacturer'); 
+
+Route::get('search_manufacturer','ManufacturerController@search_manufacturer');
+
+
+
 // Đăng nhập và xử lý đăng nhập
 Route::get('login', [ 'as' => 'login', 'uses' => 'ClientController@getLogin']);
 Route::post('login', [ 'as' => 'login', 'uses' => 'ClientController@postLogin']);
 
 //serch
 Route::get('search', ['as'=>'search','uses'=>'ClientController@getSearch']);
+Route::get('/product_by_manufacturer/{ManufacturerID}','ClientController@product_by_manufacturer');
 
- 
+//product detail
+Route::get('/productdetail/{ProductID}','ClientController@productdetail');
+
+//add to cart
+// Route::get('/',
+//         ['uses'=>'ClientController@productdetail',
+//         'as' => 'product.index']);
+Route::get('/add-to-cart/{ProductID}',
+        ['uses'=>'ClientController@getAddToCart',
+        'as' => 'product.addToCart']);
+
+
+

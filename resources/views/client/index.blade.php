@@ -5,8 +5,8 @@
 @endsection
 
 @section('responsive')
-<link rel="stylesheet" type="text/css" href="frontend/styles/main_styles.css">
-<link rel="stylesheet" type="text/css" href="frontend/styles/responsive.css">
+<link rel="stylesheet" type="text/css" href="{{asset('frontend/styles/main_styles.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('frontend/styles/responsive.css')}}">
 @endsection
 
 @section('slide')
@@ -269,5 +269,5 @@
 @endsection
 
 @section('custom')
-<script src="frontend/js/custom.js"></script>
+<script src="{{asset('frontend/js/custom.js')}}"></script>
 @endsection

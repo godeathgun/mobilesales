@@ -5,8 +5,8 @@
 @endsection
 
 @section('responsive')
-<link rel="stylesheet" type="text/css" href="frontend/styles/cart.css">
-<link rel="stylesheet" type="text/css" href="frontend/styles/cart_responsive.css">
+<link rel="stylesheet" type="text/css" href="{{asset('frontend/styles/cart.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('frontend/styles/cart_responsive.css')}}">
 @endsection
 
 @section('slide')
@@ -14,7 +14,7 @@
 
 	<div class="home">
 		<div class="home_container">
-			<div class="home_background" style="background-image:url(frontend/images/cart.jpg)"></div>
+			<div class="home_background" style="background-image:url({{asset('frontend/images/cart.jpg)')}}"></div>
 			<div class="home_content_container">
 				<div class="container">
 					<div class="row">
@@ -59,7 +59,7 @@
                     <!-- Name -->
                     <div class="cart_item_product d-flex flex-row align-items-center justify-content-start">
                         <div class="cart_item_image">
-                            <div><img src="images/cart_1.jpg" alt=""></div>
+                            <div><img src="{{asset('frontend/images/cart_1.jpg')}}" alt=""></div>
                         </div>
                         <div class="cart_item_name_container">
                             <div class="cart_item_name"><a href="#">Smart Phone Deluxe Edition</a></div>

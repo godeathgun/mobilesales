@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Session;
-
+use App\Product;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
@@ -14,9 +14,11 @@ class ClientController extends Controller
     {
         return view('client.index');
     }
-    public function productdetail()
+    public function productdetail($ProductID)
     {
-        return view('client.product');
+        // print('product id là'.$ProductID);
+        $products = DB::table('product')->where('ProductID',$ProductID)->first();
+        return view('client.product',['products'=>$products]);
     }
     public function register()
     {
@@ -45,48 +47,40 @@ class ClientController extends Controller
         return view('client.contact');
     }
 
-    function getSearch(Request $request)
+    function getSearch(Request $req)
     {
         
-        $products= DB::table('product')->where('ProductName','$request->key')
-                            
-                            ->get();
-        return view ('client.search',['products'=> $products]);
+        $products = Product::where('ProductName','LIKE','%'.$req->key.'%')
+        ->orWhere('Price','LIKE','%'.$req->key.'%')->paginate(12);
+        return view('client.category', ['products' => $products]);
+       
     }
+    public function product_by_manufacturer($manuName)
+    {
+        //  print('asdas '.$manuName);
+        # code...
 
-
-
-    public function postLogin(Request $request) {
-        // Kiểm tra dữ liệu nhập vào
-        $rules = [
-            'email' =>'required|email',
-            'password' => 'required|min:6'
-        ];
-        $messages = [
-            'email.required' => 'Email là trường bắt buộc',
-            'email.email' => 'Email không đúng định dạng',
-            'password.required' => 'Mật khẩu là trường bắt buộc',
-            'password.min' => 'Mật khẩu phải chứa ít nhất 8 ký tự',
-        ];
-        $validator = Validator::make($request->all(), $rules, $messages);
-        
-        
-        if ($validator->fails()) {
-            // Điều kiện dữ liệu không hợp lệ sẽ chuyển về trang đăng nhập và thông báo lỗi
-            return redirect('login')->withErrors($validator)->withInput();
-        } else {
-            // Nếu dữ liệu hợp lệ sẽ kiểm tra trong csdl
-            $email = $request->input('email');
-            $password = $request->input('password');
-     
-            if( Auth::attempt(['email' => $email, 'password' =>$password])) {
-                // Kiểm tra đúng email và mật khẩu sẽ chuyển trang
-                return redirect('hocsinh');
-            } else {
-                // Kiểm tra không đúng sẽ hiển thị thông báo lỗi
-                Session::flash('error', 'Email hoặc mật khẩu không đúng!');
-                return redirect('login');
-            }
-        }
+        $products= DB::table('product')
+                    ->where('ManufacturerID',$manuName)
+                    // ->where('status',1)
+                    ->paginate(12);
+        // $manu_product =view('client.category')
+        //         ->with('products',$products);
+        return view('client.category',['products'=>$products]);
+    }
+    public function getIndex()
+    {
+        $products = DB::table('product')->where('ProductID',$ProductID)->first();
+        return view('client.product',['products'=>$products]);
+    }
+    public function getAddToCart(Request $req,$id)
+    {
+        $product = Product::find($id);
+        $oldCart=Session::has('cart')? Session::get('cart') :null;
+        $cart=new Cart($oldCart);
+        $cart->add($product,$ProductID->ID);
+        $req->session()->put('cart', $cart);
+        dd($req->session()->get('cart'));
+        return redirect()->route('product.index');
     }
 }
