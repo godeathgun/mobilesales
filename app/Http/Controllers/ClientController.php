@@ -15,12 +15,14 @@ use Illuminate\Support\Facades\Redirect;
 use App\Order;
 use App\OrderDetail;
 use Carbon;
+use App\Product;
 
 class ClientController extends Controller
 {
     public function index()
     {
-        return view('client.index');
+        $products = DB::table('product')->take(6)->get();
+        return view('client.index',['products'=>$products]);
     }
 
 
@@ -35,7 +37,7 @@ class ClientController extends Controller
         Session::put('cart', $cart);
         
         // dd(Session::get('cart'));
-        return redirect::to('/');
+        return redirect::to('/category');
     }
 
     public function cart(){
@@ -286,7 +288,38 @@ class ClientController extends Controller
 
         if(Hash::check($request->old_password,Session::get('userLogin')->password))
         {
-            dd('doi thanh cong');
+            DB::table('customer')->where('CustomerID', Session::get('userLogin')->CustomerID)
+            ->update(['Password'=>Hash::make($request->new_password)]);
+
+            Session::put('message','The change password successfully');
+            return redirect('/changePassword');
         }
     }
+//search 
+    public function getSearch(Request $req)
+    {
+        
+        $products = Product::where('ProductName','LIKE','%'.$req->key.'%')
+        ->orWhere('Price','LIKE','%'.$req->key.'%')->paginate(12);
+        return view('client.category', ['products' => $products]);
+       
+    }
+    public function product_by_manufacturer($manuName)
+    {
+        $products= DB::table('product')
+                    ->where('ManufacturerID',$manuName)
+                    ->paginate(12);
+        return view('client.category',['products'=>$products]);
+    }
+// product detail
+    public function productdetail($ProductID)
+        {
+            // print('product id là'.$ProductID);
+            $products = DB::table('product')->where('ProductID',$ProductID)->first();
+            $relative = DB::table('product')->where('ManufacturerID',$products->ManufacturerID)->take(4)->get();
+            
+            return view('client.product',['products'=>$products],['relatives'=>$relative]);
+        }
+// relative product
+
 }

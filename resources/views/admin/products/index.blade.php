@@ -67,6 +67,8 @@
                                     data-target="#exampleModal"> 
                                     <a onclick="return confirm('Are you sure?')" href="{{ URL::to('/delete_product/'.$product->ProductID) }}">Delete</a>
                                 </button>
+                                <button class="btn btn-outline-primary"><a
+                                    href="{{ URL::to('/product_detail/'.$product->ProductID) }}">Detail</a></button>
 
                                 @if($product->Status == 1)
                                     <button class="btn btn-outline-warning"><a

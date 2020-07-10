@@ -66,6 +66,17 @@ Route::post('/register','ClientController@postregister');
 
 
 
+//Admin
+Route::get('/admin', 'AdminController@index');
+Route::get('/products', 'ProductController@view_index');
+Route::get('/users', 'UserController@view_index');
+Route::get('/banners', 'BannerController@view_index');
+Route::get('/employees', 'EmployeeController@view_index');
+Route::get('/customers', 'CustomerController@view_index');
+Route::get('/orders', 'OrderController@view_index');
+Route::get('/manufacturers', 'ManufacturerController@view_index');
+Route::get('/categories', 'CategoryController@view_index');
+Route::get('/orders', 'OrderController@view_index');
 
 
 
@@ -172,6 +183,11 @@ Route::post('manufacturer_edit/edit_manufacturer', 'ManufacturerController@edit_
 
 Route::get('search_manufacturer','ManufacturerController@search_manufacturer');
 
+//Order
+Route::get('/order_edit/{id}', 'OrderController@view_edit');
+
+Route::post('order_edit/edit_order', 'OrderController@edit_order'); 
+
 
 
 // Đăng nhập và xử lý đăng nhập
@@ -180,5 +196,30 @@ Route::post('login', [ 'as' => 'login', 'uses' => 'ClientController@postLogin'])
 
 //serch
 Route::get('search', ['as'=>'search','uses'=>'ClientController@getSearch']);
+
+
+//cart
+Route::get('addToCart/{id}', 'ClientController@addToCart');
+Route::post('updateCart', 'ClientController@updateCart');
+Route::get('/removeItem/{product_id}', 'ClientController@removeItem');
+Route::get('/addOrder', 'ClientController@addOrder');
+
+//user
+Route::get('/cusInfo', 'ClientController@infoCustomer');
+Route::get('/changePassword','ClientController@getChangePassword');
+Route::post('/changePassword','ClientController@changePassword');
+
+//serch
+
+Route::get('/product_by_manufacturer/{ManufacturerID}','ClientController@product_by_manufacturer');
+
+//product detail
+Route::get('/productdetail/{ProductID}','ClientController@productdetail');
+
+//add to cart
+// Route::get('/',
+//         ['uses'=>'ClientController@productdetail',
+//         'as' => 'product.index']);
+
 
 
