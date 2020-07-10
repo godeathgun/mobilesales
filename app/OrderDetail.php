@@ -4,8 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Order extends Model
+class OrderDetail extends Model
 {
-    protected $table='order';
+    protected $table='orderdetail';
     public $timestamps=false;
 }

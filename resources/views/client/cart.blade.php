@@ -55,7 +55,6 @@ Cart
         </div>
         @if(Session::has('cart'))
             <div class="row cart_items_row">
-                <?php $totalprice = 0; ?>
                 @foreach($products as $item)
                     <form action="{{ action('ClientController@updateCart') }}" method="post"
                         class="col">
@@ -95,7 +94,6 @@ Cart
                             </div>
                             <input class="button update_cart_button" type="submit" value="Update">
                         </div>
-                        <?php $totalprice+=$item['product_price']*$item['qty'] ?>
                     </form>
                 @endforeach
             </div>
@@ -120,7 +118,7 @@ Cart
                         <ul>
                             <li class="d-flex flex-row align-items-center justify-content-start">
                                 <div class="cart_total_title">Subtotal</div>
-                            <div class="cart_total_value ml-auto">{{$totalprice}}</div>
+                            <div class="cart_total_value ml-auto">{{Session::has('cart')?Session::get('cart')->totalPrice:'0'}}</div>
                             </li>
                             <li class="d-flex flex-row align-items-center justify-content-start">
                                 <div class="cart_total_title">Shipping</div>
@@ -128,7 +126,7 @@ Cart
                             </li>
                             <li class="d-flex flex-row align-items-center justify-content-start">
                                 <div class="cart_total_title">Total</div>
-                            <div class="cart_total_value ml-auto">{{$totalprice}}</div>
+                            <div class="cart_total_value ml-auto">{{Session::has('cart')?Session::get('cart')->totalPrice:'0'}}</div>
                             </li>
                         </ul>
                     </div>

@@ -174,3 +174,9 @@ Route::get('search', ['as'=>'search','uses'=>'ClientController@getSearch']);
 Route::get('addToCart/{id}', 'ClientController@addToCart');
 Route::post('updateCart', 'ClientController@updateCart');
 Route::get('/removeItem/{product_id}', 'ClientController@removeItem');
+Route::get('/addOrder', 'ClientController@addOrder');
+
+//user
+Route::get('/cusInfo', 'ClientController@infoCustomer');
+Route::get('/changePassword','ClientController@getChangePassword');
+Route::post('/changePassword','ClientController@changePassword');
