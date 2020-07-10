@@ -22,8 +22,7 @@ $(document).ready(function()
 	1. Vars and Inits
 
 	*/
-    $('#AlertMail').removeClass("hide");
-    $('#AlertMail').delay(1000).slideUp(500);
+
 	var header = $('.header');
 	var hambActive = false;
 	var menuActive = false;

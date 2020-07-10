@@ -186,3 +186,18 @@ Route::get('/addOrder', 'ClientController@addOrder');
 Route::get('/cusInfo', 'ClientController@infoCustomer');
 Route::get('/changePassword','ClientController@getChangePassword');
 Route::post('/changePassword','ClientController@changePassword');
+
+//serch
+
+Route::get('/product_by_manufacturer/{ManufacturerID}','ClientController@product_by_manufacturer');
+
+//product detail
+Route::get('/productdetail/{ProductID}','ClientController@productdetail');
+
+//add to cart
+// Route::get('/',
+//         ['uses'=>'ClientController@productdetail',
+//         'as' => 'product.index']);
+
+
+
