@@ -24,10 +24,13 @@ Route::get('/checkout', 'ClientController@checkout');
 
 Route::get('/contact', 'ClientController@contact');
 
-Route::get('/register', 'ClientController@register');
 Route::get('/productDetail', 'ClientController@productdetail');
 
-
+//Logout
+Route::get('/logout', 'ClientController@getLogout');
+//Register
+Route::get('/register', 'ClientController@getRegister');
+Route::post('/register', 'ClientController@postRegister');
 //Login
 Route::get('/login','ClientController@getLogin');
 Route::post('/login','ClientController@postLogin');

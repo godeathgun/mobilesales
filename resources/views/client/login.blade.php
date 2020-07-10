@@ -51,10 +51,17 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
   
 				<input placeholder="email" name="email" class="mail" type="text" required="">
 
-				<input  placeholder="password" name="password" class="pass" type="password" required="">
+				<input  placeholder="Password" name="password" class="pass" type="password" required="">
 
 				<input type="submit" value="login">
+				
 			</form>
+			<div class="footer-w3">
+				<p>Forgot <a href="#">Password</a></p>
+		</div>
+		<div class="footer-w3">
+			<p>Create <a href="/register">new account</a></p>
+		</div>
 		</div>
 		<div class="clear"></div>
 </div>

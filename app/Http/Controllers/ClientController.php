@@ -65,7 +65,7 @@ class ClientController extends Controller
         $user->Email = $request ->email;
         $user->Phone = $request ->phone;
         $user->Address = $request->address;
-        $user->Password = md5(sha1($request->password));
+        $user->Password = bcrypt($request->password);
         $user->Status= 0;
         $user->Code= md5(sha1($request->email));
         $user->save();
@@ -111,15 +111,33 @@ class ClientController extends Controller
     {
         $arr=[
             'Email'=> $request->email,
-            'Password'=> $request->password
+            'password'=> $request->password
         ];
-        if(Customer::where('Email',"=", $request->email)->where("Password","=",md5(sha1($request->password)))->where("Status","=",1)->count()>0)
+        dd($arr);
+        //if(Customer::where('Email',"=", $request->email)->where("Password","=",md5(sha1($request->password)))->where("Status","=",1)->count()>0)
+        if(Auth::attempt($arr))
         {
-            return redirect('.')->with('thongbao','Đăng nhập thành công');
+            if(Customer::where('Status',"=",1)->first())
+            {
+                
+                return redirect('.')->with('thongbao','Đăng nhập thành công');
+            }
+            else
+            {
+                return redirect('/login')->with('thongbao','Tài khoản của bạn chưa được xác nhận! Vui lòng kiểm tra email!');
+            }
         }
         else 
         {
-            return redirect('/login')->with('thongbao','Đăng nhập không thành công');
+            return redirect('/login')->with('thongbao','Sai email hoặc password!');
         }
+      
     }
+    public function getLogout()
+    {
+        Auth::logout();
+        return redirect('/login');
+    }
+    
+    
 }
