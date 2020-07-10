@@ -17,7 +17,7 @@
             <div class="row form-group">
                 <div class="col col-md-3">
                     <label for="cname" class=" form-control-label">Password</label>
-                    <input value="{{$select_customer->Password}}" id="cname" class="form-control" name="customer_password" type="text" required>
+                    <input value="{{$select_customer->password}}" id="cname" class="form-control" name="customer_password" type="text" required>
                 </div>
             </div>
             <div class="row form-group">

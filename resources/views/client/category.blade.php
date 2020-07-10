@@ -98,7 +98,7 @@
             <div class="col">
                 <div class="product_grid">
                     <!-- Product -->
-                    @foreach ($products as $item)
+                    @foreach ($products as $product)
                     <div class="product">
                         <div class="product_image"><img src="images/product/{{ $item->Image0 }}" alt=""></div>
                         {{-- <div class="product_extra product_new"><a href="categories.html">New</a></div> --}}
@@ -110,6 +110,7 @@
                             <div class="product_price">{{number_format($item->Price).' '.'VND'}}</div>
                             
                         </div>
+                        
                     </div>
                     @endforeach
                     <!-- Product -->
