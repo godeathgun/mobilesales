@@ -4,6 +4,8 @@
 <div class="content">
     <div class="card-body card-block">
         <div class="card-body">
+            <h2> Banner index </h2>
+            &nbsp;
             <?php $message = Session::get('message');?>
             @if($message)
                 <p class="alert alert-success">
@@ -11,7 +13,10 @@
                 Session::put('message',null); ?>
                 </p>
             @endif
-            <a href="view_banner_create" type="button" class="btn btn-primary">Create</a>
+            <div>
+                <a href="banner_create" type="button" class="btn btn-primary">Create</a>
+            </div>
+            &nbsp;
             <table class="table">
                 <thead class="thead-dark">
                     <tr>
@@ -22,7 +27,6 @@
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
-                <?php $banners=DB::table('banner')->get(); ?>
                 <tbody>
                     @foreach($banners as $banner)
                         <tr>
@@ -40,40 +44,17 @@
                                 </td>
                             @endif
 
-                            <td>
-                                <button class="btn btn-outline-primary"><a>Update</a></button>
 
-                                
+                            <td>
+                                <button class="btn btn-outline-primary"><a
+                                        href="{{ URL::to('/category_edit/'.$banner->BannerID) }}">Update</a></button>
+
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-outline-danger" data-toggle="modal"
-                                    data-target="#exampleModal"> Delete
+                                    data-target="#exampleModal">
+                                    <a
+                                        href="{{ URL::to('/delete_banner/'.$banner->BannerID) }}">Delete</a>
                                 </button>
-                                <!-- Modal -->
-                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Delete Banner</h5>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                Do you want to delete this banner?
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-dismiss="modal">Close</button>
-                                                <a href="{{ URL::to('/delete_banner/'.$banner->BannerID) }}"
-                                                    type="button" class="btn btn-primary">Confirm</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
 
                                 @if($banner->Status == 1)
                                     <button class="btn btn-outline-warning"><a
@@ -87,6 +68,7 @@
                     @endforeach
                 </tbody>
             </table>
+            {{$banners->links()}}
         </div>
     </div>
 </div>

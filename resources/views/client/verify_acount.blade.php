@@ -1,0 +1,1 @@
+<p>Click <a href="{{$route}}"> vào đây</a> để xác nhận tài khoản</p>

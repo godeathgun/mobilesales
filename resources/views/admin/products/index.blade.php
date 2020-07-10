@@ -4,6 +4,8 @@
 <div class="content">
     <div class="card-body card-block">
         <div class="card-body">
+            <h2> Product index </h2>
+            &nbsp;
             <?php $message = Session::get('message');?>
             @if($message)
                 <p class="alert alert-success">
@@ -11,7 +13,19 @@
                 Session::put('message',null); ?>
                 </p>
             @endif
-            <a href="view_product_create" type="button" class="btn btn-primary">Create</a>
+            <div>
+                <a href="product_create" type="button" class="btn btn-primary">Create</a>
+            </div>
+            &nbsp;
+            <form action="search_product" method="get" enctype="multipart/form-data" class="form-horizontal" >
+                <div class="input-group">
+                    <input  type="text" id="input1-group2" name="input_data" placeholder="Search" class="form-control">
+                    <div class="input-group-btn">
+                        <input type="submit" value="Search" class="btn btn-primary">
+                    </div>
+                </div>
+            </form>
+            &nbsp;
             <table class="table">
                 <thead class="thead-dark">
                     <tr>
@@ -24,7 +38,7 @@
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
-                <?php $products=DB::table('product')->get(); ?>
+                
                 <tbody>
                     @foreach($products as $product)
                         <tr>
@@ -45,36 +59,14 @@
                             @endif
 
                             <td>
-                                <button class="btn btn-outline-primary"><a>Update</a></button>
+                                <button class="btn btn-outline-primary"><a
+                                    href="{{ URL::to('/product_edit/'.$product->ProductID) }}">Update</a></button>
 
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-outline-danger" data-toggle="modal"
-                                    data-target="#exampleModal"> Delete
+                                    data-target="#exampleModal"> 
+                                    <a onclick="return confirm('Are you sure?')" href="{{ URL::to('/delete_product/'.$product->ProductID) }}">Delete</a>
                                 </button>
-                                <!-- Modal -->
-                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Delete Product</h5>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                Do you want to delete this product?
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-dismiss="modal">Close</button>
-                                                <a href="{{ URL::to('/delete_product/'.$product->ProductID) }}"
-                                                    type="button" class="btn btn-primary">Confirm</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
 
                                 @if($product->Status == 1)
                                     <button class="btn btn-outline-warning"><a
@@ -89,6 +81,7 @@
                     @endforeach
                 </tbody>
             </table>
+            {{$products->links()}}
         </div>
     </div>
 </div>
