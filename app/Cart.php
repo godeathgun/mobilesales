@@ -19,7 +19,7 @@
         public function add($item, $ProductID)
         {
             $storedItem = ['qty'=>0, 'product_id'=> 0, 'product_name'=>$item->ProductName,
-             'product_price'=>$item->Price, 'product_image'=>$item->Image0, 'item'=>$item];
+             'product_price'=>$item->Price, 'product_image'=>$item->Image0,'product_discount'=>$item->Discount , 'item'=>$item];
 
             if($this->items){
                 if(array_key_exists($ProductID, $this->items)){
@@ -32,6 +32,7 @@
             $storedItem['product_name'] = $item->ProductName;
             $storedItem['product_price'] = $item->Price;
             $storedItem['image'] = $item->Image0;
+            $storedItem['product_discount'] = $item->Discount;
             
             $this->totalQuantity += 1;
             $this->totalPrice += $item->Price;

@@ -32,6 +32,7 @@ Route::get('/productDetail/{id}', 'ClientController@productdetail');
 //Login
 Route::get('/login','ClientController@getLogin');
 Route::post('/login','ClientController@postLogin');
+Route::get('/logout','ClientController@logout');
 //verify
 Route::get('/send-mail', 'ClientController@verifyAccount')->name('user.verify.account');
 
@@ -156,6 +157,9 @@ Route::get('search_manufacturer','ManufacturerController@search_manufacturer');
 // Đăng nhập và xử lý đăng nhập
 Route::get('login', [ 'as' => 'login', 'uses' => 'ClientController@getLogin']);
 Route::post('login', [ 'as' => 'login', 'uses' => 'ClientController@postLogin']);
+Route::get('register', 'ClientController@getRegister');
+Route::post('register', 'ClientController@postRegister');
+
 
 //serch
 Route::get('search', ['as'=>'search','uses'=>'ClientController@getSearch']);
@@ -165,4 +169,5 @@ Route::get('search', ['as'=>'search','uses'=>'ClientController@getSearch']);
 Route::get('addToCart/{id}', 'ClientController@addToCart');
 Route::post('updateCart', 'ClientController@updateCart');
 Route::get('/removeItem/{product_id}', 'ClientController@removeItem');
+Route::get('/addOrder', 'ClientController@addOrder');
 

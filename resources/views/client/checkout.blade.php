@@ -47,28 +47,37 @@ Checkout
                     <div class="section_title">Billing Address</div>
                     <div class="section_subtitle">Enter your address info</div>
                     <div class="checkout_form_container">
-                        <form action="#" id="checkout_form" class="checkout_form">
+                        @if(Session::has('userLogin'))
+                        <form action="/addOrder" id="checkout_form" class="checkout_form">
                             <div>
                                 <!-- Name -->
                                 <label for="checkout_company">Name</label>
-                                <input type="text" id="checkout_company" required="required" name="customer_name" class="checkout_input">
+                                <input value="{{Session::get('userLogin')->CustomerName}}" type="text" id="checkout_company" required="required" name="customer_name" class="checkout_input">
                             </div>
                             <div>
                                 <!-- Address -->
                                 <label for="checkout_address">Address*</label>
-                                <input type="text" id="checkout_address" class="checkout_input" required="required">
+                                <input value="{{Session::get('userLogin')->Address}}" type="text" id="checkout_address" class="checkout_input" name="customer_address"  required="required">
 
                             </div>
                             <div>
                                 <!-- Phone no -->
                                 <label for="checkout_phone">Phone no*</label>
-                                <input type="phone" id="checkout_phone" class="checkout_input" required="required">
+                                <input value="{{Session::get('userLogin')->Phone}}" type="phone" id="checkout_phone" class="checkout_input" name="customer_phone" required="required">
                             </div>
                             <div>
                                 <!-- Email -->
                                 <label for="checkout_email">Email Address*</label>
-                                <input type="phone" id="checkout_email" class="checkout_input" required="required">
+                                <input value="{{Session::get('userLogin')->Email}}" type="phone" id="checkout_email" class="checkout_input" name="customer_email" required="required">
                             </div>
+                            <div>
+                                <!-- Note -->
+                                <label for="checkout_email">Note</label>
+                                <input value="" type="phone" id="checkout_email" class="checkout_input" name="customer_note">
+                            </div>
+                        </form>
+                        @else
+                        <form action="#" id="checkout_form" class="checkout_form">
                             <div class="checkout_extra">
                                 <div>
                                     <input type="checkbox" id="checkbox_account" name="regular_checkbox"
@@ -77,6 +86,7 @@ Checkout
                                 </div>
                             </div>
                         </form>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -132,7 +142,7 @@ Checkout
                     <div class="order_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pharetra temp
                         or so dales. Phasellus sagittis auctor gravida. Integ er bibendum sodales arcu id te mpus. Ut
                         consectetur lacus.</div>
-                    <div class="button order_button"><a href="#">Place Order</a></div>
+                    <div class="button order_button"><a href="/addOrder">Place Order</a></div>
                 </div>
             </div>
         </div>

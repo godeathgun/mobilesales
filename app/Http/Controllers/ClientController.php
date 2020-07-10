@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\DB;
 use Session;
 use App\Cart;
 use Illuminate\Support\Facades\Redirect;
+use App\Order;
+use App\OrderDetail;
 
 class ClientController extends Controller
 {
@@ -83,7 +85,8 @@ class ClientController extends Controller
 
     public function category()
     {
-        return view('client.category');
+        $products = DB::table('product')->paginate(12);
+        return view('client.category',['products'=>$products]);
     }
 
     public function checkout()
@@ -96,6 +99,36 @@ class ClientController extends Controller
         $cart = new Cart($oldCart);
         return view('client.checkout', ['totalPrice' => $cart->totalPrice],['products' => $cart->items]);
 
+    }
+
+    public function addOrder()
+    {
+        if(!Session::has('cart')){
+            return view('client.cart');
+        }
+
+        $oldCart = Session::has('cart')? Session::get('cart'):null;
+        $cart = new Cart($oldCart);
+
+        $userLogin = Session::get('userLogin');
+
+        $order = new OrderDetail();
+        $order->OrderDate = Carbon\Carbon::now();
+        $order->ShipAddress = address;
+        $order->ShipName = shipName;
+        $order->ShipEmail = email;
+        $order->ShipMobile = mobile;
+
+        foreach($cart as $item)
+        {
+            $orderdetail = new OrderDetail();
+            $orderdetail->OrderID = $OrderID;
+            $orderdetail->ProductID = $item->product_id;
+            $orderdetail->Price = $item->product_price;
+            $orderdetail->Quantity = $item->qty;
+            $orderdetail->Discount = $item->item->Discount;
+            $orderdetail->save();
+        }
     }
 
     public function contact()
@@ -133,7 +166,7 @@ class ClientController extends Controller
         $user->Email = $request ->email;
         $user->Phone = $request ->phone;
         $user->Address = $request->address;
-        $user->Password = md5(sha1($request->password));
+        $user->Password = bcrypt($request->password);
         $user->Status= 0;
         $user->Code= md5(sha1($request->email));
         $user->save();
@@ -177,17 +210,37 @@ class ClientController extends Controller
     }
     public function postLogin(Request $request)
     {
+        $customer = Customer::where('Email',"=", $request->email)->where("Status","=",1)->first();
+
+        $userLogin = Session::has('userLogin')? Session::get('userLogin'):null;
+
+        Session::put('userLogin', $customer);
+
         $arr=[
             'Email'=> $request->email,
             'Password'=> $request->password
         ];
-        if(Customer::where('Email',"=", $request->email)->where("Password","=",md5(sha1($request->password)))->where("Status","=",1)->count()>0)
+              //if(Customer::where('Email',"=", $request->email)->where("Password","=",md5(sha1($request->password)))->where("Status","=",1)->count()>0)
+        if(Auth::attempt($arr))
         {
-            return redirect('.')->with('thongbao','Đăng nhập thành công');
+            if(Customer::where('Status',"=",1)->first())
+            {
+                return redirect('.')->with('thongbao','Đăng nhập thành công');
+            }
+            else
+            {
+                return redirect('/login')->with('thongbao','Tài khoản của bạn chưa được xác nhận! Vui lòng kiểm tra email!');
+            }
         }
         else 
         {
-            return redirect('/login')->with('thongbao','Đăng nhập không thành công');
+            dd($arr);
+            return redirect('/login')->with('thongbao','Sai email hoặc password!');
         }
+    }
+    public function logout()
+    {
+        Session::forget('userLogin');
+        return redirect('/');
     }
 }

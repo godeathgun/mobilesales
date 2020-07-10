@@ -244,7 +244,7 @@ class ProductController extends Controller
                 }
                 $file = $req->file('Image0');
                 $extension = $file->getClientOriginalExtension();
-                $filename = time() . '.' .$extension;
+                $filename = $select_product->ProductName. '-0' . '.' .$extension;
                 $file->move('images/product',$filename);
                 DB::table('product')->where('ProductID', $req->product_id)
                     ->update(['Image0'=>$filename]);
@@ -258,7 +258,7 @@ class ProductController extends Controller
                 }
                 $file = $req->file('Image1');
                 $extension = $file->getClientOriginalExtension();
-                $filename = time() . '.' .$extension;
+                $filename = $select_product->ProductName. '-1' . '.' .$extension;
                 $file->move('images/product',$filename);
                 DB::table('product')->where('ProductID', $req->product_id)
                     ->update(['Image1'=>$filename]);
@@ -272,7 +272,7 @@ class ProductController extends Controller
                 }
                 $file = $req->file('Image2');
                 $extension = $file->getClientOriginalExtension();
-                $filename = time() . '.' .$extension;
+                $filename = $select_product->ProductName. '-2'  . '.' .$extension;
                 $file->move('images/product',$filename);
                 DB::table('product')->where('ProductID', $req->product_id)
                     ->update(['Image2'=>$filename]);
@@ -286,7 +286,7 @@ class ProductController extends Controller
                 }
                 $file = $req->file('Image3');
                 $extension = $file->getClientOriginalExtension();
-                $filename = time() . '.' .$extension;
+                $filename = $select_product->ProductName. '-3' . '.' .$extension;
                 $file->move('images/product',$filename);
                 DB::table('product')->where('ProductID', $req->product_id)
                     ->update(['Image3'=>$filename]);
