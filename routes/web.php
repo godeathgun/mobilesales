@@ -26,7 +26,22 @@ Route::get('/contact', 'ClientController@contact');
 
 Route::get('/register', 'ClientController@register');
 
-Route::get('/productDetail/{ProductID}', 'ClientController@productdetail');
+Route::get('/productDetail', 'ClientController@productdetail');
+
+//Logout
+Route::get('/logout', 'ClientController@getLogout');
+//Register
+Route::get('/register', 'ClientController@getRegister');
+Route::post('/register', 'ClientController@postRegister');
+//Login
+Route::get('/login','ClientController@getLogin');
+Route::post('/login','ClientController@postLogin');
+//verify
+Route::get('/send-mail', 'ClientController@verifyAccount')->name('user.verify.account');
+
+//register
+Route::get('/register', 'ClientController@getregister');
+Route::post('/register','ClientController@postregister');
 
 
 //Admin
@@ -76,7 +91,7 @@ Route::post('product_edit/edit_product', 'ProductController@edit_product');
 
 Route::get('search_product','ProductController@search_product');
 
-Route::get('/product_detail/{id}', 'ProductController@product_detail');
+
 //Banner    
 Route::get('banner_create', 'BannerController@view_create');
 
@@ -153,6 +168,21 @@ Route::post('login', [ 'as' => 'login', 'uses' => 'ClientController@postLogin'])
 
 //serch
 Route::get('search', ['as'=>'search','uses'=>'ClientController@getSearch']);
+
+
+//cart
+Route::get('addToCart/{id}', 'ClientController@addToCart');
+Route::post('updateCart', 'ClientController@updateCart');
+Route::get('/removeItem/{product_id}', 'ClientController@removeItem');
+Route::get('/addOrder', 'ClientController@addOrder');
+
+//user
+Route::get('/cusInfo', 'ClientController@infoCustomer');
+Route::get('/changePassword','ClientController@getChangePassword');
+Route::post('/changePassword','ClientController@changePassword');
+
+//serch
+
 Route::get('/product_by_manufacturer/{ManufacturerID}','ClientController@product_by_manufacturer');
 
 //product detail
@@ -162,9 +192,6 @@ Route::get('/productdetail/{ProductID}','ClientController@productdetail');
 // Route::get('/',
 //         ['uses'=>'ClientController@productdetail',
 //         'as' => 'product.index']);
-Route::get('/add-to-cart/{ProductID}',
-        ['uses'=>'ClientController@getAddToCart',
-        'as' => 'product.addToCart']);
 
 
 

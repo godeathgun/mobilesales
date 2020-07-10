@@ -134,7 +134,11 @@
                                 <div id="quantity_dec_button" class="quantity_dec quantity_control"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
                             </div>
                         </div>
-                        <div class="add-to-cart button cart_button" ><a href="#" data-name={{$products->ProductName}} data-price={{$products->ProductName}}>Add to cart</a></div>
+                        {{-- <a class="btn btn-block btn-outline-primary" href="{{URL::to('/addToCart/'.$products->ProductID)}}">Add to cart</a>
+                        <div class="add-to-cart button cart_button" ><a href="{{URL::to('/addToCart/'.$products->ProductID)}}">Add to cart</a></div> --}}
+                        <div class="add-to-cart button cart_button">
+                            <a href="{{URL::to('/addToCart/'.$products->ProductID)}}">Add to cart</a>
+                        </div>
                     </div>
 
             </div>
@@ -169,42 +173,20 @@
                 <div class="product_grid">
 
                     <!-- Product -->
+                    @foreach ($relatives as $item)
                     <div class="product">
-                        <div class="product_image"><img src="images/product/{{ $products->Image0 }}" alt=""></div>
+                        <div class="product_image"><img src="images/product/{{ $item->Image0 }}" alt=""></div>
                         <div class="product_extra product_new"><a href="categories.html">New</a></div>
                         <div class="product_content">
-                            <div class="product_title"><a href="product.html">Smart Phone</a></div>
-                            <div class="product_price">$670</div>
+                            <div class="product_title"><a href="{{URL::to('/productdetail/'.$item->ProductID)}}">{{$item->ProductName}}</a></div>
+                            <div class="product_price">{{number_format($item->Price).' '.'VND'}}</div>
                         </div>
                     </div>
+                    @endforeach
+
 
                     <!-- Product -->
-                    <div class="product">
-                        <div class="product_image"><img src="{{asset('frontend/images/product_2.jpg')}}" alt=""></div>
-                        <div class="product_extra product_sale"><a href="categories.html">Sale</a></div>
-                        <div class="product_content">
-                            <div class="product_title"><a href="product.html">Smart Phone</a></div>
-                            <div class="product_price">$520</div>
-                        </div>
-                    </div>
-
-                    <!-- Product -->
-                    <div class="product">
-                        <div class="product_image"><img src="{{asset('frontend/images/product_3.jpg')}}" alt=""></div>
-                        <div class="product_content">
-                            <div class="product_title"><a href="product.html">Smart Phone</a></div>
-                            <div class="product_price">$710</div>
-                        </div>
-                    </div>
-
-                    <!-- Product -->
-                    <div class="product">
-                        <div class="product_image"><img src="{{asset('frontend/images/product_4.jpg')}}" alt=""></div>
-                        <div class="product_content">
-                            <div class="product_title"><a href="product.html">Smart Phone</a></div>
-                            <div class="product_price">$330</div>
-                        </div>
-                    </div>
+                    
 
                 </div>
             </div>

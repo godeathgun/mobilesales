@@ -1,7 +1,13 @@
+<!--
+	Author: W3layouts
+	Author URL: http://w3layouts.com
+	License: Creative Commons Attribution 3.0 Unported
+	License URL: http://creativecommons.org/licenses/by/3.0/
+-->
 <!DOCTYPE html>
 <html>
 <head>
-<title>Mobile Sales</title>
+<title>Flat Sign Up Form Responsive Widget Template| Home :: W3layouts</title>
 <!-- Meta tag Keywords -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -25,9 +31,9 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!--//header-->
 <!--main-->
 <div class="main-agileits">
-    <h2 class="sub-head">Sign Up</h2>
-        @if(count($errors) > 0)
-        <div class="alert alert-danger">
+    <h2 class="sub-head">Login</h2>
+        @if(count($errors)>0)
+        <div class ="alert alert-danger">
             @foreach($errors->all() as $err)
                 {{$err}}<br>
             @endforeach
@@ -35,27 +41,27 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
         @endif
 
         @if(session('thongbao'))
-            <div class="alert alert-success">
+            
                 {{session('thongbao')}}
-            </div>
+            
         @endif
+
 		<div class="sub-main">	
-			<form action="register" method="post">
-				<input placeholder="name" name="name" class="name" type="text" required="">
-					<span class="icon1"><i class="fa fa-user" aria-hidden="true"></i></span><br>
-				<input placeholder="address" name="address" class="name2" type="text" required="">
-					<span class="icon2"><i class="fa fa-user" aria-hidden="true"></i></span><br>
-				<input placeholder="phone" name="phone" class="number" type="text" required="">
-					<span class="icon3"><i class="fa fa-phone" aria-hidden="true"></i></span><br>
+			<form action="login" method="post">
+  
 				<input placeholder="email" name="email" class="mail" type="text" required="">
-					<span class="icon4"><i class="fa fa-envelope" aria-hidden="true"></i></span><br>
-				<input  placeholder="password" name="password" class="pass" type="password" required="">
-					<span class="icon5"><i class="fa fa-unlock" aria-hidden="true"></i></span><br>
-				<input  placeholder="passwordAgain" name="passwordAgain" class="pass" type="password" required="">
-					<span class="icon6"><i class="fa fa-unlock" aria-hidden="true"></i></span><br>
+
+				<input  placeholder="Password" name="password" class="pass" type="password" required="">
+
+				<input type="submit" value="login">
 				
-				<input type="submit" value="sign up">
 			</form>
+			<div class="footer-w3">
+				<p>Forgot <a href="#">Password</a></p>
+		</div>
+		<div class="footer-w3">
+			<p>Create <a href="/register">new account</a></p>
+		</div>
 		</div>
 		<div class="clear"></div>
 </div>

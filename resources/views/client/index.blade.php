@@ -89,82 +89,28 @@
                 <div class="product_grid">
 
                     <!-- Product -->
+                        
+                  
+                    @foreach ($products as $item)
                     <div class="product">
-                        <div class="product_image"><img src="images/product/iphon11.png" alt=""></div>
-                        <div class="product_extra product_new"><a href="categories.html">New</a></div>
+
+                        <div class="product_image"><img src="images/product/{{ $item->Image0 }}" alt=""></div>
+                        {{-- <div class="product_extra product_new"><a href="categories.html">New</a></div>
                         <div class="product_content">
-                            <div class="product_title"><a href="product.html">Iphone11 ProMax</a></div>
+                            <div class="product_title"><a href="{{URL::to('/productdetail/'.$item->ProductID)}}">Iphone11 ProMax</a></div>
                             <div class="product_price">$670</div>
+                        </div> --}}
+                        <a class="btn btn-block btn-outline-primary" href="{{URL::to('/addToCart/'.$item->ProductID)}}">Add to cart</a>
+                        <div class="product_content">
+                            <div class="product_title"><a href="{{URL::to('/productdetail/'.$item->ProductID)}}">{{$item->ProductName}}</a></div>
+                            <div class="product_price">{{number_format($item->Price).' '.'VND'}}</div>
+                            
                         </div>
                     </div>
-                    
+                    @endforeach
                   
                     <!-- Product -->
-                    <div class="product">
-                        <div class="product_image"><img src="images/product/huawei.png" alt=""></div>
-                        <div class="product_extra product_sale"><a href="categories.html">Sale</a></div>
-                        <div class="product_content">
-                            <div class="product_title"><a href="product.html">Huawei</a></div>
-                            <div class="product_price">$670</div>
-                        </div>
-                    </div>
-
-                    <!-- Product -->
-                    <div class="product">
-                        <div class="product_image"><img src="images/product/renovo3pro.png" alt=""></div>
-                        <div class="product_content">
-                            <div class="product_title"><a href="product.html">Renovo 3 Pro</a></div>
-                            <div class="product_price">$670</div>
-                        </div>
-                    </div>
-
-                    <!-- Product -->
-                    <div class="product">
-                        <div class="product_image"><img src="images/product/xiaomi.png" alt=""></div>
-                        <div class="product_content">
-                            <div class="product_title"><a href="product.html">Xiaomi </a></div>
-                            <div class="product_price">$670</div>
-                        </div>
-                    </div>
-
-                    <!-- Product -->
-                    <div class="product">
-                        <div class="product_image"><img src="images/product/applewatch.jpg" alt=""></div>
-                        <div class="product_content">
-                            <div class="product_title"><a href="product.html">Smart Phone</a></div>
-                            <div class="product_price">$670</div>
-                        </div>
-                    </div>
-
-                    <!-- Product -->
-                    <div class="product">
-                        <div class="product_image"><img src="frontend/images/product_6.jpg" alt=""></div>
-                        <div class="product_extra product_hot"><a href="categories.html">Hot</a></div>
-                        <div class="product_content">
-                            <div class="product_title"><a href="product.html">Smart Phone</a></div>
-                            <div class="product_price">$670</div>
-                        </div>
-                    </div>
-
-                    <!-- Product -->
-                    <div class="product">
-                        <div class="product_image"><img src="frontend/images/product_7.jpg" alt=""></div>
-                        <div class="product_content">
-                            <div class="product_title"><a href="product.html">Smart Phone</a></div>
-                            <div class="product_price">$670</div>
-                        </div>
-                    </div>
-
-                    <!-- Product -->
-                    <div class="product">
-                        <div class="product_image"><img src="frontend/images/product_8.jpg" alt=""></div>
-                        <div class="product_extra product_sale"><a href="categories.html">Hot</a></div>
-                        <div class="product_content">
-                            <div class="product_title"><a href="product.html">Smart Phone</a></div>
-                            <div class="product_price">$670</div>
-                        </div>
-                    </div>
-
+                    
                 </div>
 
             </div>
