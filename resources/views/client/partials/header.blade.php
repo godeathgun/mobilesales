@@ -38,7 +38,7 @@
                         <div class="header_extra ml-auto">
                             @if(Session::has('userLogin'))
                                 <div class="shopping_cart">
-                                    <a href="/logout">
+                                    <a href="#">
                                         <div class="hassubs">
 
                                             <div>

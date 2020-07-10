@@ -39,6 +39,7 @@ class ClientController extends Controller
     }
 
     public function cart(){
+
         if(!Session::has('cart')){
             return view('client.cart');
         }
@@ -77,6 +78,7 @@ class ClientController extends Controller
 
     public function category()
     {
+
         $products = DB::table('product')->paginate(12);
         return view('client.category',['products'=>$products]);
     }
@@ -235,6 +237,7 @@ class ClientController extends Controller
         {
             if(Customer::where('Status',"=",1)->first())
             {
+
                 return redirect('.')->with('thongbao','Đăng nhập thành công');
             }
             else
@@ -285,6 +288,5 @@ class ClientController extends Controller
         {
             dd('doi thanh cong');
         }
-0
     }
 }

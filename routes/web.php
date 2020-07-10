@@ -12,9 +12,20 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::group(['middleware'=>'ClientLogin'],function(){
+    //Admin
+    Route::get('/admin', 'AdminController@index');
+    Route::get('/products', 'ProductController@view_index');
+    Route::get('/users', 'UserController@view_index');
+    Route::get('/banners', 'BannerController@view_index');
+    Route::get('/employees', 'EmployeeController@view_index');
+    Route::get('/customers', 'CustomerController@view_index');
+    Route::get('/orders', 'OrderController@view_index');
+    Route::get('/manufacturers', 'ManufacturerController@view_index');
+    Route::get('/categories', 'CategoryController@view_index');
+});
 //Client
-Route::get('/', 'ClientController@index');
+ 
 
 Route::get('/cart', 'ClientController@cart');
 
@@ -27,7 +38,17 @@ Route::get('/contact', 'ClientController@contact');
 Route::get('/register', 'ClientController@register');
 
 Route::get('/productDetail', 'ClientController@productdetail');
+//cart
+Route::get('addToCart/{id}', 'ClientController@addToCart');
+Route::post('updateCart', 'ClientController@updateCart');
+Route::get('/removeItem/{product_id}', 'ClientController@removeItem');
+Route::get('/addOrder', 'ClientController@addOrder');
 
+//user
+Route::get('/cusInfo', 'ClientController@infoCustomer');
+Route::get('/changePassword','ClientController@getChangePassword');
+Route::post('/changePassword','ClientController@changePassword');
+Route::get('/', 'ClientController@index');
 //Logout
 Route::get('/logout', 'ClientController@getLogout');
 //Register
@@ -44,16 +65,7 @@ Route::get('/register', 'ClientController@getregister');
 Route::post('/register','ClientController@postregister');
 
 
-//Admin
-Route::get('/admin', 'AdminController@index');
-Route::get('/products', 'ProductController@view_index');
-Route::get('/users', 'UserController@view_index');
-Route::get('/banners', 'BannerController@view_index');
-Route::get('/employees', 'EmployeeController@view_index');
-Route::get('/customers', 'CustomerController@view_index');
-Route::get('/orders', 'OrderController@view_index');
-Route::get('/manufacturers', 'ManufacturerController@view_index');
-Route::get('/categories', 'CategoryController@view_index');
+
 
 
 
@@ -170,13 +182,3 @@ Route::post('login', [ 'as' => 'login', 'uses' => 'ClientController@postLogin'])
 Route::get('search', ['as'=>'search','uses'=>'ClientController@getSearch']);
 
 
-//cart
-Route::get('addToCart/{id}', 'ClientController@addToCart');
-Route::post('updateCart', 'ClientController@updateCart');
-Route::get('/removeItem/{product_id}', 'ClientController@removeItem');
-Route::get('/addOrder', 'ClientController@addOrder');
-
-//user
-Route::get('/cusInfo', 'ClientController@infoCustomer');
-Route::get('/changePassword','ClientController@getChangePassword');
-Route::post('/changePassword','ClientController@changePassword');
