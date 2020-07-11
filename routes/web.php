@@ -200,9 +200,16 @@ Route::get('orderuser_detail/{id}','ClientController@userorder_detail');
 
 
 
-// Đăng nhập và xử lý đăng nhập
-Route::get('login', [ 'as' => 'login', 'uses' => 'ClientController@getLogin']);
-Route::post('login', [ 'as' => 'login', 'uses' => 'ClientController@postLogin']);
+// // Đăng nhập và xử lý đăng nhập
+// Route::get('login', [ 'as' => 'login', 'uses' => 'ClientController@getLogin']);
+// Route::post('login', [ 'as' => 'login', 'uses' => 'ClientController@postLogin']);
+
+Route::get('/forgotpassword', 'ClientController@getForgotpassword');
+Route::post('/forgotpassword', 'ClientController@postForgotpassword');
+
+
+Route::get('/resetpassword', 'ClientController@getResetPassword');
+Route::post('/resetpassword', 'ClientController@postResetPassword');
 
 //serch
 Route::get('search', ['as'=>'search','uses'=>'ClientController@getSearch']);

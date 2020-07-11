@@ -35,21 +35,13 @@ Contact
     @endif
 
     <div class="sub-main">
-        <form action="login" method="post">
+        <form action="/forgotpassword" method="post">
 
-            <input placeholder="Email" name="email" class="mail" type="text" required="">
+            <input placeholder="Email" name="customer_email" class="mail" type="text" required="">
 
-            <input placeholder="Password" name="password" class="pass" type="password" required="">
-
-            <input type="submit" value="login">
+            <input type="submit" value="Send Code">
 
         </form>
-        <div class="footer-w3">
-            <p><a href="/forgotpassword">Forgot Password</a></p>
-        </div>
-        <div class="footer-w3">
-            <p><a href="/register"> Create new account</a></p>
-        </div>
     </div>
     <div class="clear"></div>
 </div>

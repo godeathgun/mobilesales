@@ -1,0 +1,1 @@
+<p>Code:</p><p>{{Session::get('forgotpassword')['code']}}</P>

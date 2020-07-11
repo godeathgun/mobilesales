@@ -266,6 +266,52 @@ class ClientController extends Controller
         return view('client.register');
     }
 
+    //forgotpassword
+    public function getForgotpassword()
+    {
+        return view('client.forgotpassword');
+    }
+
+    public function postForgotpassword(Request $req)
+    {
+        if(DB::table('customer')->where('Email',$req->customer_email))
+        {
+            $to_name="Mobile Sale";
+            $to_mail = $req ->customer_email;
+            $data = array('code'=>rand(100000,999999));
+            $forgotpassword = array('customer_email'=>$req->customer_email, 'code' => $data['code']);
+            Session::put('forgotpassword',$forgotpassword);
+            Mail::send('client.sendcode',$data,function($message)use($to_name,$to_mail){
+                $message->to($to_mail,'Doi mat khau tai khoan');
+                $message->from($to_mail,$to_name);
+            });
+        }
+        return redirect::to('/resetpassword');
+    }
+
+    public function getResetPassword()
+    {
+        return view('client.resetpassword');
+    }
+
+    public function postResetPassword(Request $req)
+    {
+        if(DB::table('customer')->where('Email',$req->Email))
+        {
+            if($req->code == Session::get('forgotpassword')['code'])
+            {
+                $this-> validate($req,[
+                    'confirm_password'=>'same:new_password'
+                ],[
+                    'confirm_password.same'=>'Mật khẩu nhập lại chưa chính xác'
+                ]);
+                DB::table('customer')->where('Email', Session::get('forgotpassword')['customer_email'])
+                ->update(['Password'=>Hash::make($req->new_password)]);
+                Session::forget('forgotpassword');
+            }
+        }
+        return redirect('/login');
+    }
     //userInfo get
     public function infoCustomer()
     {
