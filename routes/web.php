@@ -13,16 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::group(['middleware'=>'ClientLogin'],function(){
-    //Admin
-    Route::get('/admin', 'AdminController@index');
-    Route::get('/products', 'ProductController@view_index');
-    Route::get('/users', 'UserController@view_index');
-    Route::get('/banners', 'BannerController@view_index');
-    Route::get('/employees', 'EmployeeController@view_index');
-    Route::get('/customers', 'CustomerController@view_index');
-    Route::get('/orders', 'OrderController@view_index');
-    Route::get('/manufacturers', 'ManufacturerController@view_index');
-    Route::get('/categories', 'CategoryController@view_index');
+   
 });
 //Client
  
@@ -38,6 +29,10 @@ Route::get('/contact', 'ClientController@contact');
 Route::get('/register', 'ClientController@register');
 
 Route::get('/productDetail', 'ClientController@productdetail');
+//FogotPass
+Route::get('/fogotPass', 'ClientController@getFogotPass');
+Route::post('/fogotPass', 'ClientController@postFogotPass');
+
 //cart
 Route::get('addToCart/{id}', 'ClientController@addToCart');
 Route::post('updateCart', 'ClientController@updateCart');
@@ -64,7 +59,9 @@ Route::get('/send-mail', 'ClientController@verifyAccount')->name('user.verify.ac
 Route::get('/register', 'ClientController@getregister');
 Route::post('/register','ClientController@postregister');
 
-
+//AdminLogin
+Route::get('/adminlogin', 'AdminController@getAdminLogin');
+Route::post('/adminlogin','AdminController@postAdminLogin');
 
 //Admin
 Route::get('/admin', 'AdminController@index');
@@ -190,9 +187,7 @@ Route::post('order_edit/edit_order', 'OrderController@edit_order');
 
 
 
-// Đăng nhập và xử lý đăng nhập
-Route::get('login', [ 'as' => 'login', 'uses' => 'ClientController@getLogin']);
-Route::post('login', [ 'as' => 'login', 'uses' => 'ClientController@postLogin']);
+
 
 //serch
 Route::get('search', ['as'=>'search','uses'=>'ClientController@getSearch']);

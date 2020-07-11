@@ -26,7 +26,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 <body>
 <!--header-->
 	<div class="header-w3l">
-		<h1>Flat Sign Up Form</h1>
+		<h1>Login Mobiles</h1>
 	</div>
 <!--//header-->
 <!--main-->
@@ -57,11 +57,9 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 				
 			</form>
 			<div class="footer-w3">
-				<p>Forgot <a href="/fogotPass">Password</a></p>
-		</div>
-		<div class="footer-w3">
-			<p>Create <a href="/register">new account</a></p>
-		</div>
+				<p>Forgot <a href="#">Password</a></p>
+			</div>
+		
 		</div>
 		<div class="clear"></div>
 </div>

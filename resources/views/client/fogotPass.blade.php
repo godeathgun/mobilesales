@@ -57,7 +57,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 				
 			</form>
 			<div class="footer-w3">
-				<p>Forgot <a href="#">Password</a></p>
+				<p>Forgot <a href="/fogotPass">Password</a></p>
 		</div>
 		<div class="footer-w3">
 			<p>Create <a href="/register">new account</a></p>

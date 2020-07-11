@@ -25,6 +25,15 @@ class ClientController extends Controller
         return view('client.index',['products'=>$products]);
     }
 
+    //FogotPass
+    public function getFogotPass()
+    {
+        return redirect('/fogotPass');
+    }
+    public function postFogotPass()
+    {
+        return redirect('/gogotPass');
+    }
 
     public function addToCart($id)
     {
@@ -186,15 +195,15 @@ class ClientController extends Controller
         if($user->id)
         {
             $to_name="Moblie Sale";
-        $to_mail = $request ->email;
-        $url = route('user.verify.account',['CustomerID'=> $user ->id,"code"=> $user->Code]);
-            
-        $data =['route'=>$url];
-            //$data = array("name"=>"Test", "body"=>"Mail xác nhận tài khoản!");
+            $to_mail = $request ->email;
+            $url = route('user.verify.account',['CustomerID'=> $user ->id,"code"=> $user->Code]);
+                
+            $data =['route'=>$url];
+                //$data = array("name"=>"Test", "body"=>"Mail xác nhận tài khoản!");
 
-        Mail::send('client.verify_acount',$data,function($message)use($to_name,$to_mail){
-            $message->to($to_mail,'Xac nhan tai khoan');
-            $message->from($to_mail,$to_name);
+            Mail::send('client.verify_acount',$data,function($message)use($to_name,$to_mail){
+                $message->to($to_mail,'Xac nhan tai khoan');
+                $message->from($to_mail,$to_name);
         });
         return redirect('.')->with('thongbao','Chúc mừng bạn đã đăng kí thành công!');
         }  

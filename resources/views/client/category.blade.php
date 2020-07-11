@@ -98,7 +98,7 @@
             <div class="col">
                 <div class="product_grid">
                     <!-- Product -->
-                    @foreach ($products as $product)
+                    @foreach ($products as $item)
                     <div class="product">
                         <div class="product_image"><img src="images/product/{{ $item->Image0 }}" alt=""></div>
                         {{-- <div class="product_extra product_new"><a href="categories.html">New</a></div> --}}
