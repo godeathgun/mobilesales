@@ -205,10 +205,10 @@ class ClientController extends Controller
                 $message->to($to_mail,'Xac nhan tai khoan');
                 $message->from($to_mail,$to_name);
         });
-        return redirect('.')->with('thongbao','Chúc mừng bạn đã đăng kí thành công!');
+            return redirect('/login');
         }  
         
-        return redirect('/login');
+        return redirect('/register')->with('thongbao','Đăng ký thất bại');
         
     }
 
@@ -238,16 +238,17 @@ class ClientController extends Controller
             'password'=> $request->password
         ];
 
-        $customer = Customer::where('Email',"=", $request->email)->where("Status","=",1)->first();
-
-        Session::has('userLogin')? Session::get('userLogin'):null;
-
-        Session::put('userLogin', $customer);
+        
         //if(Customer::where('Email',"=", $request->email)->where("Password","=",md5(sha1($request->password)))->where("Status","=",1)->count()>0)
         if(Auth::attempt($arr))
         {
             if(Customer::where('Status',"=",1)->first())
             {
+                $customer = Customer::where('Email',"=", $request->email)->where("Status","=",1)->first();
+
+                Session::has('userLogin')? Session::get('userLogin'):null;
+
+                 Session::put('userLogin', $customer);
 
                 return redirect('.')->with('thongbao','Đăng nhập thành công');
             }

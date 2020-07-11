@@ -45,7 +45,8 @@
                             <th scope="row">{{ $product->ProductID }}</th>
                             <td>{{ $product->ProductName }}</td>
                             <td><img src="images/product/{{ $product->Image0 }}" width="50"></td>
-                            <td>{{ $product->Price }}</td>
+                            <td>{{number_format($product->Price).' '.'VND'}}</td>
+                            
                             <td>{{ $product->InStock }}</td>
 
                             @if($product->Status == 1)

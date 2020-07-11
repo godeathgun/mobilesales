@@ -14,12 +14,15 @@
                 <input value="{{$select_employee->Name}}" id="cname" class="form-control" name="employee_name" type="text" required>
                 </div>
             </div>
+            @if($select_employee->Role=="Admin")
             <div class="row form-group">
                 <div class="col col-md-3">
                     <label for="cname" class=" form-control-label">Password</label>
-                    <input value="{{$select_employee->Password}}" id="cname" class="form-control" name="employee_password" type="text" required>
+                    <input value="" id="cname" class="form-control" name="employee_password" type="password">
                 </div>
             </div>
+            @else
+            @endif  
             <div class="row form-group">
                 <div class="col col-md-3">
                     <label for="cname" class=" form-control-label">Email</label>
@@ -54,20 +57,6 @@
                 <div class="col col-md-3">
                     <label for="cname" class=" form-control-label">Coefficient</label>
                     <input value="{{$select_employee->Coefficient}}" id="cname" class="form-control" name="employee_coefficient" type="text" required>
-                </div>
-            </div>
-
-            <div class="row form-group">
-                <div class="col col-md-3"><label for="select" class=" form-control-label">Select Role</label></div>
-                <div class="col-12 col-md-9">
-                    <select name="employee_roleid" id="select" class="form-control">
-                        <?php $roles=DB::table('role')->get(); ?>
-                        <?php $currrole=DB::table('role')->where('RoleID', $select_employee->RoleID)->first(); ?>
-                        <option value="{{$select_employee->RoleID}}">{{ $currrole->RoleName}}</option>
-                        @foreach ($roles as $role)
-                            <option value="{{$role->RoleID}}">{{$role->RoleName}}</option>
-                        @endforeach
-                    </select>
                 </div>
             </div>
 

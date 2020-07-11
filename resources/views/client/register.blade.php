@@ -49,7 +49,7 @@ Contact
 					<span class="icon5"><i class="fa fa-unlock" aria-hidden="true"></i></span><br>
 				<input  placeholder="passwordAgain" name="passwordAgain" class="pass" type="password" required="">
 					<span class="icon6"><i class="fa fa-unlock" aria-hidden="true"></i></span><br>
-				
+					<?php Session::put('message',"Vui lòng check mail để kích hoạt tài khoản");?>
 				<input type="submit" value="sign up">
 			</form>
 		</div>

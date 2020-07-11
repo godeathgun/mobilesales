@@ -33,7 +33,7 @@
                             <th scope="row">{{ $item->OrderItem }}</th>
                             <td>{{ DB::table('product')->where('ProductID',$item->ProductID)->first()->ProductName }}x{{ $item->Quantity }}
                             </td>
-                            <td>{{ $item->Price }}</td>
+                            <td>{{number_format($item->Price).' '.'VND'}}</td>
                             <?php $TotalPrice += $item->Price ?>
                         </tr>
                     @endforeach
@@ -42,7 +42,8 @@
                     <tr>
                       <th scope="row">Subtotal</th>
                       <td></td>
-                      <td>{{ $TotalPrice }}</td>
+                      <td>{{ number_format($TotalPrice).' '.'VND' }}</td>
+                      {{-- {{number_format($item->Price).' '.'VND'}} --}}
                     </tr>
                     <tr>
                         <th scope="row">Ship Fee</th>
@@ -52,7 +53,7 @@
                     <tr> 
                         <th scope="row">Total</th>
                         <td></td>
-                        <td>{{ $TotalPrice }}</td>
+                        <td>{{ number_format($TotalPrice).' '.'VND' }}</td>
                     </tr>
                   </tbody>
             </table>

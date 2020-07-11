@@ -39,19 +39,16 @@
                     </tr>
                 </thead>
                 
-                <?php $roles=array();
-                        $roles=DB::table('role')->get(); ?>
+                
                 <tbody>
                     @foreach($employees as $employee)
                         <tr>
                             <th scope="row">{{ $employee->EmployeeID }}</th>
                             <td>{{ $employee->Name }}</td> 
-                            <td>{{ DB::table('role')
-                                ->where('RoleID', $employee->RoleID)
-                                ->first()->RoleName }} </td>
+                            <td>{{$employee->Role}}</td>
                             <td>{{ $employee->Phone }}</td>
                             <td>{{ $employee->Email }}</td>
-
+                            @if($employee->Role == "Employee")
                             @if($employee->Status == 1)
                                 <td>
                                     <label class="badge badge-success">Activated</label>
@@ -80,6 +77,13 @@
                                             href="{{ URL::to('/activate_employee/'.$employee->EmployeeID) }}">activate</a></button>
                                 @endif
                             </td>
+                            @else
+                            <td></td>
+                            <td>
+                                <button class="btn btn-outline-primary"><a
+                                    href="{{ URL::to('/employee_edit/'.$employee->EmployeeID) }}">Update</a></button>
+                                </td>
+                            @endif
                         </tr>
 
                     @endforeach

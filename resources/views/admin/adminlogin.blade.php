@@ -47,7 +47,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
         @endif
 
 		<div class="sub-main">	
-			<form action="login" method="post">
+			<form action="adminlogin" method="post">
   
 				<input placeholder="email" name="email" class="mail" type="text" required="">
 

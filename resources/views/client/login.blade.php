@@ -28,6 +28,14 @@ Contact
         </div>
     @endif
 
+    <?php $message = Session::get('message');?>
+    @if($message)
+        <p class="alert alert-danger">
+            <?php echo $message;
+        Session::put('message',null); ?>
+        </p>
+    @endif
+
     @if(session('thongbao'))
 
         {{ session('thongbao') }}

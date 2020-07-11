@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Hash;
 use Session;
 use File;
 use App\employee;
@@ -13,7 +14,7 @@ class EmployeeController extends Controller
 {
     public function view_index()
     {
-        $employees = DB::table('employee')->paginate(1);
+        $employees = DB::table('employee')->paginate(10);
         return view ('admin.employee.index',['employees'=>$employees]);
     }
 
@@ -33,14 +34,14 @@ class EmployeeController extends Controller
     {
             $employee=new Employee;
             $employee->Name=$req->employee_name;
-            $employee->Password=$req->employee_password;
+            $employee->Password=md5(sha1($req->employee_password));
             $employee->Email=$req->employee_email;
             $employee->Address=$req->employee_address;
             $employee->Phone=$req->employee_phone;
             $employee->HireDate=$req->employee_hiredate;
             $employee->BasicSalary=$req->employee_basicsalary;
             $employee->Coefficient=$req->employee_coefficient;
-            $employee->RoleID=$req->employee_roleid;
+            $employee->Role="Employee";
             if($req->employee_status==1)
                 $employee->Status=1;
             else
@@ -90,8 +91,12 @@ class EmployeeController extends Controller
             ->first();
             DB::table('employee')->where('employeeID', $req->employee_id)
             ->update(['Name'=>$req->employee_name]);
-            DB::table('employee')->where('employeeID', $req->employee_id)
-            ->update(['Password'=>$req->employee_password]);
+
+            if($req->employee_password != null)
+            {
+                DB::table('employee')->where('employeeID', $req->employee_id)
+                ->update(['Password'=>md5(sha1($req->employee_password))]);
+            }
             DB::table('employee')->where('employeeID', $req->employee_id)
             ->update(['Email'=>$req->employee_email]);
             DB::table('employee')->where('employeeID', $req->employee_id)
@@ -104,8 +109,6 @@ class EmployeeController extends Controller
             ->update(['BasicSalary'=>$req->employee_basicsalary]);
             DB::table('employee')->where('employeeID', $req->employee_id)
             ->update(['Coefficient'=>$req->employee_coefficient]);
-            DB::table('employee')->where('employeeID', $req->employee_id)
-            ->update(['RoleID'=>$req->employee_roleid]);
 
             if($req->employee_status==1)
                 DB::table('employee')->where('employeeID', $req->employee_id)

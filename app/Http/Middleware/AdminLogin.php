@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 use Session;
-class ClientLogin
+class AdminLogin
 {
     /**
      * Handle an incoming request.
@@ -16,9 +16,9 @@ class ClientLogin
      */
     public function handle($request, Closure $next)
     {
-        if(Session::has('userLogin'))
+        if(Session::has('adminLogin'))
             return $next($request);
         else
-            return redirect('/login');
+            return redirect('/adminlogin');
     }
 }

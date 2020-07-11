@@ -57,19 +57,6 @@
             </div>
 
             <div class="row form-group">
-                <div class="col col-md-3"><label for="select" class=" form-control-label">Select Role</label></div>
-                <div class="col-12 col-md-9">
-                    <select name="employee_roleid" id="select" class="form-control">
-                        <?php $roles=DB::table('role')->get(); ?>
-                        <option value="-1">Please select</option>
-                        @foreach ($roles as $role)
-                            <option value="{{$role->RoleID}}">{{$role->RoleName}}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-
-            <div class="row form-group">
                 <div class="col col-md-3"><label class=" form-control-label">Status</label></div>
                 <div class="col col-md-9">
                     <div class="form-check">

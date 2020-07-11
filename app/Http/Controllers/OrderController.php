@@ -32,7 +32,7 @@ class OrderController extends Controller
 
         DB::table('order')->where('OrderID', $req->id)
             ->update(['Status'=>$req->order_status]);
-
+            
         Session::put('message','The order is updated successfully');
         return redirect::to('/orders');
     }

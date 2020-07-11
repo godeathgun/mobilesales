@@ -103,8 +103,12 @@
                         <div class="product_image"><img src="images/product/{{ $item->Image0 }}" alt=""></div>
                         {{-- <div class="product_extra product_new"><a href="categories.html">New</a></div> --}}
                         {{-- <a class="btn btn-block btn-outline-primary" href="{{URL::to('/addToCart/'.$products->ProductID)}}">Add to cart</a> --}}
-            
+                        @if(Session::has('userLogin'))
                         <a class="btn btn-block btn-outline-primary" href="{{URL::to('/addToCart/'.$item->ProductID)}}">Add to cart</a>
+                        @else
+                        <?php Session::put('message',"Bạn phải đăng nhập để mua hàng");?>
+                        <a class="btn btn-block btn-outline-primary" href="/login">Add to cart</a>
+                        @endif
                         <div class="product_content">
                             <div class="product_title"><a href="{{URL::to('/productdetail/'.$item->ProductID)}}">{{$item->ProductName}}</a></div>
                             <div class="product_price">{{number_format($item->Price).' '.'VND'}}</div>
