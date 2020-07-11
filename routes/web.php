@@ -114,6 +114,7 @@ Route::post('product_edit/edit_product', 'ProductController@edit_product');
 
 Route::get('search_product','ProductController@search_product');
 
+Route::get('product_detail/{id}','ProductController@product_detail');
 
 //Banner    
 Route::get('banner_create', 'BannerController@view_create');
@@ -188,6 +189,15 @@ Route::get('/order_edit/{id}', 'OrderController@view_edit');
 
 Route::post('order_edit/edit_order', 'OrderController@edit_order'); 
 
+Route::get('order_detail/{id}','OrderController@order_detail');
+
+//User Order
+Route::get('/userorder', 'ClientController@getOrder');
+
+Route::get('orderuser_cancel/{id}', 'ClientController@orderuser_cancel'); 
+
+Route::get('orderuser_detail/{id}','ClientController@userorder_detail');
+
 
 
 // Đăng nhập và xử lý đăng nhập
@@ -214,7 +224,7 @@ Route::post('/changePassword','ClientController@changePassword');
 Route::get('/product_by_manufacturer/{ManufacturerID}','ClientController@product_by_manufacturer');
 
 //product detail
-Route::get('/productdetail/{ProductID}','ClientController@productdetail');
+Route::get('/productdetail/{id}','ClientController@productdetail');
 
 //add to cart
 // Route::get('/',

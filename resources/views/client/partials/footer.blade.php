@@ -1,6 +1,6 @@
 <div class="footer_overlay"></div>
 <footer class="footer">
-    <div class="footer_background" style="background-image:url(frontend/images/footer.jpg)"></div>
+    <div class="footer_background" style="background-image:url({{asset('frontend/images/footer.jpg')}})"></div>
     <div class="container">
         <div class="row">
             <div class="col">

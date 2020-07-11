@@ -209,6 +209,5 @@ $(document).ready(function()
 			});
 		}
 	}
-	
 
 });

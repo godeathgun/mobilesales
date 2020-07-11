@@ -295,6 +295,35 @@ class ClientController extends Controller
             return redirect('/changePassword');
         }
     }
+
+    //Xem user order
+    public function getOrder()
+    {
+        $orders = DB::table('order')->paginate(10);
+        return view('client.userorder',['orders'=>$orders]);
+    }
+
+    public function userorder_detail($id)
+    {
+        $order = DB::table('order')->where('OrderID',$id)->first();
+        $orderdetails = DB::table('orderdetail')->where('OrderID', $id)->get();
+        return view('client.userorderdetail',['order'=>$order],['orderdetails'=>$orderdetails]);
+    }
+
+    public function orderuser_cancel($id)
+    {
+        DB::table('order')->where('OrderID',$id)->update(['Status'=>4]);
+        Session::put('message','The order is canceled successfully');
+        return redirect('/userorder');
+    }
+
+    public function search_order(Request $req)
+    {
+        $customers = Customer::where('CustomerName','LIKE','%'.$req->input_data.'%')
+        ->orWhere('CustomerID','LIKE','%'.$req->input_data.'%')->paginate(10);
+        return view('admin.customer.index', ['customers' => $customers]);
+    }
+
 //search 
     public function getSearch(Request $req)
     {

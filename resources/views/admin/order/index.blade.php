@@ -29,7 +29,7 @@
                         <th scope="col">OrderDate</th>
                         <th scope="col">Status</th>
                         <th scope="col">Action</th>
-                        <th scope="col">Detail</th>
+
                     </tr>
                 </thead>
                
@@ -51,17 +51,19 @@
 
                         @if($order->Status==3|| $order->Status ==4)
                         <td>
+                            <button class="btn btn-outline-success"><a
+                                href="{{ URL::to('/order_detail/'.$order->OrderID) }}">View Detail</a></button>
                             <button class="btn btn-outline-primary" hidden><a></a></button>
                         </td>
                         @else
                             <td>
+                                <button class="btn btn-outline-success"><a
+                                    href="{{ URL::to('/order_detail/'.$order->OrderID) }}">View Detail</a></button>
                                 <button class="btn btn-outline-primary"><a
                                     href="{{ URL::to('/order_edit/'.$order->OrderID) }}">Update</a></button>
-                            </td>
-                        @endif
-                            <td>
-                                <button class="btn btn-outline-primary"><a
-                                    href="{{ URL::to('/order_detail/'.$order->OrderID) }}">View Detail</a></button>
+                                
+                            @endif
+                            
                             </td>
                         </tr>
 
