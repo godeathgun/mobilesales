@@ -103,18 +103,6 @@
             <div class="col col-md-3"><label class=" form-control-label">Image</label></div>
             
         </div>
-        <div class="row">
-            <div class="col-sm">
-                a
-            </div>
-            <div class="col-sm">
-                h
-            </div>
-                
-            <div class="col-sm">
-                g
-            </div>
-        </div>
         <div class="row form-group">
             <div class="col col-md-3">
                 <input class="btn btn-primary" type="submit" value="Submit">

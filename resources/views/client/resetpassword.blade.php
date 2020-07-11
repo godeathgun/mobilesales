@@ -35,21 +35,13 @@ Contact
     @endif
 
     <div class="sub-main">
-        <form action="login" method="post">
-
-            <input placeholder="Email" name="email" class="mail" type="text" required="">
-
-            <input placeholder="Password" name="password" class="pass" type="password" required="">
-
-            <input type="submit" value="login">
-
+        <form action=" /resetpassword " method="post">
+            <input value="Email" name="Email" class="mail" type="text" hidden>
+            <input placeholder="Code" name="code" class="mail" type="text" required="">
+            <input placeholder="New Passoword" name="new_password" class="mail" type="password" required="">
+            <input placeholder="Confirm Password" name="confirm_password" class="mail" type="password" required="">
+            <input type="submit" value="Reset Password">
         </form>
-        <div class="footer-w3">
-            <p><a href="/forgotpassword">Forgot Password</a></p>
-        </div>
-        <div class="footer-w3">
-            <p><a href="/register"> Create new account</a></p>
-        </div>
     </div>
     <div class="clear"></div>
 </div>

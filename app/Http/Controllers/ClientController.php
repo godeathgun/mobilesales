@@ -275,6 +275,52 @@ class ClientController extends Controller
         return view('client.register');
     }
 
+    //forgotpassword
+    public function getForgotpassword()
+    {
+        return view('client.forgotpassword');
+    }
+
+    public function postForgotpassword(Request $req)
+    {
+        if(DB::table('customer')->where('Email',$req->customer_email))
+        {
+            $to_name="Mobile Sale";
+            $to_mail = $req ->customer_email;
+            $data = array('code'=>rand(100000,999999));
+            $forgotpassword = array('customer_email'=>$req->customer_email, 'code' => $data['code']);
+            Session::put('forgotpassword',$forgotpassword);
+            Mail::send('client.sendcode',$data,function($message)use($to_name,$to_mail){
+                $message->to($to_mail,'Doi mat khau tai khoan');
+                $message->from($to_mail,$to_name);
+            });
+        }
+        return redirect::to('/resetpassword');
+    }
+
+    public function getResetPassword()
+    {
+        return view('client.resetpassword');
+    }
+
+    public function postResetPassword(Request $req)
+    {
+        if(DB::table('customer')->where('Email',$req->Email))
+        {
+            if($req->code == Session::get('forgotpassword')['code'])
+            {
+                $this-> validate($req,[
+                    'confirm_password'=>'same:new_password'
+                ],[
+                    'confirm_password.same'=>'Mật khẩu nhập lại chưa chính xác'
+                ]);
+                DB::table('customer')->where('Email', Session::get('forgotpassword')['customer_email'])
+                ->update(['Password'=>Hash::make($req->new_password)]);
+                Session::forget('forgotpassword');
+            }
+        }
+        return redirect('/login');
+    }
     //userInfo get
     public function infoCustomer()
     {
@@ -304,6 +350,35 @@ class ClientController extends Controller
             return redirect('/changePassword');
         }
     }
+
+    //Xem user order
+    public function getOrder()
+    {
+        $orders = DB::table('order')->paginate(10);
+        return view('client.userorder',['orders'=>$orders]);
+    }
+
+    public function userorder_detail($id)
+    {
+        $order = DB::table('order')->where('OrderID',$id)->first();
+        $orderdetails = DB::table('orderdetail')->where('OrderID', $id)->get();
+        return view('client.userorderdetail',['order'=>$order],['orderdetails'=>$orderdetails]);
+    }
+
+    public function orderuser_cancel($id)
+    {
+        DB::table('order')->where('OrderID',$id)->update(['Status'=>4]);
+        Session::put('message','The order is canceled successfully');
+        return redirect('/userorder');
+    }
+
+    public function search_order(Request $req)
+    {
+        $customers = Customer::where('CustomerName','LIKE','%'.$req->input_data.'%')
+        ->orWhere('CustomerID','LIKE','%'.$req->input_data.'%')->paginate(10);
+        return view('admin.customer.index', ['customers' => $customers]);
+    }
+
 //search 
     public function getSearch(Request $req)
     {

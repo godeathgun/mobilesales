@@ -21,9 +21,8 @@
                         <div class="home_content">
                             <div class="breadcrumbs">
                                 <ul>
-                                    <li><a href="index.html">Home</a></li>
-                                    <li><a href="categories.html">Categories</a></li>
-                                    <li>Shopping Cart</li>
+                                    <li><a href="/">Home</a></li>
+                                    <li>User Info</li>
                                 </ul>
                             </div>
                         </div>
@@ -55,12 +54,12 @@
                             <ul class="list-group list-group-flush">
                             <a href="cusInfo" class="list-group-item">Info</a>
                             <a href="changePassword" class="list-group-item">Change Password</a>
-                            <a href="#" class="list-group-item">Orders</a>
+                            <a href="userorder" class="list-group-item">Orders</a>
                             </ul>
                             
                         </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-9">
                         <div class="cart">
                         @yield('infocontent')
                         </div>
