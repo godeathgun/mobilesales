@@ -30,10 +30,36 @@ class OrderController extends Controller
     public function edit_order(Request $req)
     {
 
+        $this_order = DB::table('order')->where('OrderID', $req->id)->first();
+
         DB::table('order')->where('OrderID', $req->id)
             ->update(['Status'=>$req->order_status]);
             
         Session::put('message','The order is updated successfully');
+        if($req->order_status ==1)
+        {
+            $to_name="Moblie Sale";
+            $to_mail = DB::table('customer')->where('CustomerID',$this_order->CustomerID)->first()->Email;
+            $url = route('user.verify.order');
+            $data =['route'=>$url];
+            
+    
+            Mail::send('admin.verify_order',$data,function($message)use($to_name,$to_mail){
+                $message->to($to_mail)-> subject('Xác nhận đơn hàng!!!');
+                $message->from($to_mail,$to_name);});
+        }
+        if($req->order_status ==4)
+        {
+            $to_name="Moblie Sale";
+            $to_mail = DB::table('customer')->where('CustomerID',$this_order->CustomerID)->first()->Email;
+            $url = route('user.verify.order');
+            $data =['route'=>$url];
+            
+    
+            Mail::send('admin.verify_order',$data,function($message)use($to_name,$to_mail){
+                $message->to($to_mail)-> subject('Đơn hàng bị hủy!!!');
+                $message->from($to_mail,$to_name);});
+        }
         return redirect::to('/orders');
     }
 

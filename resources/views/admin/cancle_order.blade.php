@@ -1,0 +1,1 @@
+<p>Đơn hàng của bạn đã bị hủy!!! Click <a href="{{$route}}"> vào đây</a> để kiểm tra!</p>

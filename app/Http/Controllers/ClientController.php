@@ -355,7 +355,7 @@ class ClientController extends Controller
     //Xem user order
     public function getOrder()
     {
-        $orders = DB::table('order')->paginate(10);
+        $orders = DB::table('order')->where("CustomerID",Session::get('userLogin')->CustomerID)->paginate(10);
         return view('client.userorder',['orders'=>$orders]);
     }
 

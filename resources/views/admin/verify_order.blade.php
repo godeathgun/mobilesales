@@ -1,0 +1,1 @@
+<p>Đơn hàng của bạn đã được xác nhận!!! Click <a href="{{$route}}"> vào đây</a> để kiểm tra!</p>

@@ -157,7 +157,7 @@ Route::get('/addOrder', 'ClientController@addOrder');
 Route::get('/cusInfo', 'ClientController@infoCustomer');
 Route::get('/changePassword','ClientController@getChangePassword');
 Route::post('/changePassword','ClientController@changePassword');
-Route::get('/', 'ClientController@index');
+Route::get('/', 'ClientController@index')->name('user.verify.order');
 //Logout
 Route::get('/logout', 'ClientController@getLogout');
 //Register
