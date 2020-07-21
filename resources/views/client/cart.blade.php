@@ -98,6 +98,7 @@ Cart
                 @endforeach
             </div>
         @else
+        <div></div>
         @endif
         <div class="row row_extra">
             <div class="col-lg-4">

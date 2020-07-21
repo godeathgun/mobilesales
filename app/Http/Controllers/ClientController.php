@@ -202,7 +202,7 @@ class ClientController extends Controller
                 //$data = array("name"=>"Test", "body"=>"Mail xác nhận tài khoản!");
 
             Mail::send('client.verify_acount',$data,function($message)use($to_name,$to_mail){
-                $message->to($to_mail,'Xac nhan tai khoan');
+                $message->to($to_mail)->subject("Xác nhận tài khoản Mobile Sale!");
                 $message->from($to_mail,$to_name);
         });
             return redirect('/login');
