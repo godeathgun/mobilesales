@@ -128,6 +128,11 @@ Route::group(['middleware'=>'AdminLogin'],function(){
 Route::get('/adminlogin', 'AdminController@getAdminLogin');
 Route::post('/adminlogin','AdminController@postAdminLogin');
 //KEt thuc middleware
+//AdminForgotPassword
+Route::get('/forgotadminpassword', 'AdminController@getForgotAdminpassword');
+Route::post('/forgotadminpassword', 'AdminController@postForgotAdminpassword');
+Route::get('/resetadminpassword', 'AdminController@getResetAdminPassword');
+Route::post('/resetadminpassword', 'AdminController@postResetAdminPassword');
 
 
 
@@ -197,7 +202,7 @@ Route::get('orderuser_detail/{id}','ClientController@userorder_detail');
 // // Đăng nhập và xử lý đăng nhập
 // Route::get('login', [ 'as' => 'login', 'uses' => 'ClientController@getLogin']);
 // Route::post('login', [ 'as' => 'login', 'uses' => 'ClientController@postLogin']);
-
+//Client Forgot Password
 Route::get('/forgotpassword', 'ClientController@getForgotpassword');
 Route::post('/forgotpassword', 'ClientController@postForgotpassword');
 

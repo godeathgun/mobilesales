@@ -7,6 +7,9 @@ use App\Employee;
 use Session;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
+use Mail;
+use Illuminate\Support\Facades\Redirect;
 
 class AdminController extends Controller
 {
@@ -23,6 +26,53 @@ class AdminController extends Controller
     public function create_category()
     {
         return view('admin.category.create');
+    }
+
+    //forgotpassword
+    public function getForgotAdminpassword()
+    {
+        return view('admin.forgotpassword');
+    }
+
+    public function postForgotAdminpassword(Request $req)
+    {
+        if(DB::table('employee')->where('Email',$req->employee_email))
+        {
+            $to_name="Mobile Sale";
+            $to_mail = $req ->employee_email;
+            $data = array('code'=>rand(100000,999999));
+            $forgotadminpassword = array('employee_email'=>$req->employee_email, 'code' => $data['code']);
+            Session::put('forgotadminpassword',$forgotadminpassword);
+            Mail::send('admin.sendcode',$data,function($message)use($to_name,$to_mail){
+                $message->to($to_mail)->subject("Đổi mật khẩu Mobile Sale!");
+                $message->from($to_mail,$to_name);
+            });
+        }
+        return redirect::to('/resetadminpassword');
+    }
+
+    public function getResetAdminPassword()
+    {
+        return view('admin.resetpassword');
+    }
+
+    public function postResetAdminPassword(Request $req)
+    {
+        if(DB::table('employee')->where('Email',$req->Email))
+        {
+            if($req->code == Session::get('forgotadminpassword')['code'])
+            {
+                $this-> validate($req,[
+                    'confirm_password'=>'same:new_password'
+                ],[
+                    'confirm_password.same'=>'Mật khẩu nhập lại chưa chính xác'
+                ]);
+                DB::table('employee')->where('Email', Session::get('forgotadminpassword')['employee_email'])
+                ->update(['Password'=>md5(sha1(($req->new_password)))]);
+                Session::forget('forgotadminpassword');
+            }
+        }
+        return redirect('/adminlogin')->with('thongbao','Đặt lại mật khẩu thành công!');
     }
 
     //AdminLogin
