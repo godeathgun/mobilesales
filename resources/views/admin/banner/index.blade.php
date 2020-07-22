@@ -47,12 +47,12 @@
 
                             <td>
                                 <button class="btn btn-outline-primary"><a
-                                        href="{{ URL::to('/category_edit/'.$banner->BannerID) }}">Update</a></button>
+                                        href="{{ URL::to('/banner_edit/'.$banner->BannerID) }}">Update</a></button>
 
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-outline-danger" data-toggle="modal"
                                     data-target="#exampleModal">
-                                    <a
+                                    <a  onclick="return confirm('Are you sure?')"
                                         href="{{ URL::to('/delete_banner/'.$banner->BannerID) }}">Delete</a>
                                 </button>
 
