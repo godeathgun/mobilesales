@@ -31,7 +31,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!--//header-->
 <!--main-->
 <div class="main-agileits">
-    <h2 class="sub-head">Login</h2>
+    <h2 class="sub-head">Reset Password</h2>
         @if(count($errors)>0)
         <div class ="alert alert-danger">
             @foreach($errors->all() as $err)
