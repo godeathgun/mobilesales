@@ -32,37 +32,32 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!--main-->
 <div class="main-agileits">
     <h2 class="sub-head">Login</h2>
-        @if(count($errors)>0)
-        <div class ="alert alert-danger">
+    @if(count($errors)>0)
+        <div class="alert alert-danger">
             @foreach($errors->all() as $err)
-                {{$err}}<br>
+                {{ $err }}<br>
             @endforeach
         </div>
-        @endif
+    @endif
 
-        @if(session('thongbao'))
-            
-                {{session('thongbao')}}
-            
-        @endif
+    @if(session('thongbao'))
 
-		<div class="sub-main">	
-			<form action="adminlogin" method="post">
-  
-				<input placeholder="email" name="email" class="mail" type="text" required="">
+        {{ session('thongbao') }}
 
-				<input  placeholder="Password" name="password" class="pass" type="password" required="">
+    @endif
 
-				<input type="submit" value="login">
-				
-			</form>
-			<div class="footer-w3">
-				<p>Forgot <a href="/forgotadminpassword">Password</a></p>
-			</div>
-		
-		</div>
-		<div class="clear"></div>
+    <div class="sub-main">
+        <form action="/forgotadminpassword" method="post">
+
+            <input placeholder="Email" name="employee_email" class="mail" type="text" required="">
+
+            <input type="submit" value="Send Code">
+
+        </form>
+    </div>
+    <div class="clear"></div>
 </div>
+
 <!--//main-->
 
 <!--footer-->

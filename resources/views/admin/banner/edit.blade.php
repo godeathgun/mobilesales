@@ -30,6 +30,20 @@
             </div> 
 
             <div class="row form-group">
+                <div class="col col-md-3"><label class=" form-control-label">Status</label></div>
+                <div class="col col-md-9">
+                    <div class="form-check">
+                        <div class="checkbox">
+                            <label for="checkbox1" class="form-check-label ">
+                                <input type="checkbox" id="checkbox1" name="banner_status" value="1"
+                                    class="form-check-input">True
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row form-group">
                 <div class="col col-md-3">
                     <input class="btn btn-primary" type="submit" value="Submit">
                 </div>
