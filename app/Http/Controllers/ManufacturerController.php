@@ -19,7 +19,7 @@ class ManufacturerController extends Controller
 
     public function view_create()
     {
-        return view('admin.manufacturers.create');
+        return view('admin.manufacturer.create');
     }
 
     public function search_manufacturer(Request $req)

@@ -18,7 +18,7 @@ class OrderController extends Controller
 {
     public function view_index()
     {
-        $orders = DB::table('order')->paginate(10);
+        $orders = DB::table('order')->orderBy('OrderDate', 'DeSC')->paginate(10);
         return view ('admin.order.index',['orders'=>$orders]);
     }
 
