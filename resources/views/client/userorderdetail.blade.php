@@ -28,7 +28,7 @@
 <div class="content">
     <div class="card-body card-block">
         <div class="card-body">
-            <h2> Order index </h2>
+            <h2> Order Detail </h2>
             &nbsp;
             <div class="row form-group">
                 <div class="col col-md-3"><label for="text-input" class=" form-control-label">ShipName</label></div>

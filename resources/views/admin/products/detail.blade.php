@@ -5,7 +5,7 @@
 
 
 
-        <h2> Product edit </h2>
+        <h2> Product Detail </h2>
             &nbsp;
 
         <?php $error = Session::get('error');?>
@@ -99,13 +99,10 @@
                     <?php $currcategory=DB::table('category')->where('CategoryID', $select_product->CategoryID)->first(); ?>
                     <option value="{{$select_product->CategoryID}}">{{ $currcategory->CategoryName}}</option>
         </div>
-        <div class="row form-group">
-            <div class="col col-md-3"><label class=" form-control-label">Image</label></div>
-            
-        </div>
+      
         <div class="row form-group">
             <div class="col col-md-3">
-                <input class="btn btn-primary" type="submit" value="Submit">
+                <a class="btn btn-primary" href="/products" >Back </a>
             </div>
         </div>
 
