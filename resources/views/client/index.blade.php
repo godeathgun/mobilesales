@@ -7,6 +7,7 @@
 @section('responsive')
 <link rel="stylesheet" type="text/css" href="{{asset('frontend/styles/main_styles.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('frontend/styles/responsive.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('frontend/styles/alertify.css')}}">
 @endsection
 
 @section('slide')
@@ -198,8 +199,7 @@
                 <div class="newsletter_content text-center">
                     <div class="newsletter_title">Subscribe to our newsletter</div>
                     <div class="newsletter_text">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a ultricies metus. Sed nec
-                            molestie eros</p>
+                        <p>Theo dõi của hàng để nhận những ưu đãi mới của cửa hàng. Cảm ơn Quý Khách đã ghé thăm Website của chúng tôi.</p>
                     </div>
                     <div class="newsletter_form_container">
                         <form action="#" id="newsletter_form" class="newsletter_form">
@@ -215,7 +215,18 @@
 @endsection
 
 @section('custom')
+
 <script src="{{asset('frontend/js/custom.js')}}"></script>
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
+<!-- CSS -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+<!-- Default theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+<!-- Semantic UI theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
+<!-- Bootstrap theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
 <script>
     function addToCart(id){
       $.ajax({
@@ -225,6 +236,7 @@
           console.log(respone);
           $("#change-item-cart").empty();
           $("#change-item-cart").html(respone);
+          alertify.success('Thêm sản phẩm thành công');
       });
     }
 </script>

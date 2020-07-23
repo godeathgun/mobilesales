@@ -1,8 +1,5 @@
 @extends('client.layouts.app')
 
-@section('title')
-    Category
-@endsection
 
 {{-- @section('responsive') --}}
 

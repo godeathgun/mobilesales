@@ -49,7 +49,7 @@ Cart
                     <div class="cart_info_col cart_info_col_price">Price</div>
                     <div class="cart_info_col cart_info_col_quantity">Quantity</div>
                     <div class="cart_info_col cart_info_col_total">Total</div>
-                    <div class="cart_info_col cart_info_col_total">Action</div>
+                    
                 </div>
             </div>
         </div>
@@ -81,10 +81,19 @@ Cart
                             <!-- Quantity -->
                             <div class="cart_item_quantity">
                                 <div class="product_quantity_container ">
-                                    <input id="quantity_input" name="product_quantity" type="number"
+                                    {{-- <input id="quantity_input" name="product_quantity" type="number"
                                         value="{{ $item['qty'] }}" min="1">
                                     <input id="quantity_input" name="product_id" type="hidden"
-                                        value="{{ $item['product_id'] }}">
+                                        value="{{ $item['product_id'] }}"> --}}
+
+                                        <div class="product_quantity clearfix">
+                                            <span>Qty</span>
+                                            <input id="quantity_input" type="text" pattern="[0-9]*" value="{{ $item['qty'] }}" min="1">
+                                            <div class="quantity_buttons">
+                                                <div onclick="" class="quantity_inc quantity_control"><i class="fa fa-chevron-up" aria-hidden="true"></i></div>
+                                                <div id="#" class="quantity_dec quantity_control"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
+                                            </div>
+                                        </div>
                                 </div>
                             </div>
 
@@ -92,7 +101,7 @@ Cart
                             <div class="cart_item_total">
                                 ${{ $item['product_price']*$item['qty'] }}
                             </div>
-                            <input class="button update_cart_button" type="submit" value="Update">
+                           
                         </div>
                     </form>
                 @endforeach

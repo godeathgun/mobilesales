@@ -85,9 +85,28 @@
                                                 c0,7.5,6,13.5,13.5,13.5s13.5-6,13.5-13.5v-41h45.2l26.9,302.3C412.8,445.2,392.1,462,366.8,462z" />
                                             </g>
                                         </svg>
-                                        <div>Cart
+                                        <div class=" hassubs">Cart
                                             <span>({{ Session::has('cart')?Session::get('cart')->totalQuantity : '0' }})</span>
+                                            <ul style=" width:300px; color: #973b93">
+                                                <table>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td style=" padding-bottom: 20px;"><img src ="images\product\1594188299.png" style="width:50px;height:60px;"></td>
+                                                            <td style="padding-left: 18px;">
+                                                                <div>
+                                                                    <p style="color: #e7ab3c;line-height: 30px; margin-bottom: 7px;">
+                                                                    
+                                                                   $60.00 x 1</p>
+                                                                    <h6 style="color: #232530;">Kabino Bedside Table</h6>
+                                                                </div>
+                                                            </td>
+                                                            
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </ul>
                                         </div>
+                                        
                                         </div>
                                     </a>
                                 
