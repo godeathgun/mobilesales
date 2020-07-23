@@ -19,7 +19,6 @@
                         <li><a href="/orders">Orders</a></li>
                         <li><a href="/manufacturers">Manufacturers</a></li>
                         <li><a href="/categories">Categories</a></li>
-                        <li><a href="/roles">Roles</a></li>
                     </ul>
                 </li>
                 <li class="menu-item-has-children dropdown">

@@ -58,11 +58,11 @@
                                         href="{{ URL::to('/category_edit/'.$category->CategoryID) }}">Update</a></button>
 
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-outline-danger" data-toggle="modal"
+                                {{-- <button type="button" class="btn btn-outline-danger" data-toggle="modal"
                                     data-target="#exampleModal">
                                     <a
                                         href="{{ URL::to('/delete_category/'.$category->CategoryID) }}">Delete</a>
-                                </button>
+                                </button> --}}
 
                                 @if($category->Status == 1)
                                     <button class="btn btn-outline-warning"><a

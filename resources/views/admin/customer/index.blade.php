@@ -60,9 +60,9 @@
                                 <button class="btn btn-outline-primary"><a
                                     href="{{ URL::to('/customer_edit/'.$customer->CustomerID) }}">Update</a></button>
 
-                                <!-- Button trigger modal -->
+                                {{-- <!-- Button trigger modal -->
                                     <a  onclick="return confirm('Are you sure?')" href="{{ URL::to('/delete_customer/'.$customer->CustomerID) }}">Delete</a>
-                                </button>
+                                </button> --}}
 
                                 @if($customer->Status == 1)
                                     <button class="btn btn-outline-warning"><a

@@ -64,10 +64,10 @@
                                     href="{{ URL::to('/product_edit/'.$product->ProductID) }}">Update</a></button>
 
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-outline-danger" data-toggle="modal"
+                                {{-- <button type="button" class="btn btn-outline-danger" data-toggle="modal"
                                     data-target="#exampleModal"> 
                                     <a onclick="return confirm('Are you sure?')" href="{{ URL::to('/delete_product/'.$product->ProductID) }}">Delete</a>
-                                </button>
+                                </button> --}}
                                 <button class="btn btn-outline-primary"><a
                                     href="{{ URL::to('/product_detail/'.$product->ProductID) }}">Detail</a></button>
 

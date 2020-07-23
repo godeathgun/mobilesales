@@ -63,11 +63,11 @@
                                 <button class="btn btn-outline-primary"><a
                                     href="{{ URL::to('/employee_edit/'.$employee->EmployeeID) }}">Update</a></button>
 
-                                <!-- Button trigger modal -->
+                                {{-- <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-outline-danger" data-toggle="modal"
                                     data-target="#exampleModal"> 
                                     <a onclick="return confirm('Are you sure?')" href="{{ URL::to('/delete_employee/'.$employee->EmployeeID) }}">Delete</a>
-                                </button>
+                                </button> --}}
 
                                 @if($employee->Status == 1)
                                     <button class="btn btn-outline-warning"><a

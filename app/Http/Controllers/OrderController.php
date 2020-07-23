@@ -34,6 +34,16 @@ class OrderController extends Controller
 
         DB::table('order')->where('OrderID', $req->id)
             ->update(['Status'=>$req->order_status]);
+        if(Session::has('employeeLogin'))
+        {
+            DB::table('order')->where('OrderID', $req->id)
+                ->update(['EmployeeID'=>Session::get('employeeLogin')->EmployeeID]);
+        }
+        else
+       {
+            DB::table('order')->where('OrderID', $req->id)
+            ->update(['EmployeeID'=>Session::get('adminLogin')->EmployeeID]);
+       }
             
         Session::put('message','The order is updated successfully');
         if($req->order_status ==1)

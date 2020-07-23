@@ -58,11 +58,11 @@
                                         href="{{ URL::to('/manufacturer_edit/'.$manufacturer->ManufacturerID) }}">Update</a></button>
 
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-outline-danger" data-toggle="modal"
+                                {{-- <button type="button" class="btn btn-outline-danger" data-toggle="modal"
                                     data-target="#exampleModal">
                                     <a
                                         href="{{ URL::to('/delete_manufacturer/'.$manufacturer->ManufacturerID) }}">Delete</a>
-                                </button>
+                                </button> --}}
 
                                 @if($manufacturer->Status == 1)
                                     <button class="btn btn-outline-warning"><a
