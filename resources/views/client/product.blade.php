@@ -134,7 +134,7 @@
                                 <div id="quantity_dec_button" class="quantity_dec quantity_control"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
                             </div>
                         </div> --}}
-                       <a class="btn btn-block btn-outline-primary" href="{{URL::to('/addToCart/'.$products->ProductID)}}">Add to cart</a>
+                       <a class="btn btn-block btn-outline-primary" onclick="addToCart({{$products->ProductID}})" href="javascript:">Add to cart</a>
                         {{-- <div class="add-to-cart button cart_button" ><a href="{{URL::to('/addToCart/'.$products->ProductID)}}">Add to cart</a></div> --}}
                         {{-- <div class="add-to-cart button cart_button">
                             <a href="{{URL::to('/addToCart/'.$products->ProductID)}}">Add to cart</a>
@@ -198,5 +198,18 @@
 @endsection
 
 @section('custom')
-<script src="{{asset('frontend/js/product.js')}}"></script>    
+<script src="{{asset('frontend/js/product.js')}}"></script>  
+<script>
+    function addToCart(id){
+      $.ajax({
+          url:'addToCart/'+id,
+          type: 'GET',
+      }).done(function(respone){
+          console.log(respone);
+          $("#change-item-cart").empty();
+          $("#change-item-cart").html(respone);
+      });
+    }
+    
+</script>  
 @endsection
