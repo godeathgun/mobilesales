@@ -151,8 +151,7 @@
                     <div class="icon_box_image"><img src="frontend/images/icon_1.svg" alt=""></div>
                     <div class="icon_box_title">Free Shipping Worldwide</div>
                     <div class="icon_box_text">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a ultricies metus. Sed nec
-                            molestie.</p>
+                        <p>Free ship for the first time buy</p>
                     </div>
                 </div>
             </div>
