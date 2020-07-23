@@ -21,7 +21,7 @@ class ClientController extends Controller
 {
     public function index()
     {
-        $products = DB::table('product')->take(6)->get();
+        $products = DB::table('product')->take(8)->get();
         return view('client.index',['products'=>$products]);
     }
 

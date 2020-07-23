@@ -129,9 +129,8 @@
                     <div class="avds_xl_background" style="background-image:url(frontend/images/avds_xl.jpg)"></div>
                     <div class="avds_xl_content">
                         <div class="avds_title">Amazing Devices</div>
-                        <div class="avds_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a
-                            ultricies metus.</div>
-                        <div class="avds_link avds_xl_link"><a href="categories.html">See More</a></div>
+                        <div class="avds_text">Theo dõi các sản phẩm mới của cửa hàng. Cùng mua sắm cho ngày hè bận rộn. Chúc các bạn mua hàng vui vẻ</div>
+                        {{-- <div class="avds_link avds_xl_link"><a href="">See More</a></div> --}}
                     </div>
                 </div>
             </div>
@@ -162,8 +161,7 @@
                     <div class="icon_box_image"><img src="frontend/images/icon_2.svg" alt=""></div>
                     <div class="icon_box_title">Free Returns</div>
                     <div class="icon_box_text">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a ultricies metus. Sed nec
-                            molestie.</p>
+                        <p>Bao đôi trả sản phẩm trong vòng 15 ngày kể từ khi xuất hóa đơn.</p>
                     </div>
                 </div>
             </div>
@@ -174,8 +172,7 @@
                     <div class="icon_box_image"><img src="frontend/images/icon_3.svg" alt=""></div>
                     <div class="icon_box_title">24h Fast Support</div>
                     <div class="icon_box_text">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a ultricies metus. Sed nec
-                            molestie.</p>
+                        <p>Nhân viên hỗ trợ nhanh và thân thiện 24/7</p>
                     </div>
                 </div>
             </div>
