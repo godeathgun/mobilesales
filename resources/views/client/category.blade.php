@@ -75,21 +75,7 @@
                             </ul>
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="sorting">
-                            <ul class="item_sorting">
-                                <li>
-                                    <span class="sorting_text">Tầm giá</span>
-                                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
-                                    <ul>
-                                    <li class="product_sorting_btn" data-isotope-option='{ "sortBy": "original-order" }'><span>Default</span></li>
-                                    <li class="product_sorting_btn" data-isotope-option='{ "sortBy": "price" }'><span>Price</span></li>
-                                    <li class="product_sorting_btn" data-isotope-option='{ "sortBy": "stars" }'><span>Name</span></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            </div>
-                        </div>
+                        
                 </div>
             </div>
         </div>

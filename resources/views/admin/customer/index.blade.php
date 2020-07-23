@@ -61,9 +61,7 @@
                                     href="{{ URL::to('/customer_edit/'.$customer->CustomerID) }}">Update</a></button>
 
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-outline-danger" data-toggle="modal"
-                                    data-target="#exampleModal"> 
-                                    <a href="{{ URL::to('/delete_customer/'.$customer->CustomerID) }}">Delete</a>
+                                    <a  onclick="return confirm('Are you sure?')" href="{{ URL::to('/delete_customer/'.$customer->CustomerID) }}">Delete</a>
                                 </button>
 
                                 @if($customer->Status == 1)

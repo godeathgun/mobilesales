@@ -11,25 +11,15 @@
                             <ul>
                                 <li class="hassubs active">
                                     <a href="{{ URL::to('/') }}">Home</a>
-                                    <ul>
-                                        <li><a href="categories.html">Categories</a></li>
-                                        <li><a href="product.html">Product</a></li>
-                                        <li><a href="cart.html">Cart</a></li>
-                                        <li><a href="checkout.html">Check out</a></li>
-                                        <li><a href="contact.html">Contact</a></li>
-                                    </ul>
+                                   
                                 </li>
                                 <li class="hassubs">
                                     <a href="{{ URL::to('/category') }}">Categories</a>
                                     <ul>
                                         @foreach($ManuFa as $item)
-                                            <li><a href="categories.html">{{ $item->ManufacturerName }}</a></li>
+                                            <li><a href="{{URL::to('/product_by_manufacturer/'.$item->ManufacturerID)}}">{{ $item->ManufacturerName }}</a></li>
                                         @endforeach
-                                        {{-- <li><a href="categories.html">Category</a></li>
-                                        <li><a href="categories.html">Category</a></li>
-                                        <li><a href="categories.html">Category</a></li>
-                                        <li><a href="categories.html">Category</a></li>
-                                        <li><a href="categories.html">Category</a></li> --}}
+                                       
                                     </ul>
                                 </li>
                                 <li><a href="{{ URL::to('/contact') }}">Contact</a></li>
@@ -50,7 +40,8 @@
                                                         <path
                                                             d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm128 421.6c-35.9 26.5-80.1 42.4-128 42.4s-92.1-15.9-128-42.4V416c0-35.3 28.7-64 64-64 11.1 0 27.5 11.4 64 11.4 36.6 0 52.8-11.4 64-11.4 35.3 0 64 28.7 64 64v13.6zm30.6-27.5c-6.8-46.4-46.3-82.1-94.6-82.1-20.5 0-30.4 11.4-64 11.4S204.6 320 184 320c-48.3 0-87.8 35.7-94.6 82.1C53.9 363.6 32 312.4 32 256c0-119.1 96.9-216 216-216s216 96.9 216 216c0 56.4-21.9 107.6-57.4 146.1zM248 120c-48.6 0-88 39.4-88 88s39.4 88 88 88 88-39.4 88-88-39.4-88-88-88zm0 144c-30.9 0-56-25.1-56-56s25.1-56 56-56 56 25.1 56 56-25.1 56-56 56z">
                                                         </path>
-                                                </svg>({{ Session::get('userLogin')->CustomerName }})
+                                                        
+                                                </svg>&nbsp (Xin chào {{ Session::get('userLogin')->CustomerName }})
                                             </div>
                                             <ul>
                                                 <li><a href="/cusInfo">Info</a></li>
@@ -78,7 +69,9 @@
                             &nbsp;
                             @if(Session::has('userLogin'))
                                 <div class="shopping_cart">
+                            
                                     <a href="{{ URL::to('/cart') }}">
+                                        <div class="hassubs" id="change-item-cart">
                                         <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
                                             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                             viewBox="0 0 489 489" style="enable-background:new 0 0 489 489;"
@@ -95,7 +88,9 @@
                                         <div>Cart
                                             <span>({{ Session::has('cart')?Session::get('cart')->totalQuantity : '0' }})</span>
                                         </div>
+                                        </div>
                                     </a>
+                                
                                 </div>
                             @else
                             @endif

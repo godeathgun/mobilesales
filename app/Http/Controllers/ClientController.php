@@ -45,8 +45,9 @@ class ClientController extends Controller
 
         Session::put('cart', $cart);
         
-        // dd(Session::get('cart'));
-        return redirect::to('/category');
+        //dd(Session::get('cart'));
+        //return redirect::to('cartaj');
+        return view('client.cartaj',compact('cart'));
     }
 
     public function cart(){
@@ -406,5 +407,6 @@ class ClientController extends Controller
             return view('client.product',['products'=>$products],['relatives'=>$relative]);
         }
 // relative product
+  
 
 }

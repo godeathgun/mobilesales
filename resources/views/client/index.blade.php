@@ -100,7 +100,7 @@
                             <div class="product_title"><a href="{{URL::to('/productdetail/'.$item->ProductID)}}">Iphone11 ProMax</a></div>
                             <div class="product_price">$670</div>
                         </div> --}}
-                        <a class="btn btn-block btn-outline-primary" href="{{URL::to('/addToCart/'.$item->ProductID)}}">Add to cart</a>
+                        <a class="btn btn-block btn-outline-primary"  onclick="addToCart({{$item->ProductID}})" href="javascript:">Add to cart</a>
                         <div class="product_content">
                             <div class="product_title"><a href="{{URL::to('/productdetail/'.$item->ProductID)}}">{{$item->ProductName}}</a></div>
                             <div class="product_price">{{number_format($item->Price).' '.'VND'}}</div>
@@ -216,4 +216,16 @@
 
 @section('custom')
 <script src="{{asset('frontend/js/custom.js')}}"></script>
+<script>
+    function addToCart(id){
+      $.ajax({
+          url:'addToCart/'+id,
+          type: 'GET',
+      }).done(function(respone){
+          console.log(respone);
+          $("#change-item-cart").empty();
+          $("#change-item-cart").html(respone);
+      });
+    }
+</script>
 @endsection
