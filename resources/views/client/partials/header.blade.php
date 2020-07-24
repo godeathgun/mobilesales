@@ -86,11 +86,12 @@
                                             </svg>
                                             <div id="change-item-cart">Cart <span>({{ Session::has('cart')?Session::get('cart')->totalQuantity : '0' }})</span></div>
                                             <div class="hassubs ">
+                                                @if(Session::has('cart'))
                                                 <ul>
                                                     <br>
                                                     <table style="border-collapse: collapse;" width="250">
                                                         <tbody>
-                                                            @if(Session::has('cart'))
+                                                            
                                                             @php
                                                                 $cart = Session::get('cart');
                                                             @endphp
@@ -163,6 +164,7 @@
                                                         
                                                     </table>
                                                 </ul>
+                                                @endif
                                             </div>
                                         </div>
                                     </a>
