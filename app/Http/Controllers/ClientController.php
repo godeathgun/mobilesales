@@ -25,15 +25,15 @@ class ClientController extends Controller
         return view('client.index',['products'=>$products]);
     }
 
-    //FogotPass
-    public function getFogotPass()
-    {
-        return redirect('/fogotPass');
-    }
-    public function postFogotPass()
-    {
-        return redirect('/gogotPass');
-    }
+    // //FogotPass
+    // public function getFogotPass()
+    // {
+    //     return redirect('/fogotPass');
+    // }
+    // public function postFogotPass()
+    // {
+    //     return redirect('/gogotPass');
+    // }
 
     public function addToCart($id)
     {

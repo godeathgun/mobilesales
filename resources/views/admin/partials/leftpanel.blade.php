@@ -31,14 +31,14 @@
                         <li><a href="/banners">Banners</a></li>
                     </ul>
                 </li>
-                <li class="menu-item-has-children dropdown">
+                {{-- <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Statistic</a>
                     <ul class="sub-menu children dropdown-menu">
                         <li><i class="menu-icon fa fa-th"></i><a href="forms-basic.html">Sales</a></li>
                         <li><i class="menu-icon fa fa-th"></i><a href="forms-advanced.html"></a></li>
                     </ul>
-                </li>
+                </li> --}}
 {{--
                 <li class="menu-title">Icons</li><!-- /.menu-title -->
  
