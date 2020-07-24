@@ -1,5 +1,5 @@
 @if(Session::has('cart')!=null)
-    <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+    {{-- <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
         viewBox="0 0 489 489" style="enable-background:new 0 0 489 489;"
         xml:space="preserve">
@@ -11,8 +11,60 @@
             H122.2c-25.4,0-46-16.8-46.4-37.5l26.8-302.3h45.2v41c0,7.5,6,13.5,13.5,13.5s13.5-6,13.5-13.5v-41h139.3v41
             c0,7.5,6,13.5,13.5,13.5s13.5-6,13.5-13.5v-41h45.2l26.9,302.3C412.8,445.2,392.1,462,366.8,462z" />
         </g>
-    </svg>
-    <div >Cart
-        <span>({{ Session::has('cart')?Session::get('cart')->totalQuantity : '0' }})</span>
+    </svg> --}}
+    <div>Cart <span>({{ Session::has('cart')?Session::get('cart')->totalQuantity : '0' }})</span></div>
+    <div class="hassubs ">
+        <ul>
+            <table style="border-collapse: collapse;" width="250">
+                <tbody>
+                    @foreach ($cart->items as $item)
+                    <tr>
+                        <td style="padding-top: 0px"><img src="\images\product\{{$item['product_image'] }}" width="50" height="60">
+                        </td>
+                        <td style="padding-left: 18px;padding-right: 18px padding-bottom: 20px; ">
+                            <div >
+                                <br>
+                                <p style="color: #e7ab3c;
+                                line-height: 30px;
+                                margin-bottom: 7px;">{{$item['product_price'] }}</p>
+                                <h6 style="color: #232530;font-size: 16px;"> {{$item['product_name'] }} x {{$item['qty'] }}</h6>
+
+                            </div>
+                            <hr>
+                        </td>
+                        
+                    </tr>
+                    @endforeach
+                </tbody>
+                
+            </table>
+            <div class="row">
+             
+                <div class="col-sm-4"> TOTAL
+                </div>
+                <div class="col-sm-8">{{Session::get('cart')->totalPrice}}
+                </div>
+               
+            </div>
+            <div class="select-button">
+                <a href="{{ URL::to('/cart') }}" style="font-size: 12px;
+                letter-spacing: 2px;
+                display: block;
+                text-align: center;
+                background: #191919;
+                color: #ffffff;
+                padding: 15px 60px 12px;
+                margin-bottom: 10px;">VIEW CARD</a>
+                <a href="{{URL::to('/checkout')}}" style="font-size: 12px;
+                letter-spacing: 2px;
+                display: block;
+                text-align: center;
+                background: #924f4f;
+                color: #ffffff;
+                padding: 15px 60px 12px;">CHECK OUT</a>
+            </div>
+            
+        </ul>
     </div>
+    
 @endif

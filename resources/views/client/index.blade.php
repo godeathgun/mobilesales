@@ -6,6 +6,7 @@
 
 @section('responsive')
 <link rel="stylesheet" type="text/css" href="{{asset('frontend/styles/main_styles.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('frontend/styles/shopcart.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('frontend/styles/responsive.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('frontend/styles/alertify.css')}}">
 @endsection
@@ -71,16 +72,7 @@
 
 
 @endsection
-
 @section('content')
-{{-- <div class="container">
-    <div class="row justify-content-center mb-3 pb-3">
-        <div class=" col-md-12 heading-section text-center ftco-animate">
-            
-            <h2 class=" mb-4">outorid</h2>
-        </div>
-    </div>
-</div> --}}
 <div class="products">
     <div class="container">
     
@@ -96,12 +88,14 @@
                     <div class="product">
 
                         <div class="product_image"><img src="images/product/{{ $item->Image0 }}" alt=""></div>
-                        {{-- <div class="product_extra product_new"><a href="categories.html">New</a></div>
-                        <div class="product_content">
-                            <div class="product_title"><a href="{{URL::to('/productdetail/'.$item->ProductID)}}">Iphone11 ProMax</a></div>
-                            <div class="product_price">$670</div>
-                        </div> --}}
+                        @if(Session::has('userLogin'))
                         <a class="btn btn-block btn-outline-primary"  onclick="addToCart({{$item->ProductID}})" href="javascript:">Add to cart</a>
+                        @else
+                        <?php Session::put('message',"Bạn phải đăng nhập để mua hàng");?>
+                        <a class="btn btn-block btn-outline-primary" href="/login">Add to cart</a>
+                        @endif
+
+                        {{-- <a class="btn btn-block btn-outline-primary"  onclick="addToCart({{$item->ProductID}})" href="javascript:">Add to cart</a> --}}
                         <div class="product_content">
                             <div class="product_title"><a href="{{URL::to('/productdetail/'.$item->ProductID)}}">{{$item->ProductName}}</a></div>
                             <div class="product_price">{{number_format($item->Price).' '.'VND'}}</div>

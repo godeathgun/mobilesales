@@ -85,6 +85,7 @@
                 <div class="product_grid">
                     <!-- Product -->
                     @foreach ($products as $item)
+                   
                     <div class="product">
                         <div class="product_image"><img src='images/product/{{ $item->Image0 }}'
                              alt=""></div>
