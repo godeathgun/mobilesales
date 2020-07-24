@@ -94,7 +94,7 @@ class CartController extends Controller
 
         $oldCart = Session::has('cart')? Session::get('cart'):null;
         $cart = new Cart($oldCart);
-        
+        dd($cart);
         return view('client.checkout', ['totalPrice' => $cart->totalPrice],['products' => $cart->items]);
         
     }

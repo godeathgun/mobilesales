@@ -91,7 +91,7 @@
                         @if(Session::has('userLogin'))
                         <a class="btn btn-block btn-outline-primary"  onclick="addToCart({{$item->ProductID}})" href="javascript:">Add to cart</a>
                         @else
-                        <?php Session::put('message',"Bạn phải đăng nhập để mua hàng");?>
+                        
                         <a class="btn btn-block btn-outline-primary" href="/login">Add to cart</a>
                         @endif
 
