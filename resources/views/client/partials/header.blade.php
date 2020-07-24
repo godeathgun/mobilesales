@@ -86,12 +86,10 @@
                                             </svg>
                                             <div id="change-item-cart">Cart <span>({{ Session::has('cart')?Session::get('cart')->totalQuantity : '0' }})</span></div>
                                             <div class="hassubs ">
-                                                @if(Session::has('cart'))
                                                 <ul>
-                                                    <br>
                                                     <table style="border-collapse: collapse;" width="250">
                                                         <tbody>
-                                                            
+                                                            @if(Session::has('cart'))
                                                             @php
                                                                 $cart = Session::get('cart');
                                                             @endphp
@@ -121,7 +119,7 @@
                                                                 </div>
                                                                
                                                             </div>
-                                                            {{-- <div class="select-button">
+                                                            <div class="select-button">
                                                                 <a href="{{ URL::to('/cart') }}" style="font-size: 12px;
                                                                 letter-spacing: 2px;
                                                                 display: block;
@@ -137,7 +135,7 @@
                                                                 background: #924f4f;
                                                                 color: #ffffff;
                                                                 padding: 15px 60px 12px;">CHECK OUT</a>
-                                                            </div> --}}
+                                                            </div>
                                                             @else
                                                                 {{-- <tr>
                                                                     <td style="padding-top: 0px"><img  width="50" height="60">
@@ -155,20 +153,24 @@
                                                                     </td>
                                                                     
                                                                 </tr> --}}
-                                                           
+                                                            @endif
                                                             
                                                            
                                                          
-                                                                @endif  
+                                                            
                                                         </tbody>
                                                         
                                                     </table>
+                                                    
+                                                   
+                                                    
                                                 </ul>
-                                                @endif
                                             </div>
+                                            
                                         </div>
                                     </a>
                                 </div>
+                                
                             @else
                             @endif
                             <div class="search">
@@ -201,6 +203,7 @@
             </div>
         </div>
     </div>
+
     <!-- Search Panel -->
     <div class="search_panel trans_300">
         <div class="container">
@@ -216,6 +219,7 @@
             </div>
         </div>
     </div>
+
             <!-- Social -->
             <div class="header_social">
                 <ul>
