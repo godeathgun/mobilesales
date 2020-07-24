@@ -14,6 +14,7 @@
     </svg> --}}
     <div>Cart <span>({{ Session::has('cart')?Session::get('cart')->totalQuantity : '0' }})</span></div>
     <div class="hassubs ">
+        <br>
         <ul>
             <table style="border-collapse: collapse;" width="250">
                 <tbody>
@@ -23,11 +24,11 @@
                         </td>
                         <td style="padding-left: 18px;padding-right: 18px padding-bottom: 20px; ">
                             <div >
-                                <br>
+                                
                                 <p style="color: #e7ab3c;
                                 line-height: 30px;
-                                margin-bottom: 7px;">{{$item['product_price'] }}</p>
-                                <h6 style="color: #232530;font-size: 16px;"> {{$item['product_name'] }} x {{$item['qty'] }}</h6>
+                                margin-bottom: 7px;">{{number_format($item['product_price']).' ' }}x {{$item['qty'] }}</p>
+                                <h6 style="color: #232530;font-size: 16px;"> {{$item['product_name'] }} </h6>
 
                             </div>
                             <hr>
@@ -42,7 +43,7 @@
              
                 <div class="col-sm-4"> TOTAL
                 </div>
-                <div class="col-sm-8">{{Session::get('cart')->totalPrice}}
+                <div class="col-sm-8">{{number_format(Session::get('cart')->totalPrice).' '}}
                 </div>
                
             </div>
