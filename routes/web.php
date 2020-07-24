@@ -244,7 +244,9 @@ Route::get('search', ['as'=>'search','uses'=>'ClientController@getSearch']);
 
 
 //cart
+
 Route::get('addToCart/{id}', 'ClientController@addToCart');
+Route::get('addCart/{id}', 'ClientController@addCart');
 Route::post('updateCart', 'ClientController@updateCart');
 Route::get('/removeItem/{product_id}', 'ClientController@removeItem');
 Route::get('/addOrder', 'ClientController@addOrder');

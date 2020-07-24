@@ -21,7 +21,7 @@
 						<div class="col">
 							<div class="home_content">
 								<div class="home_title">Smart Phones<span>.</span></div>
-								<div class="home_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a ultricies metus. Sed nec molestie eros. Sed viverra velit venenatis fermentum luctus.</p></div>
+								<div class="home_text"><p>Mua hàng theo cách của bạn</p></div>
 							</div>
 						</div>
 					</div>
@@ -134,7 +134,13 @@
                                 <div id="quantity_dec_button" class="quantity_dec quantity_control"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
                             </div>
                         </div> --}}
-                       <a class="btn btn-block btn-outline-primary" onclick="addToCart({{$products->ProductID}})" href="javascript:">Add to cart</a>
+                        @if(Session::has('userLogin'))
+                        <a class="btn btn-block btn-outline-primary" href="{{URL::to('/addCart/'.$products->ProductID)}}">Add to cart</a>
+                        {{-- <a class="btn btn-block btn-outline-primary" href="{{URL::to('/addToCart/'.$item->ProductID)}}">Add to cart</a> --}}
+                        @else
+                        <?php Session::put('message',"Bạn phải đăng nhập để mua hàng");?>
+                        <a class="btn btn-block btn-outline-primary" href="/login">Add to cart</a>
+                        @endif
                         {{-- <div class="add-to-cart button cart_button" ><a href="{{URL::to('/addToCart/'.$products->ProductID)}}">Add to cart</a></div> --}}
                         {{-- <div class="add-to-cart button cart_button">
                             <a href="{{URL::to('/addToCart/'.$products->ProductID)}}">Add to cart</a>
@@ -171,11 +177,11 @@
             <div class="col">
                 
                 <div class="product_grid">
-
+                    
                     <!-- Product -->
                     @foreach ($relatives as $item)
                     <div class="product">
-                        <div class="product_image"><img src="images/product/{{ $item->Image0 }}" alt=""></div>
+                        <div class="product_image"><img src="/images/product/{{ $item->Image0 }}" alt=""></div>
                         <div class="product_extra product_new"><a href="categories.html">New</a></div>
                         <div class="product_content">
                             <div class="product_title"><a href="{{URL::to('/productdetail/'.$item->ProductID)}}">{{$item->ProductName}}</a></div>
@@ -199,8 +205,18 @@
 
 @section('custom')
 <script src="{{asset('frontend/js/product.js')}}"></script>  
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
+<!-- CSS -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+<!-- Default theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+<!-- Semantic UI theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
+<!-- Bootstrap theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
 <script>
-    function addToCart(id){
+    function addToCarts(id){
       $.ajax({
           url:'addToCart/'+id,
           type: 'GET',

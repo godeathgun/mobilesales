@@ -49,6 +49,20 @@ class ClientController extends Controller
         //return redirect::to('cartaj');
         return view('client.cartaj',compact('cart'));
     }
+    public function addCart($id)
+    {
+        $product = DB::table('product')->where('ProductID',$id)->first();
+
+        $oldCart = Session::has('cart')? Session::get('cart'):null;
+        $cart = new Cart($oldCart);
+        $cart->add($product, $id);
+
+        Session::put('cart', $cart);
+        
+        //dd(Session::get('cart'));
+        return redirect::to('/category');
+       
+    }
 
     public function cart(){
 
@@ -105,7 +119,7 @@ class ClientController extends Controller
         $cart = new Cart($oldCart);
         
         return view('client.checkout', ['totalPrice' => $cart->totalPrice],['products' => $cart->items]);
-        Session::forget('cart');
+        
     }
 
     public function addOrder(Request $req)
@@ -396,7 +410,7 @@ class ClientController extends Controller
         $products= DB::table('product')
                     ->where('ManufacturerID',$manuName)
                     ->paginate(12);
-        return view('client.productByManu',['products'=>$products]);
+        return view('client.category',['products'=>$products]);
     }
 // product detail
     public function productdetail($ProductID)

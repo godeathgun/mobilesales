@@ -41,7 +41,7 @@
         <div class="row form-group">
             <div class="col col-md-3"><label for="text-input" class=" form-control-label">Instock</label></div>
             <div class="col-12 col-md-9">
-                <input type="text" id="text-input" name="product_instock" placeholder="Text" class="form-control" required>
+                <input type="text" id="text-input" name="product_instock" placeholder="Text" class="form-control" required  pattern="[0-9]*">
             </div>
         </div>
 
