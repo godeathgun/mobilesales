@@ -170,6 +170,7 @@ class ClientController extends Controller
             $orderdetail->Discount = $item['item']->Discount;
             $orderdetail->save();
         }
+        Session::forget('cart');
         return redirect('/');
     }
 
