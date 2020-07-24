@@ -137,32 +137,32 @@ Route::post('/resetadminpassword', 'AdminController@postResetAdminPassword');
 
 
 //Client
-Route::get('/cart', 'ClientController@cart');
+Route::get('/cart', 'CartController@cart');
 
-Route::get('/category', 'ClientController@category');
+Route::get('/category', 'HomeController@category');
 
-Route::get('/checkout', 'ClientController@checkout');
+Route::get('/checkout', 'CartController@checkout');
 
 Route::get('/contact', 'ClientController@contact');
 
 Route::get('/register', 'ClientController@register');
 
-Route::get('/productDetail', 'ClientController@productdetail');
+Route::get('/productDetail', 'HomeController@productdetail');
 //FogotPass
 Route::get('/fogotPass', 'ClientController@getFogotPass');
 Route::post('/fogotPass', 'ClientController@postFogotPass');
 
 //cart
-Route::get('addToCart/{id}', 'ClientController@addToCart');
-Route::post('updateCart', 'ClientController@updateCart');
-Route::get('/removeItem/{product_id}', 'ClientController@removeItem');
-Route::get('/addOrder', 'ClientController@addOrder');
+// Route::get('addToCart/{id}', 'CartController@addToCart');
+// Route::post('updateCart', 'CartController@updateCart');
+// Route::get('/removeItem/{product_id}', 'CartController@removeItem');
+// Route::get('/addOrder', 'CartController@addOrder');
 
 //user
 Route::get('/cusInfo', 'ClientController@infoCustomer');
 Route::get('/changePassword','ClientController@getChangePassword');
 Route::post('/changePassword','ClientController@changePassword');
-Route::get('/', 'ClientController@index')->name('user.verify.order');
+Route::get('/', 'HomeController@index')->name('user.verify.order');
 //Logout
 Route::get('/logout', 'ClientController@getLogout');
 //Register
@@ -211,14 +211,9 @@ Route::get('/resetpassword', 'ClientController@getResetPassword');
 Route::post('/resetpassword', 'ClientController@postResetPassword');
 
 //serch
-Route::get('search', ['as'=>'search','uses'=>'ClientController@getSearch']);
+Route::get('search', ['as'=>'search','uses'=>'HomeController@getSearch']);
 
 
-//cart
-Route::get('addToCart/{id}', 'ClientController@addToCart');
-Route::post('updateCart', 'ClientController@updateCart');
-Route::get('/removeItem/{product_id}', 'ClientController@removeItem');
-Route::get('/addOrder', 'ClientController@addOrder');
 
 //user
 Route::get('/cusInfo', 'ClientController@infoCustomer');
@@ -227,7 +222,7 @@ Route::post('/changePassword','ClientController@changePassword');
 
 //serch
 
-Route::get('/product_by_manufacturer/{ManufacturerID}','ClientController@product_by_manufacturer');
+Route::get('/product_by_manufacturer/{ManufacturerID}','HomeController@product_by_manufacturer');
 
 //product detail
 Route::get('/productdetail/{id}','ClientController@productdetail');
@@ -245,11 +240,11 @@ Route::get('search', ['as'=>'search','uses'=>'ClientController@getSearch']);
 
 //cart
 
-Route::get('addToCart/{id}', 'ClientController@addToCart');
-Route::get('addCart/{id}', 'ClientController@addCart');
-Route::post('updateCart', 'ClientController@updateCart');
-Route::get('/removeItem/{product_id}', 'ClientController@removeItem');
-Route::get('/addOrder', 'ClientController@addOrder');
+Route::get('addToCart/{id}', 'CartController@addToCart');
+Route::get('addCart/{id}', 'CartController@addCart');
+Route::post('updateCart', 'CartController@updateCart');
+Route::get('/removeItem/{product_id}', 'CartController@removeItem');
+Route::get('/addOrder', 'CartController@addOrder');
 
 //user
 Route::get('/cusInfo', 'ClientController@getinfoCustomer');

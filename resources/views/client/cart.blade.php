@@ -56,7 +56,7 @@ Cart
         @if(Session::has('cart'))
             <div class="row cart_items_row">
                 @foreach($products as $item)
-                    <form action="{{ action('ClientController@updateCart') }}" method="post"
+                    <form action="{{ action('CartController@updateCart') }}" method="post"
                         class="col">
                         <!-- Cart Item -->
                         <div
