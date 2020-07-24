@@ -169,8 +169,13 @@ class ClientController extends Controller
             $orderdetail->Quantity = $item['qty'];
             $orderdetail->Discount = $item['item']->Discount;
             $orderdetail->save();
+
+            $this_product = DB::table('product')->where('ProductID', $item['product_id'])->first();
+            DB::table('product')->where('ProductID', $item['product_id'])
+            ->update(['InStock'=>(($this_product->InStock)-$item['qty'])]);
         }
         Session::forget('cart');
+
         return redirect('/');
     }
 
@@ -340,10 +345,24 @@ class ClientController extends Controller
         return redirect('/login');
     }
     //userInfo get
-    public function infoCustomer()
+    public function getinfoCustomer()
     {
         $customer = DB::table('customer')->where('CustomerID',Session::get('userLogin')->CustomerID)->first();
         return view('client.cusInfo',['customer'=>$customer]);
+    }
+    public function infoCustomer(Request $req)
+    {
+        $customer = DB::table('customer')->where('CustomerID',Session::get('userLogin')->CustomerID)->first();
+        DB::table('customer')->where('customerID', Session::get('userLogin')->CustomerID)
+            ->update(['CustomerName'=>$req->customer_name]);
+        DB::table('customer')->where('customerID', Session::get('userLogin')->CustomerID)
+            ->update(['Password'=>$req->customer_email]);
+        DB::table('customer')->where('customerID', Session::get('userLogin')->CustomerID)
+            ->update(['Address'=>$req->customer_address]);
+        DB::table('customer')->where('customerID', Session::get('userLogin')->CustomerID)
+            ->update(['Phone'=>$req->customer_phone]);
+        Session::put('message','Cập nhật thông tin thành công');
+        return redirect('/cusInfo');
     }
     public function getChangePassword()
     {

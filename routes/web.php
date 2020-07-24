@@ -252,7 +252,8 @@ Route::get('/removeItem/{product_id}', 'ClientController@removeItem');
 Route::get('/addOrder', 'ClientController@addOrder');
 
 //user
-Route::get('/cusInfo', 'ClientController@infoCustomer');
+Route::get('/cusInfo', 'ClientController@getinfoCustomer');
+Route::post('/cusInfo', 'ClientController@infoCustomer');
 Route::get('/changePassword','ClientController@getChangePassword');
 Route::post('/changePassword','ClientController@changePassword');
 

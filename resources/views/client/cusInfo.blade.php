@@ -1,7 +1,13 @@
 @extends('client.partials.userinfo')
 @section('infocontent')
 <div class="content">
-
+    <?php $message = Session::get('message');?>
+    @if($message)
+        <p class="alert alert-success">
+            <?php echo $message;
+        Session::put('message',null); ?>
+        </p>
+    @endif
     <div class="card-body card-block">
         <form action="{{ action('ClientController@infoCustomer') }}" method="POST" enctype="multipart/form-data" class="form-horizontal">
             @csrf
