@@ -87,7 +87,7 @@
                     @foreach ($products as $item)
                    
                     <div class="product">
-                        <div class="product_image"><img src='images/product/{{ $item->Image0 }}'
+                        <div class="product_image"><img src='{{url('images/product/'.$item->Image0)}}'
                              alt=""></div>
                         {{-- <div class="product_extra product_new"><a href="categories.html">New</a></div> --}}
                         {{-- <a class="btn btn-block btn-outline-primary" href="{{URL::to('/addToCart/'.$products->ProductID)}}">Add to cart</a> --}}
