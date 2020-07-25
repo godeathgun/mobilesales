@@ -9,18 +9,13 @@
                         <div class="logo"><a href="{{ URL::to('/') }}">Mobile Shop.</a></div>
                         <nav class="main_nav">
                             <ul>
-                                <li class="hassubs active">
+                                <li>
                                     <a href="{{ URL::to('/') }}">Home</a>
                                    
                                 </li>
-                                <li class="hassubs">
-                                    <a href="{{ URL::to('/category') }}">Categories</a>
-                                    <ul>
-                                        @foreach($ManuFa as $item)
-                                            <li><a href="{{URL::to('/product_by_manufacturer/'.$item->ManufacturerID)}}">{{ $item->ManufacturerName }}</a></li>
-                                        @endforeach
-                                       
-                                    </ul>
+                                <li>
+                                    <a href="{{ URL::to('/productsclient') }}">Products</a>
+                                   
                                 </li>
                                 <li><a href="{{ URL::to('/contact') }}">Contact</a></li>
                             </ul>
@@ -86,10 +81,11 @@
                                             </svg>
                                             <div id="change-item-cart">Cart <span>({{ Session::has('cart')?Session::get('cart')->totalQuantity : '0' }})</span></div>
                                             <div class="hassubs ">
+                                                {{-- <br>
                                                 <ul>
                                                     <table style="border-collapse: collapse;" width="250">
                                                         <tbody>
-                                                            @if(Session::has('cart'))
+                                                            @if(Session::has('cart')!=null)
                                                             @php
                                                                 $cart = Session::get('cart');
                                                             @endphp
@@ -137,40 +133,14 @@
                                                                 padding: 15px 60px 12px;">CHECK OUT</a>
                                                             </div>
                                                             @else
-                                                                {{-- <tr>
-                                                                    <td style="padding-top: 0px"><img  width="50" height="60">
-                                                                    </td>
-                                                                    <td style="padding-left: 18px;padding-right: 18px padding-bottom: 20px; ">
-                                                                        <div >
-                                                                            <br>
-                                                                            <p style="color: #e7ab3c;
-                                                                            line-height: 30px;
-                                                                            margin-bottom: 7px;"></p>
-                                                                            <h6 style="color: #232530;font-size: 16px;"> </h6>
-                                            
-                                                                        </div>
-                                                                        <hr>
-                                                                    </td>
-                                                                    
-                                                                </tr> --}}
                                                             @endif
-                                                            
-                                                           
-                                                         
-                                                            
                                                         </tbody>
-                                                        
                                                     </table>
-                                                    
-                                                   
-                                                    
-                                                </ul>
+                                                </ul> --}}
                                             </div>
-                                            
                                         </div>
                                     </a>
                                 </div>
-                                
                             @else
                             @endif
                             <div class="search">

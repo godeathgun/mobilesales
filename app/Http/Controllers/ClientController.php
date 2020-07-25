@@ -263,8 +263,12 @@ class ClientController extends Controller
         ->orWhere('CustomerID','LIKE','%'.$req->input_data.'%')->paginate(10);
         return view('admin.customer.index', ['customers' => $customers]);
     }
-
-
+    
+    public function contact()
+    {
+        
+        return view('client.contact');
+    }
   
 
 }

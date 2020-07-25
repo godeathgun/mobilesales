@@ -77,7 +77,7 @@ Cart
                                 </div>
                             </div>
                             <!-- Price -->
-                            <div class="cart_item_price">{{ $item['product_price'] }}</div>
+                            <div class="cart_item_price" gia="{{ $item['product_price'] }}">{{ $item['product_price'] }}</div>
                             <!-- Quantity -->
                             <div class="cart_item_quantity">
                                 <div class="product_quantity_container ">
@@ -88,10 +88,10 @@ Cart
 
                                         <div class="product_quantity clearfix">
                                             <span>Qty</span>
-                                            <input id="quantity_input" type="text" pattern="[0-9]*" value="{{ $item['qty'] }}" min="1">
+                                            <input id="quantity_input" type="text" pattern="[2-9]*" value="{{ $item['qty'] }}" min="2">
                                             <div class="quantity_buttons">
-                                                <div id="quantity_inc_button" class="quantity_inc quantity_control"><i class="fa fa-chevron-up" aria-hidden="true"></i></div>
-                                                <div id="quantity_dec_button" class="quantity_dec quantity_control"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
+                                                <div gia="" id="quantity_inc_button" class="quantity_inc quantity_control"><i class="fa fa-chevron-up" aria-hidden="true" ></i></div>
+                                                <div gia="" id="quantity_dec_button" class="quantity_dec quantity_control"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
                                             </div>
                                         </div>
                                 </div>
@@ -151,4 +151,37 @@ Cart
 
 @section('custom')
 <script src="{{ asset('frontend/js/cart.js') }}"></script>
+<script>
+    // var gia = $(".cart_item_price").attr('gia');
+    // var sl = $("#quantity_input").val();
+    // var content = `${gia*sl}`;
+    // $(".cart_item_total").html(content);
+    // console.log(gia);
+    // console.log(sl);
+    var counter=0;
+    if(counter<5)
+    {
+    $("#quantity_inc_button").click(function(){
+        var gia = $(".cart_item_price").attr('gia');
+        var sl = $("#quantity_input").val();
+        console.log(parseInt(sl)+1);
+        var sll=parseInt(sl)+1
+        var content = `${gia*sll}`;
+        $(".cart_item_total").html(content);
+        counter++
+    });
+    }
+    else{
+        document.getElementById("quantity_inc_button").disabled=true;
+    }
+    $("#quantity_dec_button").click(function(){
+        var gia = $(".cart_item_price").attr('gia');
+        var sl = $("#quantity_input").val();
+        console.log(parseInt(sl)+1);
+        var sll=parseInt(sl)-1
+        var content = `${gia*sll}`;
+        $(".cart_item_total").html(content);
+    });
+</script>
 @endsection
+

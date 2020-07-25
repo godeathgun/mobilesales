@@ -139,7 +139,7 @@ Route::post('/resetadminpassword', 'AdminController@postResetAdminPassword');
 //Client
 Route::get('/cart', 'CartController@cart');
 
-Route::get('/category', 'HomeController@category');
+Route::get('/productsclient', 'HomeController@productsclient');
 
 Route::get('/checkout', 'CartController@checkout');
 
@@ -254,7 +254,7 @@ Route::post('/changePassword','ClientController@changePassword');
 
 //serch
 
-Route::get('/product_by_manufacturer/{ManufacturerID}','ClientController@product_by_manufacturer');
+Route::get('/product_by_manufacturer/{ManufacturerID}','HomeController@product_by_manufacturer');
 
 //product detail
 Route::get('/productdetail/{id}','HomeController@productdetail');

@@ -44,7 +44,7 @@ class CartController extends Controller
         Session::put('cart', $cart);
         
         //dd(Session::get('cart'));
-        return redirect::to('/category');
+        return redirect::to('/productsclient');
        
     }
 
