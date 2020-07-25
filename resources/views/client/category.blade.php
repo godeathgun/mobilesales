@@ -1,7 +1,7 @@
 @extends('client.layouts.app')
 
 @section('title')
-    Category
+    Products
 @endsection
 
 {{-- @section('responsive') --}}
@@ -50,7 +50,7 @@
                                     
                                         <ul>
                                             
-                                            <li class="product_sorting_btn" data-isotope-option='{ "sortBy": "original-order" }' ><a href="{{URL::to('/category')}}">ALL</a></li>
+                                            <li class="product_sorting_btn" data-isotope-option='{ "sortBy": "original-order" }' ><a href="{{URL::to('/productsclient')}}">ALL</a></li>
                                             @foreach ($all_manufa as $item)
                                             <li class="product_sorting_btn" data-isotope-option='{ "sortBy": "original-order" }'><a href="{{URL::to('/product_by_manufacturer/'.$item->ManufacturerID)}}"><span>{{$item->ManufacturerName}}</span></a></li>
                                             @endforeach
@@ -95,7 +95,7 @@
                         <a class="btn btn-block btn-outline-primary"  onclick="addToCart({{$item->ProductID}})" href="javascript:">Add to cart</a>
                         {{-- <a class="btn btn-block btn-outline-primary" href="{{URL::to('/addToCart/'.$item->ProductID)}}">Add to cart</a> --}}
                         @else
-                        <?php Session::put('message',"Bạn phải đăng nhập để mua hàng");?>
+                        
                         <a class="btn btn-block btn-outline-primary" href="/login">Add to cart</a>
                         @endif
                         <div class="product_content">

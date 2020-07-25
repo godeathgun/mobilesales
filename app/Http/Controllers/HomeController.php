@@ -25,7 +25,7 @@ class HomeController extends Controller
         return view('client.index',['products'=>$products]);
     }
 
-    public function category()
+    public function productsclient()
     {
 
         $products = DB::table('product')->paginate(12);

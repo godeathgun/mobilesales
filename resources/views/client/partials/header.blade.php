@@ -9,18 +9,13 @@
                         <div class="logo"><a href="{{ URL::to('/') }}">Mobile Shop.</a></div>
                         <nav class="main_nav">
                             <ul>
-                                <li class="hassubs active">
+                                <li>
                                     <a href="{{ URL::to('/') }}">Home</a>
                                    
                                 </li>
-                                <li class="hassubs">
-                                    <a href="{{ URL::to('/category') }}">Categories</a>
-                                    <ul>
-                                        @foreach($ManuFa as $item)
-                                            <li><a href="{{URL::to('/product_by_manufacturer/'.$item->ManufacturerID)}}">{{ $item->ManufacturerName }}</a></li>
-                                        @endforeach
-                                       
-                                    </ul>
+                                <li>
+                                    <a href="{{ URL::to('/productsclient') }}">Products</a>
+                                   
                                 </li>
                                 <li><a href="{{ URL::to('/contact') }}">Contact</a></li>
                             </ul>
@@ -86,11 +81,11 @@
                                             </svg>
                                             <div id="change-item-cart">Cart <span>({{ Session::has('cart')?Session::get('cart')->totalQuantity : '0' }})</span></div>
                                             <div class="hassubs ">
-                                                <br>
+                                                {{-- <br>
                                                 <ul>
                                                     <table style="border-collapse: collapse;" width="250">
                                                         <tbody>
-                                                            @if(Session::get('cart')->totalQuantity!=0)
+                                                            @if(Session::has('cart')!=null)
                                                             @php
                                                                 $cart = Session::get('cart');
                                                             @endphp
@@ -141,7 +136,7 @@
                                                             @endif
                                                         </tbody>
                                                     </table>
-                                                </ul>
+                                                </ul> --}}
                                             </div>
                                         </div>
                                     </a>
