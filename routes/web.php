@@ -225,7 +225,7 @@ Route::post('/changePassword','ClientController@changePassword');
 Route::get('/product_by_manufacturer/{ManufacturerID}','HomeController@product_by_manufacturer');
 
 //product detail
-Route::get('/productdetail/{id}','ClientController@productdetail');
+// Route::get('/productdetail/{id}','HomeController@productdetail');
 
 Route::get('/forgotpassword', 'ClientController@getForgotpassword');
 Route::post('/forgotpassword', 'ClientController@postForgotpassword');
@@ -257,7 +257,7 @@ Route::post('/changePassword','ClientController@changePassword');
 Route::get('/product_by_manufacturer/{ManufacturerID}','ClientController@product_by_manufacturer');
 
 //product detail
-Route::get('/productdetail/{id}','ClientController@productdetail');
+Route::get('/productdetail/{id}','HomeController@productdetail');
 
  //User Order
  Route::get('/userorder', 'ClientController@getOrder');

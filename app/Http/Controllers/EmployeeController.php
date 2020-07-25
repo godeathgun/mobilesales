@@ -64,16 +64,16 @@ class EmployeeController extends Controller
         return redirect::to('/employees');
     }
 
-    public function delete_employee($id)
-    {
-        $select_employee=employee::where('employeeID',$id)->first();
+    // public function delete_employee($id)
+    // {
+    //     $select_employee=employee::where('employeeID',$id)->first();
 
-        employee::where('employeeID',$id)->delete();
+    //     employee::where('employeeID',$id)->delete();
 
-        Session::put('message','The employee is deleted successfully');
+    //     Session::put('message','The employee is deleted successfully');
 
-        return redirect::to('/employees');
-    }
+    //     return redirect::to('/employees');
+    // }
 
     public function view_edit($id)
     {

@@ -61,16 +61,16 @@ class ManufacturerController extends Controller
         return redirect::to('/manufacturers');
     }
 
-    public function delete_manufacturer($id)
-    {
-        $select_manufacturer=Manufacturer::where('ManufacturerID',$id)->first();
+    // public function delete_manufacturer($id)
+    // {
+    //     $select_manufacturer=Manufacturer::where('ManufacturerID',$id)->first();
 
-        Manufacturer::where('ManufacturerID',$id)->delete();
+    //     Manufacturer::where('ManufacturerID',$id)->delete();
 
-        Session::put('message','The manufacturer is deleted successfully');
+    //     Session::put('message','The manufacturer is deleted successfully');
 
-        return redirect::to('/manufacturers');
-    }
+    //     return redirect::to('/manufacturers');
+    // }
 
     public function view_edit($id)
     {

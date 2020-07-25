@@ -60,16 +60,16 @@ class CustomerController extends Controller
         return redirect::to('/customers');
     }
 
-    public function delete_customer($id)
-    {
-        $select_customer=customer::where('customerID',$id)->first();
+    // public function delete_customer($id)
+    // {
+    //     $select_customer=customer::where('customerID',$id)->first();
 
-        customer::where('customerID',$id)->delete();
+    //     customer::where('customerID',$id)->delete();
 
-        Session::put('message','The customer is deleted successfully');
+    //     Session::put('message','The customer is deleted successfully');
 
-        return redirect::to('/customers');
-    }
+    //     return redirect::to('/customers');
+    // }
 
     public function view_edit($id)
     {

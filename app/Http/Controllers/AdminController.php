@@ -18,16 +18,6 @@ class AdminController extends Controller
         return view('admin.home.index');
     }
 
-    public function product()
-    {
-        return view('admin.products.edit');
-    }
-
-    public function create_category()
-    {
-        return view('admin.category.create');
-    }
-
     //forgotpassword
     public function getForgotAdminpassword()
     {

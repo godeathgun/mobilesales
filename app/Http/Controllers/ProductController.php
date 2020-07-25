@@ -133,33 +133,33 @@ class ProductController extends Controller
         return redirect::to('/products');
     }
 
-    public function delete_product($id)
-    {
-        $select_product=Product::where('ProductID',$id)->first();
+    // public function delete_product($id)
+    // {
+    //     $select_product=Product::where('ProductID',$id)->first();
 
-        if($select_product->Image0!=NULL)
-        {
-            File::delete('images/product/'.$select_product->Image0);
-        }
-        if($select_product->Image1!=NULL)
-        {
-            File::delete('images/product/'.$select_product->Image1);
-        }
-        if($select_product->Image2!=NULL)
-        {
-            File::delete('images/product/'.$select_product->Image2);
-        }
-        if($select_product->Image3!=NULL)
-        {
-            File::delete('images/product/'.$select_product->Image3);
-        }
+    //     if($select_product->Image0!=NULL)
+    //     {
+    //         File::delete('images/product/'.$select_product->Image0);
+    //     }
+    //     if($select_product->Image1!=NULL)
+    //     {
+    //         File::delete('images/product/'.$select_product->Image1);
+    //     }
+    //     if($select_product->Image2!=NULL)
+    //     {
+    //         File::delete('images/product/'.$select_product->Image2);
+    //     }
+    //     if($select_product->Image3!=NULL)
+    //     {
+    //         File::delete('images/product/'.$select_product->Image3);
+    //     }
 
-        Product::where('ProductID',$id)->delete();
+    //     Product::where('ProductID',$id)->delete();
 
-        Session::put('message','The product is deleted successfully');
+    //     Session::put('message','The product is deleted successfully');
 
-        return redirect::to('/products');
-    }
+    //     return redirect::to('/products');
+    // }
 
     public function view_edit($id)
     {
