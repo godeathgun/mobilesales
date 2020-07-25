@@ -172,7 +172,12 @@ class ClientController extends Controller
             DB::table('customer')->where('CustomerID', Session::get('userLogin')->CustomerID)
             ->update(['Password'=>Hash::make($request->new_password)]);
 
-            Session::put('message','The change password successfully');
+            Session::put('message','Đổi mật khẩu thành công');
+            return redirect('/changePassword');
+        }
+        else
+        {
+            Session::put('message','Nhập sai mật khẩu cũ');
             return redirect('/changePassword');
         }
     }

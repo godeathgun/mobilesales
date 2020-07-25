@@ -36,6 +36,8 @@
             $this->totalQuantity += 1;
             $this->totalPrice += $item->Price;
             $this->items[$ProductID] = $storedItem;
+
+            
         }
 
         public function updateCart($id, $qty){

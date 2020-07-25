@@ -4,12 +4,25 @@
 
     <div class="card-body card-block">
         <?php $message = Session::get('message');?>
-            @if($message)
-                <p class="alert alert-success">
-                    <?php echo $message;
-                Session::put('message',null); ?>
-                </p>
-            @endif
+        @if($message)
+            <p class="alert alert-success">
+                <?php echo $message;
+            Session::put('message',null); ?>
+            </p>
+        @endif
+        @if(count($errors) > 0)
+        <div class="alert alert-danger">
+            @foreach($errors->all() as $err)
+                {{$err}}<br>
+            @endforeach
+        </div>
+        @endif
+
+        @if(session('thongbao'))
+            <div class="alert alert-success">
+                {{session('thongbao')}}
+            </div>
+        @endif
         <form action="{{ action('ClientController@changePassword') }}" method="POST" enctype="multipart/form-data" class="form-horizontal">
             @csrf
             <div class="row form-group">
