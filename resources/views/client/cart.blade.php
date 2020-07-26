@@ -149,41 +149,6 @@ Cart
 
 @section('custom')
 <script src="{{ asset('frontend/js/cart.js') }}"></script>
-{{-- <script>
-function ready() {
-  
-    var quantityInputs = document.getElementsByClassName('cart-quantity-input')
-    for (var i = 0; i < quantityInputs.length; i++) {
-        var input = quantityInputs[i]
-        input.addEventListener('change', quantityChanged)
-    }
-}
-function quantityChanged(event) {
-    var input = event.target
-    if (isNaN(input.value) || input.value <= 0) {
-        input.value = 1
-    }
-    updateCartTotal()
-}
-function updateCartTotal() {
-    var cart_item=document.getElementsByClassName('cart_items_row')[0]
-    var cartRows=cart_item.getElementsByClassName('cart_item')
-    var subTotal=0
-    var total=0
-    for (var i =0;i<cartRows.length;i++)
-    {
-        var cartRow=cartRows[i]
-        var pricetext=cartRow.getElementsByClassName('cart_item_price')[0].innerHTML
-        var quantityText =cartRow.getElementsByClassName('cart-quantity-input')[0].value
-        var price= parseFloat(pricetext.replace(',','').replace(',',''))
-        var quantity=parseFloat(quantityText)
-       subTotal= price*quantity
-       total+=subTotal     
-      document.getElementsByClassName('cart_item_total')[0].innerText = subTotal
-    }
-    document.getElementsByClassName('cart_total_value')[0].innerText=total
-}
 
-</script> --}}
 @endsection
 

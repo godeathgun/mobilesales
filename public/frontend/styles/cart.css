@@ -937,9 +937,9 @@ section
 	width: 17%;
 	text-align: center;
 }
-.cart-quantity {
+/* .cart-quantity {
     width: 100%;
-}
+} */
 .cart-quantity-input {
     height: 34px;
     width: 50px;
