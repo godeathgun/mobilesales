@@ -3,8 +3,6 @@
     <nav class="navbar navbar-expand-sm navbar-default">
         <div id="main-menu" class="main-menu collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                
-                @if(Session::has('adminLogin'))
                 <li class="active">
                     <a href="/admin"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
                 </li>
@@ -23,20 +21,16 @@
                         <li><a href="/categories">Categories</a></li>
                     </ul>
                 </li>
-                @else
-                <li class="active">
-                    <a href="/products"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
-                </li>
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Employee</a>
                     <ul class="sub-menu children dropdown-menu">
                         <li><a href="/products">Products</a></li>
                         <li><a href="/orders">Orders</a></li>
+                        <li><a href="/customers">Customers</a></li>
                         <li><a href="/banners">Banners</a></li>
                     </ul>
                 </li>
-                @endif
                 {{-- <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Statistic</a>

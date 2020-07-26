@@ -257,14 +257,16 @@ class ClientController extends Controller
         return redirect('/userorder');
     }
 
-    public function search_userorder(Request $req)
+    public function search_order(Request $req)
     {
-        $orders = DB::table('order')->where("CustomerID",Session::get('userLogin')->CustomerID)->where('OrderID','LIKE','%'.$req->input_data.'%')->paginate(10);
-        return view('client.userorder', ['orders' => $orders]);
+        $customers = Customer::where('CustomerName','LIKE','%'.$req->input_data.'%')
+        ->orWhere('CustomerID','LIKE','%'.$req->input_data.'%')->paginate(10);
+        return view('admin.customer.index', ['customers' => $customers]);
     }
     
     public function contact()
     {
+        
         return view('client.contact');
     }
   

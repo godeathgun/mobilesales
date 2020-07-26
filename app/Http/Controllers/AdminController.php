@@ -15,14 +15,7 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $revenue = DB::table('orderdetail')->sum('orderdetail.Price');
-        $number_of_orders = DB::table('order')->count('order.OrderID');
-        $product_sales_count = DB::table('orderdetail')->count('orderdetail.Quantity');
-        $number_of_customers = DB::table('customer')->count('customer.CustomerID');
-
-        $orders = DB::table('order')->orderBy('OrderDate', 'DeSC')->paginate(8);
-
-        return view('admin.home.index',compact('revenue','number_of_orders','number_of_customers','product_sales_count','orders'));
+        return view('admin.home.index');
     }
 
     //forgotpassword

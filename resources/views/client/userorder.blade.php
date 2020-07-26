@@ -12,7 +12,7 @@
               Session::put('message',null); ?>
               </p>
           @endif
-          <form action="search_userorder" method="get" enctype="multipart/form-data" class="form-horizontal" >
+          <form action="search_manufacturer" method="get" enctype="multipart/form-data" class="form-horizontal" >
               <div class="input-group">
                   <input  type="text" id="input1-group2" name="input_data" placeholder="Search" class="form-control">
                   <div class="input-group-btn">
