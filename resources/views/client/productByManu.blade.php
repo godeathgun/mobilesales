@@ -1,11 +1,14 @@
 @extends('client.layouts.app')
 
+@section('title')
+    Products
+@endsection
 
-@section('responsive') 
+{{-- @section('responsive') --}}
 
 <link rel="stylesheet" type="text/css" href= "{{asset('frontend/styles/categories.css')}}">
 <link rel="stylesheet" type="text/css" href= "{{asset('frontend/styles/categories_responsive.css')}}">
-@endsection
+{{-- @endsection --}}
 
 @section('slide')
 	<!-- Home -->
@@ -47,7 +50,7 @@
                                     
                                         <ul>
                                             
-                                            <li class="product_sorting_btn" data-isotope-option='{ "sortBy": "original-order" }' ><a href="{{URL::to('/category')}}">ALL</a></li>
+                                            <li class="product_sorting_btn" data-isotope-option='{ "sortBy": "original-order" }' ><a href="{{URL::to('/productsclient')}}">ALL</a></li>
                                             @foreach ($all_manufa as $item)
                                             <li class="product_sorting_btn" data-isotope-option='{ "sortBy": "original-order" }'><a href="{{URL::to('/product_by_manufacturer/'.$item->ManufacturerID)}}"><span>{{$item->ManufacturerName}}</span></a></li>
                                             @endforeach
@@ -82,12 +85,17 @@
                 <div class="product_grid">
                     <!-- Product -->
                     @foreach ($products as $item)
+                   
                     <div class="product">
-                        <div class="product_image"><img src="images/product/{{ $item->Image0 }}" alt=""></div>
+                        <div class="product_image"><img src='{{url('images/product/'.$item->Image0)}}'
+                             alt=""></div>
+                        {{-- <div class="product_extra product_new"><a href="categories.html">New</a></div> --}}
+                        {{-- <a class="btn btn-block btn-outline-primary" href="{{URL::to('/addToCart/'.$products->ProductID)}}">Add to cart</a> --}}
                         @if(Session::has('userLogin'))
                         <a class="btn btn-block btn-outline-primary"  onclick="addToCart({{$item->ProductID}})" href="javascript:">Add to cart</a>
+                        {{-- <a class="btn btn-block btn-outline-primary" href="{{URL::to('/addToCart/'.$item->ProductID)}}">Add to cart</a> --}}
                         @else
-                        <?php Session::put('message',"Bạn phải đăng nhập để mua hàng");?>
+                        
                         <a class="btn btn-block btn-outline-primary" href="/login">Add to cart</a>
                         @endif
                         <div class="product_content">
@@ -117,6 +125,16 @@
 
 @section('custom')
 <script src="{{asset('frontend/js/categories.js')}}"></script>
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
+<!-- CSS -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+<!-- Default theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+<!-- Semantic UI theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
+<!-- Bootstrap theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
 <script>
     function addToCart(id){
       $.ajax({
@@ -126,7 +144,7 @@
           console.log(respone);
           $("#change-item-cart").empty();
           $("#change-item-cart").html(respone);
-          alertify.success('Thêm sản phẩm thành công');
+        //   alertify.success('Thêm sản phẩm thành công');
       });
     }
 </script>
