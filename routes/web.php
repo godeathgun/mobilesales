@@ -122,6 +122,8 @@ Route::group(['middleware'=>'AdminLogin'],function(){
 
     Route::get('order_detail/{id}','OrderController@order_detail');
 
+    Route::get('search_order','OrderController@search_order');
+
     Route::get('/logoutadmin', 'AdminController@getLogout');
 });
 //AdminLogin
@@ -262,6 +264,7 @@ Route::get('/productdetail/{id}','HomeController@productdetail');
  //User Order
  Route::get('/userorder', 'ClientController@getOrder');
 
+ Route::get('search_userorder','ClientController@search_userorder');
 
  Route::get('orderuser_cancel/{id}', 'ClientController@orderuser_cancel'); 
 

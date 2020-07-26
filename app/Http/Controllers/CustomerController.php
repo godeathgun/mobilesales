@@ -13,7 +13,7 @@ class CustomerController extends Controller
 {
     public function view_index()
     {
-        $customers=DB::table('customer')->paginate(1);
+        $customers=DB::table('customer')->paginate(10);
         return view ('admin.customer.index',['customers'=>$customers]);
     }
 
