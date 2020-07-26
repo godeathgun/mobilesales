@@ -28,7 +28,7 @@ class HomeController extends Controller
     public function productsclient()
     {
 
-        $products = DB::table('product')->where('Status',1)->paginate(12);
+        $products = DB::table('product')->paginate(12);
         return view('client.category',['products'=>$products]);
     }
 
@@ -45,21 +45,9 @@ class HomeController extends Controller
     {
         $products= DB::table('product')
                     ->where('ManufacturerID',$manuName)
-                    ->where('Status',1)
                     ->paginate(12);
         return view('client.category',['products'=>$products]);
     }
-    
-    // public function product_by_mn($req)
-    // {
-       
-    //     $products= DB::table('product')
-    //                 ->where('ManufacturerID',$req->product_manufacturerid)
-    //                 ->where('Status',1)
-    //                 ->paginate(12);
-       
-    //     return view('client.category',['products'=>$products]);
-    // }
 // product detail
     public function productdetail($ProductID)
         {

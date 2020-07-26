@@ -71,31 +71,30 @@ Cart
                                 <div class="cart_item_name_container">
                                     <div class="cart_item_name"><a
                                             href="#">{{ $item['product_name'] }}</a></div>
-                                    <div class="cart_item_edit" id="remove"><a
+                                    <div class="cart_item_edit"><a
                                             href="{{ URL::to('/removeItem/'.$item['product_id']) }}">Remove
                                             Product</a></div>
                                 </div>
                             </div>
-                         
                             <!-- Price -->
-                            <div class="cart_item_price" gia="{{ $item['product_price'] }}">{{ number_format($item['product_price']).' ' }}</div>
+                            <div class="cart_item_price" gia="{{ $item['product_price'] }}">{{ $item['product_price'] }}</div>
                             <!-- Quantity -->
                             <div class="cart_item_quantity">
-                                        {{-- <div class="product_quantity clearfix">
+                                <div class="product_quantity_container ">
+                                    {{-- <input id="quantity_input" name="product_quantity" type="number"
+                                        value="{{ $item['qty'] }}" min="1">
+                                    <input id="quantity_input" name="product_id" type="hidden"
+                                        value="{{ $item['product_id'] }}"> --}}
+
+                                        <div class="product_quantity clearfix">
                                             <span>Qty</span>
-                                            <input class="quantity_input" type="text" pattern="[2-9]*" value="{{ $item['qty'] }}" min="2" step="1">
+                                            <input id="quantity_input" type="text" pattern="[2-9]*" value="{{ $item['qty'] }}" min="2">
                                             <div class="quantity_buttons">
                                                 <div gia="" id="quantity_inc_button" class="quantity_inc quantity_control"><i class="fa fa-chevron-up" aria-hidden="true" ></i></div>
                                                 <div gia="" id="quantity_dec_button" class="quantity_dec quantity_control"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
                                             </div>
-                                        </div> --}}
-                                        
-                                        <div class="product_quantity clearfix">
-                                            <div class=" cart-quantity">
-                                            <input class=" cart-quantity-input" type="number"value="{{ $item['qty'] }}" min="2" step="1">
-                                            </div>
                                         </div>
-                                
+                                </div>
                             </div>
 
                             <!-- Total -->
@@ -131,7 +130,10 @@ Cart
                                 <div class="cart_total_title">Subtotal</div>
                             <div class="cart_total_value ml-auto">{{Session::has('cart')?Session::get('cart')->totalPrice:'0'}}</div>
                             </li>
-                            
+                            <li class="d-flex flex-row align-items-center justify-content-start">
+                                <div class="cart_total_title">Shipping</div>
+                                <div class="cart_total_value ml-auto">Free</div>
+                            </li>
                             <li class="d-flex flex-row align-items-center justify-content-start">
                                 <div class="cart_total_title">Total</div>
                             <div class="cart_total_value ml-auto">{{Session::has('cart')?Session::get('cart')->totalPrice:'0'}}</div>
@@ -149,41 +151,37 @@ Cart
 
 @section('custom')
 <script src="{{ asset('frontend/js/cart.js') }}"></script>
-{{-- <script>
-function ready() {
-  
-    var quantityInputs = document.getElementsByClassName('cart-quantity-input')
-    for (var i = 0; i < quantityInputs.length; i++) {
-        var input = quantityInputs[i]
-        input.addEventListener('change', quantityChanged)
-    }
-}
-function quantityChanged(event) {
-    var input = event.target
-    if (isNaN(input.value) || input.value <= 0) {
-        input.value = 1
-    }
-    updateCartTotal()
-}
-function updateCartTotal() {
-    var cart_item=document.getElementsByClassName('cart_items_row')[0]
-    var cartRows=cart_item.getElementsByClassName('cart_item')
-    var subTotal=0
-    var total=0
-    for (var i =0;i<cartRows.length;i++)
+<script>
+    // var gia = $(".cart_item_price").attr('gia');
+    // var sl = $("#quantity_input").val();
+    // var content = `${gia*sl}`;
+    // $(".cart_item_total").html(content);
+    // console.log(gia);
+    // console.log(sl);
+    var counter=0;
+    if(counter<5)
     {
-        var cartRow=cartRows[i]
-        var pricetext=cartRow.getElementsByClassName('cart_item_price')[0].innerHTML
-        var quantityText =cartRow.getElementsByClassName('cart-quantity-input')[0].value
-        var price= parseFloat(pricetext.replace(',','').replace(',',''))
-        var quantity=parseFloat(quantityText)
-       subTotal= price*quantity
-       total+=subTotal     
-      document.getElementsByClassName('cart_item_total')[0].innerText = subTotal
+    $("#quantity_inc_button").click(function(){
+        var gia = $(".cart_item_price").attr('gia');
+        var sl = $("#quantity_input").val();
+        console.log(parseInt(sl)+1);
+        var sll=parseInt(sl)+1
+        var content = `${gia*sll}`;
+        $(".cart_item_total").html(content);
+        counter++
+    });
     }
-    document.getElementsByClassName('cart_total_value')[0].innerText=total
-}
-
-</script> --}}
+    else{
+        document.getElementById("quantity_inc_button").disabled=true;
+    }
+    $("#quantity_dec_button").click(function(){
+        var gia = $(".cart_item_price").attr('gia');
+        var sl = $("#quantity_input").val();
+        console.log(parseInt(sl)+1);
+        var sll=parseInt(sl)-1
+        var content = `${gia*sll}`;
+        $(".cart_item_total").html(content);
+    });
+</script>
 @endsection
 

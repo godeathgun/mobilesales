@@ -43,7 +43,7 @@
              
                 <div class="col-sm-4"> TOTAL
                 </div>
-                <div class="col-sm-8">{{number_format(Session::get('cart')->totalPrice)' '}}
+                <div class="col-sm-8">{{number_format(Session::get('cart')->totalPrice).' '}}
                 </div>
                
             </div>

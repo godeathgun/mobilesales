@@ -237,7 +237,7 @@ Route::get('/resetpassword', 'ClientController@getResetPassword');
 Route::post('/resetpassword', 'ClientController@postResetPassword');
 
 //serch
-Route::get('search', ['as'=>'search','uses'=>'HomeController@getSearch']);
+Route::get('search', ['as'=>'search','uses'=>'ClientController@getSearch']);
 
 
 //cart
@@ -292,7 +292,6 @@ Route::group(['middleware'=>'EmployeeLogin'],function(){
 
     Route::post('create_product', 'ProductController@create');
 
-   
     Route::get('/unactivate_product/{id}', 'ProductController@unactivate_product');
 
     Route::get('/activate_product/{id}', 'ProductController@activate_product');
