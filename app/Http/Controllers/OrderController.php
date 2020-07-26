@@ -80,4 +80,10 @@ class OrderController extends Controller
         return view('admin.order.detail',['order'=>$order],['orderdetails'=>$orderdetails]);
     }
 
+    public function search_order(Request $req)
+    {
+        $orders = Order::where('OrderID','LIKE','%'.$req->input_data.'%')->paginate(10);
+        return view('admin.order.index', ['orders' => $orders]);
+    }
+    
 }
