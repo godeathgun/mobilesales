@@ -151,5 +151,37 @@ Cart
 
 @section('custom')
 <script src="{{ asset('frontend/js/cart.js') }}"></script>
+<script>
+    // var gia = $(".cart_item_price").attr('gia');
+    // var sl = $("#quantity_input").val();
+    // var content = `${gia*sl}`;
+    // $(".cart_item_total").html(content);
+    // console.log(gia);
+    // console.log(sl);
+    var counter=0;
+    if(counter<5)
+    {
+    $("#quantity_inc_button").click(function(){
+        var gia = $(".cart_item_price").attr('gia');
+        var sl = $("#quantity_input").val();
+        console.log(parseInt(sl)+1);
+        var sll=parseInt(sl)+1
+        var content = `${gia*sll}`;
+        $(".cart_item_total").html(content);
+        counter++
+    });
+    }
+    else{
+        document.getElementById("quantity_inc_button").disabled=true;
+    }
+    $("#quantity_dec_button").click(function(){
+        var gia = $(".cart_item_price").attr('gia');
+        var sl = $("#quantity_input").val();
+        console.log(parseInt(sl)+1);
+        var sll=parseInt(sl)-1
+        var content = `${gia*sll}`;
+        $(".cart_item_total").html(content);
+    });
+</script>
 @endsection
 
