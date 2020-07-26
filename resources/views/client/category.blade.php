@@ -144,7 +144,7 @@
           console.log(respone);
           $("#change-item-cart").empty();
           $("#change-item-cart").html(respone);
-        //   alertify.success('Thêm sản phẩm thành công');
+          alertify.success('Thêm sản phẩm thành công');
       });
     }
 </script>
