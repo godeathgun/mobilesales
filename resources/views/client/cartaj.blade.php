@@ -47,23 +47,6 @@
                 </div>
                
             </div>
-            <div class="select-button">
-                <a href="{{ URL::to('/cart') }}" style="font-size: 12px;
-                letter-spacing: 2px;
-                display: block;
-                text-align: center;
-                background: #191919;
-                color: #ffffff;
-                padding: 15px 60px 12px;
-                margin-bottom: 10px;">VIEW CARD</a>
-                <a href="{{URL::to('/checkout')}}" style="font-size: 12px;
-                letter-spacing: 2px;
-                display: block;
-                text-align: center;
-                background: #924f4f;
-                color: #ffffff;
-                padding: 15px 60px 12px;">CHECK OUT</a>
-            </div>
             
         </ul>
     </div>

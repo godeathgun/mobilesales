@@ -80,69 +80,45 @@
                                                 </g>
                                             </svg>
                                             <div id="change-item-cart">Cart <span>({{ Session::has('cart')?Session::get('cart')->totalQuantity : '0' }})</span></div>
+                                            @if(Session::has('cart')!=null)
                                             <div class="hassubs ">
-                                                {{-- <br>
+                                                <br>
                                                 <ul>
                                                     <table style="border-collapse: collapse;" width="250">
                                                         <tbody>
-                                                            @if(Session::has('cart')!=null)
-                                                            @php
-                                                                $cart = Session::get('cart');
-                                                            @endphp
-                                                            @foreach ($cart->items as $item)
+                                                            @foreach (Session::get('cart')->items as $item)
                                                             <tr>
                                                                 <td style="padding-top: 0px"><img src="\images\product\{{$item['product_image'] }}" width="50" height="60">
                                                                 </td>
                                                                 <td style="padding-left: 18px;padding-right: 18px padding-bottom: 20px; ">
                                                                     <div >
-                                                                        <br>
                                                                         <p style="color: #e7ab3c;
                                                                         line-height: 30px;
-                                                                        margin-bottom: 7px;">{{$item['product_price'] }}</p>
-                                                                        <h6 style="color: #232530;font-size: 16px;"> {{$item['product_name'] }} x {{$item['qty'] }}</h6>
-                                        
+                                                                        margin-bottom: 7px;">{{number_format($item['product_price']).' ' }}x {{$item['qty'] }}</p>
+                                                                        <h6 style="color: #232530;font-size: 16px;"> {{$item['product_name'] }} </h6>
                                                                     </div>
                                                                     <hr>
                                                                 </td>
-                                                                
                                                             </tr>
                                                             @endforeach
-                                                            <div class="row">
-                                                     
-                                                                <div class="col-sm-4"> TOTAL
-                                                                </div>
-                                                                <div class="col-sm-8">{{Session::get('cart')->totalPrice}}
-                                                                </div>
-                                                               
-                                                            </div>
-                                                            <div class="select-button">
-                                                                <a href="{{ URL::to('/cart') }}" style="font-size: 12px;
-                                                                letter-spacing: 2px;
-                                                                display: block;
-                                                                text-align: center;
-                                                                background: #191919;
-                                                                color: #ffffff;
-                                                                padding: 15px 60px 12px;
-                                                                margin-bottom: 10px;">VIEW CARD</a>
-                                                                <a href="{{URL::to('/checkout')}}" style="font-size: 12px;
-                                                                letter-spacing: 2px;
-                                                                display: block;
-                                                                text-align: center;
-                                                                background: #924f4f;
-                                                                color: #ffffff;
-                                                                padding: 15px 60px 12px;">CHECK OUT</a>
-                                                            </div>
-                                                            @else
-                                                            @endif
                                                         </tbody>
                                                     </table>
-                                                </ul> --}}
+                                                    <div class="row">
+                                                     
+                                                        <div class="col-sm-4"> TOTAL
+                                                        </div>
+                                                        <div class="col-sm-8">{{number_format(Session::get('cart')->totalPrice).' '}}
+                                                        </div>
+                                                    </div>
+                                                </ul>
                                             </div>
+                                        @endif
                                         </div>
                                     </a>
                                 </div>
                             @else
                             @endif
+                            
                             <div class="search">
                                 <div class="search_icon">
                                     <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"

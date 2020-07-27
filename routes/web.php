@@ -237,7 +237,7 @@ Route::get('/resetpassword', 'ClientController@getResetPassword');
 Route::post('/resetpassword', 'ClientController@postResetPassword');
 
 //serch
-Route::get('search', ['as'=>'search','uses'=>'ClientController@getSearch']);
+Route::get('search', ['as'=>'search','uses'=>'HomeController@getSearch']);
 
 
 //cart

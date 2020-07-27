@@ -83,9 +83,10 @@
                     <!-- Product -->
                     @foreach ($products as $item)
                     <div class="product">
-                        <div class="product_image"><img src="images/product/{{ $item->Image0 }}" alt=""></div>
+                        <div class="product_image"><img src="{{url('images/product/'.$item->Image0)}}" alt=""></div>
                         @if(Session::has('userLogin'))
-                        <a class="btn btn-block btn-outline-primary"  onclick="addToCart({{$item->ProductID}})" href="javascript:">Add to cart</a>
+                     
+                        <a class="btn btn-block btn-outline-primary"  href="{{URL::to('/addCart/'.$item->ProductID)}}">Add to cart</a>
                         @else
                         <?php Session::put('message',"Bạn phải đăng nhập để mua hàng");?>
                         <a class="btn btn-block btn-outline-primary" href="/login">Add to cart</a>
